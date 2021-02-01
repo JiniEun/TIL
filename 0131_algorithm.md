@@ -72,6 +72,8 @@ print(" \\(__)|")
 ~~~~
 
 ## 4. 개
+[10172번](https://www.acmicpc.net/problem/10172)
+
 - Java
 ~~~~java
 public class Main {
