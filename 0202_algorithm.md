@@ -2,6 +2,8 @@
 
 ### algorithm practice
 
+### 단계별 문제풀기
+
 ### 2. if문
 
 Java / Python
