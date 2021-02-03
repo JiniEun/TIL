@@ -22,14 +22,14 @@ public class Main {
 		int B = sc.nextInt();
         
 		sc.close();
-        if ( A > B ) {
-            System.out.println(">");
-        } else if(A == B){
-            System.out.println("==");
-        } else {
-            System.out.println("<");
-        }
-    }
+		if ( A > B ) {
+			System.out.println(">");
+		} else if(A == B){
+			System.out.println("==");
+		} else {
+			System.out.println("<");
+		}
+	}
 }
 ~~~~
 
@@ -39,6 +39,7 @@ public class Main {
 a,b = input().split()
 a = int(a)
 b = int(b)
+
 if a>b:
     print(">")
 elif a<b:
@@ -47,7 +48,7 @@ else:
     print("==")
 ~~~~
 
-
+<br><br>
 ### 2. 시험 성적
 [9498번](https://www.acmicpc.net/problem/9498)
 
@@ -60,20 +61,20 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
  
 		int A = sc.nextInt();
-        sc.close();
+		sc.close();
         
-        if ( A >= 90 ) {
-            System.out.println("A");
-        } else if(A >= 80){
-            System.out.println("B");
-        } else if(A >= 70){
-            System.out.println("C");
-        } else if(A >= 60){
-            System.out.println("D");
-        }else {
-            System.out.println("F");
-        }
-    }
+		if ( A >= 90 ) {
+			System.out.println("A");
+		} else if(A >= 80){
+			System.out.println("B");
+		} else if(A >= 70){
+			System.out.println("C");
+		} else if(A >= 60){
+			System.out.println("D");
+		} else {
+			System.out.println("F");
+		}
+	}
 }
 ~~~
 
