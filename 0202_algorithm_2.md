@@ -1,19 +1,19 @@
 # Baekjoon Online Judge
 
-### algorithm practice
+## algorithm practice
 
-### 단계별 문제풀기
+## 단계별 문제풀기
 
-### 2. if문
+## 2. if문
 
 Java / Python
 <br>
 
-## 3. 윤년
+### 3. 윤년
 [2753번](https://www.acmicpc.net/problem/2753) 
 
 - Java
-~~~~java
+```java
 import java.util.Scanner;
  
 public class Main {
@@ -21,16 +21,16 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
  
 		int A = sc.nextInt();
-        sc.close();
+		sc.close();
         
-        if ( (A % 4 == 0 && A % 100 != 0)||A%400==0  ) {
-            System.out.println("1");
-        } else {
-            System.out.println("0");
-        }
-    }
+		if ( (A % 4 == 0 && A % 100 != 0)||A%400==0) {
+ 			System.out.println("1");
+		} else {
+ 			System.out.println("0");
+		}
+	}
 }
-~~~~
+```
 
 
 - Python
@@ -46,7 +46,47 @@ else:
 >윤년 문제는 처음 if문을 배울 때, 꽤 자주 나오는 기본문제 같습니다..!
 *윤년은 연도가 4의 배수이면서, 100의 배수가 아닐 때 / 또는 400의 배수일 때 입니다!*
 
-**시간 상 하나의 문제 밖에 못 올렸네요..! 내일(2021/2/3) 추가로 수정해서 포스팅하겠습니다!**
+### 4. 사분면 고르기
+
+- Java
+~~~java
+import java.util.Scanner;
+ 
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+ 
+		int x = sc.nextInt();
+		int y = sc.nextInt();
+		sc.close();
+        
+		if ( x>0 && y>0) {
+ 			System.out.println("1");
+		} else if(x<0 && y>0){
+			System.out.println("2");
+		} else if(x<0 && y<0){
+			System.out.println("3");
+		}else {
+			System.out.println("4");
+		}
+	}
+}
+~~~
+
+- Python
+```python
+x = int(input())
+y = int(input())
+
+if (x>0 and y>0):
+    print("1")
+elif (x<0 and y>0):
+    print("2")
+elif (x<0 and y<0):
+    print("3")
+else:
+    print("4")
+```
 
 ---
 if문을 잘 사용하는 지 알아보는 문제 같습니다!
