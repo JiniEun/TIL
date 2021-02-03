@@ -1,15 +1,13 @@
 # Baekjoon Online Judge
 
-### algorithm practice
-
-### 단계별 문제풀기
-
-### 2. if문
+## algorithm practice
+## 단계별 문제풀기
+## 2. if문
 
 Java / Python
 <br>
 
-## 1. 두 수 비교하기
+### 1. 두 수 비교하기
 [1330번](https://www.acmicpc.net/problem/1330) 
 
 - Java
@@ -50,7 +48,7 @@ else:
 ~~~~
 
 
-## 2. 시험 성적
+### 2. 시험 성적
 [9498번](https://www.acmicpc.net/problem/9498)
 
 - Java
