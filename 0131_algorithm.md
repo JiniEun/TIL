@@ -1,15 +1,14 @@
 # Baekjoon Online Judge
 
-### algorithm practice
+## algorithm practice
+## 단계별 문제풀기
 
-### 단계별 문제풀기
-
-### 1. 입출력과 사칙연산
+## 1. 입출력과 사칙연산
 
 C++ / Java / Python
 <br>
 
-## 1. Hello World 
+### 1. Hello World 
 [2557번](https://www.acmicpc.net/problem/2557)
 
 - Java
@@ -37,7 +36,7 @@ int main(){
 print("Hello World!")
 ~~~~
 
-## 3. 고양이 
+### 3. 고양이 
 [10171번](https://www.acmicpc.net/problem/10171)
 
 - Java
@@ -73,9 +72,8 @@ print("(  /  )")
 print(" \\(__)|")
 ~~~~
 
-## 4. 개
+### 4. 개
 [10172번](https://www.acmicpc.net/problem/10172)
-
 - Java
 ~~~~java
 public class Main {
@@ -115,7 +113,7 @@ print("||_/=\\\\__|")
 
 
 ---
-그대로 출력하는 문제들은 기본적인 print()문을 이용할 때, 따옴표 등 특수문자를 출력하는 방법을 알고 있는 지 확인하는 문제 같습니다!
+> 그대로 출력하는 문제들은 기본적인 print()문을 이용할 때, 따옴표 등 특수문자를 출력하는 방법을 알고 있는 지 확인하는 문제 같습니다!
 ( \ : 백슬래시(Back Slash)를 이용해 따옴표, 특수문자를 그대로 출력할 수 있습니다!)  
 ```python
 print("\"")
