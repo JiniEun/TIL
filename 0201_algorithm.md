@@ -1,15 +1,15 @@
 # Baekjoon Online Judge
 
-### algorithm practice
+## algorithm practice
 
-### 단계별 문제풀기
+## 단계별 문제풀기
 
-### 1. 입출력과 사칙연산
+## 1. 입출력과 사칙연산
 
 C++ / Java / Python
 <br>
 
-## 5. A + B
+### 5. A + B
 [1000번](https://www.acmicpc.net/problem/1000) A + B
 [1001번](https://www.acmicpc.net/problem/1001) A - B
 [10998번](https://www.acmicpc.net/problem/10998) A x B
@@ -55,7 +55,7 @@ print(a+b)
 ~~~~
 
 
-## 8. A / B
+### 8. A / B
 [1008번](https://www.acmicpc.net/problem/1008)
 
 - Java
@@ -100,4 +100,4 @@ print(a/b)
 ~~~
 
 ---
-나눗셈의 경우 실수형인 double을 이용하고, c++에서는 정확도를 위해 유효숫자 15자리를 출력하겠다는 의미를 담은 `cout.precision(15);`코드를 추가했습니다!
+> 나눗셈의 경우 실수형인 double을 이용하고, c++에서는 정확도를 위해 유효숫자 15자리를 출력하겠다는 의미를 담은 `cout.precision(15);`코드를 추가했습니다!
