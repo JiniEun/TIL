@@ -90,6 +90,7 @@ public class Main {
 
 
 <br>
+
 - Python
 
 방법 1
@@ -112,8 +113,56 @@ for i in range(1, num+1):
     print(" "*(num-i), end="")
     print("*"*i)
 ```
+
+<br><br>
+
+### 11. X 보다 작은 수
+[10871번](https://www.acmicpc.net/problem/10871) 
+> 정수 N개로 이루어진 수열 A와 정수 X가 주어진다. 이때, A에서 X보다 작은 수를 모두 출력하는 프로그램을 작성하는 문제
+> for와 if를 같이 쓰는 문제 
+
+- Java
+```java
+import java.util.Scanner;
+ 
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int num = sc.nextInt();
+		int x = sc.nextInt();
+		int arr[] = new int[num];
+		
+		for (int i = 0; i < num; i++) {
+			arr[i] = sc.nextInt();
+		}
+ 
+		sc.close();
+        
+		for (int i = 0; i < num; i++) {
+			if (arr[i] < x) {
+				System.out.print(arr[i] + " ");
+			}
+		}
+	}
+}
+```
+
 <br>
 
+- Python
+
+```python
+num, X = map(int,input().split())
+
+arr = list(map(int, input().split()))
+
+for i in range(num):
+    if arr[i] < X :
+        print(arr[i], end = " ")
+```
+
+<br><br>
 
 ---
-오늘은 for문을 이용한 별 찍기 문제입니다. 이중 for문을 활용할 수 있는 지 확인하는 문제같습니다.
+오늘까지는 for문을 이용한 기본 문제입니다. 
+이중 for문을 활용할 수 있는 지 확인하는 문제, for와 if를 함께 쓰는 문제입니다.
