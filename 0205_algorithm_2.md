@@ -90,6 +90,7 @@ public class Main {
 
 
 <br>
+- Python
 
 방법 1
 ```python
