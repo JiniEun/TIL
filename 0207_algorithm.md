@@ -109,7 +109,29 @@ print(nlist.index(max(nlist))+1)
 
 - Java
 ```java
-
+import java.util.Scanner;
+ 
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int A = sc.nextInt();
+		int B = sc.nextInt();
+		int C = sc.nextInt();
+		sc.close();
+         
+		int[] count = new int[10];
+		int num = A * B * C;
+		while (num > 0) {
+			count[num % 10]++;
+			num /= 10;
+		}
+         
+		for (int i = 0; i < count.length; ++i) {
+			System.out.println(count[i]);
+		}
+	}
+}
 ```
 
 <br>
@@ -117,11 +139,18 @@ print(nlist.index(max(nlist))+1)
 - Python
 
 ```python
+a = int(input())
+b = int(input())
+c = int(input())
 
+result = list(str(a * b * c))
+for i in range(10):
+    print(result.count(str(i)))
 ```
-> 
+
 
 <br><br>
 
 ---
 > 오늘은 1차원 배열 문제입니다!
+1차원 배열을 잘 응용할 수 있다면 충분히 풀 수 있는 문제들인 것 같습니다!
