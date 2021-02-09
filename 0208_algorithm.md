@@ -68,8 +68,30 @@ print(len(nlist))
 
 - Java
 ```java
-
-
+import java.util.Scanner;
+ 
+public class Main {
+ 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int num = sc.nextInt();
+        int total = 0;
+        int max = 0;
+        int score;
+        for (int i = 0; i < num; ++i) {
+            score = sc.nextInt();
+            total += score;
+            if (score > max) {
+                max = score;
+            }
+        }
+        sc.close();
+         
+        double avg = 0;
+        avg = 100.0 * total / max / num;
+        System.out.printf("%.2f", avg);
+    }
+}
 ```
 
 <br>
@@ -77,7 +99,20 @@ print(len(nlist))
 - Python
 
 ```python
+num = int(input())
+grade = list(map(int, input().split()))
+c = 0
+avg=[]
 
+for i in grade:
+    c += i
+    
+avg_old = c/num
+
+for i in grade:
+    avg.append(i/max(grade) * 100)
+
+print("%0.2f" % (sum(avg)/num))
 ```
 
 <br><br>
