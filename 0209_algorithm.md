@@ -91,16 +91,16 @@ public class Main {
 
         for (int i=0; i < T; i++) {
             stnum = sc.nextInt();
-            int total = 0;          // 합계 한번 돌때마다 초기화
-            int num = 0;            // 평균넘는 학생수 한번 돌때마다 초기화
+            int total = 0;          
+            int num = 0;            
         
-            for(int j=0; j < stnum; j++) {  // 입력 반복문
+            for(int j=0; j < stnum; j++) {  
                 arr[j] = sc.nextInt();
-                total += arr[j];        // 합계구하기
+                total += arr[j];    
             }
-            avg = (double)total / stnum; // 평균구하기
+            avg = (double)total / stnum;
             
-            for(int j=0; j < stnum; j++) { // 학생수 세기
+            for(int j=0; j < stnum; j++) { 
                 if(arr[j]>avg) {
                     num++;
                 }
