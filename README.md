@@ -20,4 +20,6 @@ Today I learn!
   - 직접 구현해보면서 새로 알게된 내용 등 노트 정리 후 업로드
   - JBlog
   
- 
+- Blog 운영
+  - 내용 정리해서 posting
+  - https://velog.io/@jini_eun
