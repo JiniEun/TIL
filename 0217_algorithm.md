@@ -10,7 +10,7 @@ Java / Python
 <br>
 
 ### 2. 벌집
-[1712번](https://www.acmicpc.net/problem/1712) 
+[2292번](https://www.acmicpc.net/problem/2292) 
 > 벌집이 형성되는 규칙에 따라 벌집의 위치를 구하는 문제
 ![](https://images.velog.io/images/jini_eun/post/c4be7701-5438-4d53-a982-5c25c1ccaac4/image.png)
 
