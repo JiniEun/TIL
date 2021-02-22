@@ -28,3 +28,4 @@ Today I learn!
 - Blog 운영
   - 내용 정리 -> posting
   - https://velog.io/@jini_eun
+  - https://jules-jc.tistory.com/
