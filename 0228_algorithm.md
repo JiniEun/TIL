@@ -24,7 +24,40 @@ Java / Python
 - Java
 
 ```java
-
+import java.util.Scanner;
+ 
+ 
+public class Main {
+	public static boolean[] prime;
+	public static void main(String[] args) {
+ 
+		Scanner sc = new Scanner(System.in);
+		int M = sc.nextInt();
+		int N = sc.nextInt();
+		
+		prime = new boolean[N + 1];
+		is_prime();
+				
+		for(int i = M; i <= N; i++) {
+			// false = 소수 
+			if(!prime[i]) System.out.println(i);
+		}
+	}
+ 
+ 
+	// 에라토스테네스의 체
+	public static void is_prime() {
+		// true = 소수X , false = 소수
+		prime[0] = prime[1] = true;
+		
+		for(int i = 2; i <= Math.sqrt(prime.length); i++) {
+			if(prime[i]) continue;
+			for(int j = i * i; j < prime.length; j += i) {
+				prime[j] = true;
+			}
+		}
+	}
+}
 ``` 
 
 <br>
@@ -32,7 +65,21 @@ Java / Python
 - Python
 
 ```python
+M, N = map(int, input().split())
 
+def is_prime(m, n):
+    n += 1                               # for문 사용을 위한 N 증가
+    prime = [True] * n                   # N개의 True가 있는 리스트 생성
+    for i in range(2, int(n**0.5)+1):    # 범위 : N의 제곱근까지
+        if prime[i]:                      # if prime[i] == True
+            for j in range(2*i, n, i):    # prime 내 i의 배수들을 False로 변환
+                prime[j] = False
+
+    for i in range(m, n):
+        if i > 1 and prime[i] == True:    # 소수 출력
+            print(i)
+
+is_prime(M, N)
 ```
 
 <br><br>
@@ -43,4 +90,4 @@ Java / Python
 
 
 > 오늘은 기본 수학2 예제였습니다!
-
+소수를 구하기 위해 에라토스테네스의 체에 대해 공부하고, 구현 방법에 대해 검색해보고 참고하며 구현할 수 있었던 것 같습니다..!
