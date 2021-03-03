@@ -55,14 +55,34 @@ public class Main {
 }
 
 ``` 
+> 에라토스테네스의 체를 이용하여 최대 n(<=123456)의 모든 소수를 구하고, 배열에 담아 놓고 함수를 이용했습니다.
 
 <br>
 
 - Python
 
 ```python
+def get_prime(val):
+    cnt = 0
+    for i in range(val + 1, val * 2 + 1):
+        if sieve[i]:
+            cnt += 1
+    print(cnt)
 
+N = 123456 * 2 + 1
+sieve = [True] * N
+for i in range(2, int(N**0.5)+1):
+    if sieve[i]:
+        for j in range(2*i, N, i):
+            sieve[j] = False
+
+while True:
+    val = int(input())
+    if val == 0:
+        break
+    get_prime(val)
 ```
+> 에라토스테네스의 체를 이용하여 최대 n(<=123456)의 모든 소수를 구하고, n+1 <= x <= 2n 범위의 소수를 세어주는 방식을 이용했습니다. (n이 자연수 -> 1 고려 X)
 
 <br><br>
 
@@ -71,5 +91,5 @@ public class Main {
 <br>
 
 
-> 오늘은 기본 수학2 예제였습니다!
+> 오늘은 기본 수학2 예제였습니다! 앞 예제에서의 에라토스테네스의 체를 이용하여 소수를 구하는 방법을 공부할 수 있었습니다..!
 
