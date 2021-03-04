@@ -65,8 +65,24 @@ public class Main {
 - Python
 
 ```python
+prime = [False, False] + [True] * 10000
+    
+for i in range(2, 101):
+    if prime[i] == True:
+        for j in range(i + i, 10001, i):
+            prime[j] = False
 
+T = int(input())
+for _ in range(T):
+    N = int(input())
+    num = N // 2
+    for j in range(num, 1, -1):
+        if prime[N - j] and prime[j]:
+            print(j, N - j)
+            break
 ```
+> 입력값이 10000까지 주어질 수 있기 때문에 길이가 0, 1번 인덱스가 False이고 나머지가 True인 길이 10002인 배열 선언.
+입력값이 10000까지 주어지기 때문에 101보다 작은 소수들의 배수들을 False로 바꿔주면 소수만 남는다.
 
 <br><br>
 
@@ -76,4 +92,4 @@ public class Main {
 
 
 > 오늘은 기본 수학2 예제였습니다!
-기본 수학2의 경우 소수와 관련된 예제들이 많은 것 같습니다! 소수와 관련해서 다양하게 코딩하는 방법을 공부할 수 있던 것 같습니다.
+기본 수학2의 경우 소수와 관련된 예제들이 많은 것 같습니다! 소수와 관련해서 다양하게 코딩하는 방법을 공부할 수 있던 것 같습니다. 저도 소수를 가지고 다양하게 코딩해본 적이 없어서 많이 어려웠습니다..😂
