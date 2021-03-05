@@ -18,9 +18,30 @@ Java / Python
 - Java
 
 ```java
+import java.util.*;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int cnt = 3;            
+        while(cnt != 0) {
+            int a=sc.nextInt();
+            int b=sc.nextInt();
+            int c=sc.nextInt();
+            cnt = a;
+            if(cnt==0) {break;}
+            int[] arr= {a,b,c};        
+            Arrays.sort(arr);
 
+            if(arr[2] * arr[2] == arr[0] * arr[0] + arr[1] * arr[1]) {
+                System.out.println("right");
+            }else {
+                System.out.println("wrong");
+            }    
+        }          
+    }
+}
 ``` 
-> Arraylist를 이용하여 ㅁ
+> array로 받아 sort를 이용해 가장 큰 수를 찾아주고 계산했습니다!
 
 <br>
 
