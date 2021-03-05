@@ -66,13 +66,32 @@ while True:
 ### 10. 택시 기하학
 [3053번](https://www.acmicpc.net/problem/3053) 
 > 유클리드 기하학과 택시 기하학에 대한 문제
+>>택시 기하학에서의 원
+![](https://images.velog.io/images/jini_eun/post/f01853d8-ec64-4d71-8eb5-f2d92021e8d7/image.png)
+[출처](https://terms.naver.com/entry.nhn?docId=3567439&cid=58944&categoryId=58970)<br><br>
+유클리드 기하학에서 원의 넓이 : pi x R^2
+택시 기하학에서 원의 넓이 : 밑변의 길이와 높이가 R인 마름모꼴 형태의 정사각형의 넓이
+유클리드 기하학의 원의 방정식은 
+(x-a)^{2}+(y-b)^{2}=r^{2}이지만, 
+택시 기하학에서의 원의 방정식은 원의 중심이 (a,b) 이고, 거리가 d 일때 아래와 같이 표현된다.
+|x - a| + |y - b| = d∣x−a∣+∣y−b∣=d
+반지름이 r이라고 하면 마름모니까 넓이는 2 x r^2이 된다.
 
 <br>
 
 - Java
 
 ```java
-
+import java.util.Scanner;
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        double R = sc.nextDouble(); // 반지름 R
+        sc.close();
+        System.out.println(R * R * Math.PI); // 유클리드 기하학
+        System.out.println(2 * R * R); // 택시 기하학 
+    }
+}
 ``` 
 
 <br>
@@ -80,9 +99,11 @@ while True:
 - Python
 
 ```python
-
+import math
+R = int(input())
+print(R*R*math.pi)
+print(R*R*2)
 ```
->  
 
 <br><br>
 
