@@ -34,6 +34,29 @@ N명의 집단에서 각 사람의 덩치 등수는 자신보다 더 "큰 덩치
 - Java
 
 ```java
+import java.util.Scanner;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int[][] students = new int[N][2];
+        for(int i = 0; i<N; i++){
+            students[i][0] = sc.nextInt();
+            students[i][1] = sc.nextInt();
+        }
+        for(int i = 0; i < N; i++) {
+            int rank = 1; 
+            for(int j = 0; j < N; j++) {
+                if(i == j) continue; 
+
+                if (students[i][0] < students[j][0] && students[i][1] < students[j][1]) {
+                    rank++;
+                }
+            }
+            System.out.print(rank + " ");    // i번째의 랭크값 출력     
+        }
+    }
+}
 
 ``` 
 
@@ -42,41 +65,19 @@ N명의 집단에서 각 사람의 덩치 등수는 자신보다 더 "큰 덩치
 - Python
 
 ```python
-
+N = int(input())
+students = []
+for _ in range(N):
+    w, h = map(int, input().split())
+    students.append((w, h))
+    
+for i in students:
+    rank = 1
+    for j in students:
+        if i[0] < j[0] and i[1] < j[1]:
+                rank += 1
+    print(rank, end = " ")
 ```
 
 
 
-<br><br><br>
-
-### 4. 체스판 다시 칠하기
-[1018번](https://www.acmicpc.net/problem/2231) 
-> 체스판을 만드는 모든 경우를 시도하여 최적의 방법을 찾는 문제
->> 지민이는 자신의 저택에서 MN개의 단위 정사각형으로 나누어져 있는 MxN 크기의 보드를 찾았다. 어떤 정사각형은 검은색으로 칠해져 있고, 나머지는 흰색으로 칠해져 있다. 지민이는 이 보드를 잘라서 8x8 크기의 체스판으로 만들려고 한다. <br>
-체스판은 검은색과 흰색이 번갈아서 칠해져 있어야 한다. 구체적으로, 각 칸이 검은색과 흰색 중 하나로 색칠되어 있고, 변을 공유하는 두 개의 사각형은 다른 색으로 칠해져 있어야 한다. 따라서 이 정의를 따르면 체스판을 색칠하는 경우는 두 가지뿐이다. 하나는 맨 왼쪽 위 칸이 흰색인 경우, 하나는 검은색인 경우이다.<br>
-보드가 체스판처럼 칠해져 있다는 보장이 없어서, 지민이는 8x8 크기의 체스판으로 잘라낸 후에 몇 개의 정사각형을 다시 칠해야겠다고 생각했다. 당연히 8x8 크기는 아무데서나 골라도 된다. 지민이가 다시 칠해야 하는 정사각형의 최소 개수를 구하는 프로그램을 작성하시오.
-
-<br><br>
-
-- Java
-
-```java
-
-``` 
-
-<br><br>
-
-- Python
-
-```python
-
-```
-
-<br><br>
-
----
-
-<br>
-
-
- 
