@@ -42,7 +42,7 @@ public class Main {
 		arr = new int[M];
         
 		dfs(1, 0);
-        sc.close();
+		sc.close();
 	}
  
 	public static void dfs(int at, int depth) {
