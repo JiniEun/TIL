@@ -27,41 +27,43 @@
 <br>
 
 ```java
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.util.StringTokenizer;
  
 public class Main {
- 
+    
+    public static int N, M;
 	public static int[] arr;
-	public static int N, M;
+	public static StringBuilder sb = new StringBuilder();
  
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
  
-		Scanner sc = new Scanner(System.in);
- 
-		N = sc.nextInt();
-		M = sc.nextInt();
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+        // 공백을 기준으로 입력받기 때문에 공백 구분을 위해 StringTokenizer 객체를 함께 사용
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
  
 		arr = new int[M];
-        
-		dfs(1, 0);
-        sc.close();
+		dfs(0);
+		System.out.println(sb);
 	}
  
-	public static void dfs(int at, int depth) {
+	public static void dfs(int depth) {
  
 		if (depth == M) {
-			for (int val : arr) {
-				System.out.print(val + " ");
+			for (int i = 0; i < M; i++) {
+				sb.append(arr[i]).append(' ');
 			}
-			System.out.println();
+			sb.append('\n');
 			return;
 		}
-        
-		for (int i = at; i <= N; i++) {
  
+		for (int i = 1; i <= N; i++) {
 			arr[depth] = i;
-			dfs(i + 1, depth + 1);
- 
+			dfs(depth + 1);
 		}
 	}
 }
