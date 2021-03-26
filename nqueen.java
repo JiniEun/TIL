@@ -9,7 +9,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		N = sc.nextInt();
 		arr = new int[N];
-    sc.close();
+		sc.close();
 		nQueen(0);
 		System.out.println(result);
 	}
