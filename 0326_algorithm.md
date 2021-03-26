@@ -78,6 +78,7 @@ public class Main {
 <br><br>
 
 - Python (PyPy3)
+
 > Python의 경우 이번 예제에서 거의 계속 시간 초과의 문제가 있었습니다. 찾아보니,  PyPy3가 일부 Python 프로그램의 경우 몇 배나 빠른 Python 인터프리터 대체 도구로, Python으로 계속 시간초과가 된다면, PyPy3를 이용하라는 말이 많아서, PyPy3로 언어를 설정하고 수행했습니다. 
 
 <br>
