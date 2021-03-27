@@ -1,3 +1,4 @@
+# BOJ n.2580
 import sys
 
 # 행 체크
