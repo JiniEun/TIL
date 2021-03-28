@@ -24,7 +24,7 @@ public class Main {
 			oper[i] = sc.nextInt();
 		}
 		dfs(nums[0], 1);
-    sc.close();
+		sc.close();
 		System.out.println(MAX);
 		System.out.println(MIN);
 
