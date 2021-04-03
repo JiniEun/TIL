@@ -74,7 +74,7 @@ public class Main {
 		if(DP[N][color] == 0) {
 			
 			// color의 색에 따라 이전 집의 서로 다른 색을 재귀호출 
-            // 최솟값과 현재 집의 비용을 더해서 DP에 저장
+			// 최솟값과 현재 집의 비용을 더해서 DP에 저장
 			if(color == R) {
 				DP[N][R] = Math.min(Paint(N - 1, G), Paint(N - 1, B)) + Cost[N][R];
 			}
