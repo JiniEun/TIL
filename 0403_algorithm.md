@@ -28,6 +28,10 @@
 
 <br>
 
+> Scanner + 재귀호출을 이용한 코드입니다.
+
+<br>
+
 ```java
 import java.util.Scanner;
  
@@ -93,8 +97,21 @@ public class Main {
 
 <br>
 
-```python
+> Python의 경우 반복문을 이용한 코드입니다.
 
+<br>
+
+```python
+import sys
+N = int(sys.stdin.readline())
+P = []
+for i in range(N):
+    P.append(list(map(int, sys.stdin.readline().split())))
+for i in range(1, len(P)):    # 0, 1, 2 = R, G, B
+    P[i][0] = min(P[i - 1][1], P[i - 1][2]) + P[i][0]
+    P[i][1] = min(P[i - 1][0], P[i - 1][2]) + P[i][1]
+    P[i][2] = min(P[i - 1][0], P[i - 1][1]) + P[i][2]
+print(min(P[N - 1][0], P[N - 1][1], P[N - 1][2]))
 ```
 <br><br>
 
