@@ -53,7 +53,7 @@ public class Main {
 		DP = new Integer[N][N];
 		StringTokenizer st;
         
-    // 삼각형 수 입력 받기
+		// 삼각형 수 입력 받기
 		for (int i = 0; i < N; i++) {
 			st = new StringTokenizer(br.readLine(), " ");
  
@@ -62,7 +62,7 @@ public class Main {
 			}
 		}
         
-    // (삼각형) arr 배열의 마지막 행의 값들을 DP의 마지막 행에 똑같이 복사
+		// (삼각형) arr 배열의 마지막 행의 값들을 DP의 마지막 행에 똑같이 복사
 		for (int i = 0; i < N; i++) {
 			DP[N - 1][i] = arr[N - 1][i];
 		}
