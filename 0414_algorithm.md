@@ -30,7 +30,7 @@
 
 <br>
 
-> 짐을 쪼갤 수 없는 배낭문제를 0/1 Knapsack Problem입니다.
+> 짐을 쪼갤 수 없는 배낭문제 0/1 Knapsack Problem입니다.
 
 <br><br>
 
