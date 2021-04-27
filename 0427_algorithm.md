@@ -31,6 +31,8 @@
 <br>
 
 > 이번 문제는 저번 이항 계수 1 문제와 비슷한데, 이항 계수 값에 10,007로 나눈 나머지를 출력하는 문제입니다. 파스칼의 삼각형을 이용하여 풀었습니다.
+*파스칼의 삼각형*
+![](https://images.velog.io/images/jini_eun/post/f3e90e61-c844-4467-8ed9-49d9da4eaabf/image.png)
 
 <br><br>
 
@@ -107,3 +109,4 @@ print(result % 10007)
 ---
 
 <br>
+
