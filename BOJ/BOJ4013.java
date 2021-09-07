@@ -1,9 +1,10 @@
-package study_boj;
+// BOJ4013
+// SCC _ 타잔 
 
 import java.io.*;
 import java.util.*;
 
-public class BOJ4013 {
+public class Main {
 	static int scc_total, num;
 	static ArrayList<Integer>[] edges;
 	static int[] order, scc_arr;
