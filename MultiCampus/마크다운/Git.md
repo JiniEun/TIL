@@ -36,11 +36,7 @@ Repository
 
 ## Git 기본기
 
-`git init` : 로컬 저장소 생성
-
-.git 디렉토리에 버전 관리에 필요한 모든 것이 저장된다.
-
-## Git log 이해하기
+### Git commit 원리
 
 Working Directory / Staging Area / Repository
 
@@ -54,19 +50,21 @@ working dir 에서 수정되면, git add를 통해 staged 시킬 수 있다.
 
 staged된 파일들은 COMMIT을 통해 repo에 기록할 수 있다.
 
+### git 기본 명령어들 간단 정리
+
+`git init` : 로컬 저장소 생성 / .git 디렉토리에 버전 관리에 필요한 모든 것이 저장된다.
+
 `git status` : 현재 git으로 관리되고 있는 파일들의 상태를 알 수 있는 명령어.
 
 `git add .` : 추적 되지 않은 모든 파일과 추적하고 있는 파일 중 수정된 파일을 모두 Staging Area에 올린다.
 
 `git commit -m "commit_msg"` : 커밋 메세지를 적으며 commit (저장소에 기록)
 
-- git 사용자 적기
-
-`git config --global user.name "user_name"`
-
-`git config --global user.email "user_email"`
-
-- git 명령어들
+> - git 사용자 적기
+>
+> `git config --global user.name "user_name"`
+>
+> `git config --global user.email "user_email"`
 
 git 에서 origin : (remote repository) 원격 저장소 이름
 
