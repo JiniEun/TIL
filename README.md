@@ -1,6 +1,5 @@
 # TIL
-Today I learn!
-🐧
+📝 Today I learn! 🐧
 <br><br> 공부, 정리, 코드 등 공부한 것들 매일 꾸준히! 성실하게! 기록 남기기
 
 
