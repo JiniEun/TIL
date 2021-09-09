@@ -54,8 +54,6 @@ working dir 에서 수정되면, git add를 통해 staged 시킬 수 있다.
 
 staged된 파일들은 COMMIT을 통해 repo에 기록할 수 있다.
 
-![image-20210909113403648](Git.assets/image-20210909113403648.png)
-
 `git status` : 현재 git으로 관리되고 있는 파일들의 상태를 알 수 있는 명령어.
 
 `git add .` : 추적 되지 않은 모든 파일과 추적하고 있는 파일 중 수정된 파일을 모두 Staging Area에 올린다.
