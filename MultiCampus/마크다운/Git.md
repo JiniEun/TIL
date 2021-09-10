@@ -72,3 +72,12 @@ git 에서 origin : (remote repository) 원격 저장소 이름
 
 `git clone {remote_repo} ` :  remote repository를 local로 복사한다.
 
+
+
+- Github Pages
+
+Github에서 제공하는 무료 웹 호스팅 서비스
+
+Github repo와 직접적으로 연동되어 있어서, push하면 바로 반영된다.
+
+(push 후 적용에 시간은 좀 걸릴 수 있다.)
