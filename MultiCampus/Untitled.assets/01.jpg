@@ -1,0 +1,250 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Authentication</title>
+</head>
+<body>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>lectureblue</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  body {
+      position: relative; 
+  }
+  #footer {
+  height: 55px;
+  background-color: #000;
+ }
+ 
+ /* Custom page CSS
+ -------------------------------------------------- */
+ /* Not required for template or sticky footer method. */
+ 
+   #wrap > .container {
+	 padding: 5px 5px 0;
+  }
+	 
+   .container .credit {
+	 margin: 20px 0; 
+  } 
+	
+   #footer > .container {
+	 padding-left: 20px;
+	 padding-right: 20px;
+  }
+
+/*   #OOP {padding-top:0px;height:800px;color: #fff; background-color: #1E88E5;} */
+/*   #WAS {padding-top:50px;height:800px;color: #fff; background-color: #673ab7;} */
+/*   #Framework {padding-top:50px;height:800px;color: #fff; background-color: #ff9800;} */
+/*   #HTML5 {padding-top:50px;height:800px;color: #fff; background-color: #00bcd4;} */
+/*   #CSS {padding-top:50px;height:800px;color: #fff; background-color: #00bcd4;} */
+/*   #Jquery {padding-top:50px;height:800px;color: #fff; background-color: #009688;} */
+/*   #Ajax {padding-top:50px;height:800px;color: #fff; background-color: #009688;} */
+  </style>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+	  if('null'=='admin'){
+		  $("#reference").show();
+		  $("#management").show();
+	  }else{
+		  $("#reference").hide();
+		  $("#management").hide();
+	  } 
+  });
+  
+  function move(code,auth){
+	  var url = "/reqtiles/list.jsp?code="+code;
+	  url = url + "&auth="+auth;
+	  
+	  location.href = url;
+  }
+  </script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+<div id="wrap">
+<nav class="navbar navbar-inverse ">
+  <div class="container-fluid">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/index.jsp">
+          <span class="glyphicon glyphicon-home"></span></a>
+    </div>
+    <div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">OOP<span class="caret"></span></a>
+           <ul class="dropdown-menu">
+              <li><a href="javascript:move(1,'OOP')">Java</a></li>
+              <li><a href="javascript:move(2,'OOP')">Algorism</a></li>
+              <li><a href="javascript:move(3,'OOP')">Swing</a></li>
+              <li><a href="javascript:move(4,'OOP')">코딩예제</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">WAS<span class="caret"></span></a>
+          	<ul class="dropdown-menu">
+              <li><a href="javascript:move(5,'WAS')">HTML/CSS</a></li>
+<!--               <li><a href="javascript:move(6,'WAS')">SQL</a></li> -->
+              <li><a href="javascript:move(55,'WAS')">JSP</a></li>
+              <li><a href="javascript:move(8,'WAS')">JavaScript</a></li>
+			  <li><a href="javascript:move(45,'WAS')">Bootstrap</a></li>
+            </ul>
+           </li>
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Framework<span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	              <li><a href="javascript:move(56,'Framework')">MVC_Spring</a></li>
+	              <li><a href="javascript:move(57,'Framework')">Spring_Boot</a></li>									   
+<!--	              <li><a href="javascript:move(11,'Framework')">Spring_OJT</a></li>-->
+	          </ul>
+           </li> 
+          <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Web Publishing <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+			   <!--li><a href="javascript:move(12,'WPublishing')">CSS</a></li-->
+			  <li><a href="javascript:move(13,'WPublishing')">HTML5</a></li>
+			  <li><a href="javascript:move(14,'WPublishing')">Ajax</a></li>
+              <li><a href="javascript:move(15,'WPublishing')">jQuery</a></li>
+			  <li><a href="javascript:move(40,'WPublishing')">MobileWeb</a></li>
+              <li><a href="javascript:move(35,'WPublishing')">Node.js</a></li>
+            </ul>
+          </li>
+         <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">ICT & SQL <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+			 <li><a href="javascript:move(53,'ICT')">SQL Developer</a></li>
+			 <li><a href="javascript:move(6,'ICT')">SQL</a></li>
+			<li><a href="javascript:move(54,'ICT')">IT 인프라 구조</a></li> 
+			  <li><a href="javascript:move(30,'ICT')">Nosql</a></li>
+			  <li><a href="javascript:move(16,'ICT')">Bigdata</a></li>
+			 
+              <li><a href="javascript:move(18,'ICT')">Android_NFC</a></li>
+              <li><a href="javascript:move(19,'ICT')">RFID</a></li>
+			   <li><a href="javascript:move(39,'ICT')">ITSecurity</a></li>
+            </ul>
+          </li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Analyze_Design <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+			 <li><a href="javascript:move(32,'Analyze_Design')">NCS_직업기초능력</a></li>
+              <li><a href="javascript:move(20,'Analyze_Design')">OJT</a></li>
+			  <li><a href="javascript:move(29,'Analyze_Design')">NCS_OJT</a></li>
+              <li><a href="javascript:move(21,'Analyze_Design')">PL-SQL</a></li>
+              <li><a href="javascript:move(22,'Analyze_Design')">DBModeling</a></li>
+            </ul>
+        </li>
+        <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Community<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/reqtiles/glist.jsp?code=1&flag=g">NOTICE</a></li>
+              <li><a href="/reqtiles/glist.jsp?code=13&flag=g">OpenSource</a></li>
+			  <li><a href="/reqtiles/remote_tiles.jsp?flag=g">Remote Desktop</a></li>
+<!-- 			  <li><a href="/reqtiles/glist.jsp?code=12&flag=g">MachineLearning</a></li> -->
+              <li><a href="/reqtiles/glist.jsp?code=11&flag=g">Weekend_R</a></li>
+<!-- 			  <li><a href="/reqtiles/glist.jsp?code=16&flag=g">tmaxsoft</a></li> -->
+			  <li><a href="/reqtiles/glist.jsp?code=17&flag=g">aistudy</a></li>
+            </ul>
+        </li>
+        <li><a href="/reqtiles/lectureinfo_tiles.jsp?flag=g">Professional Activities</a></li> 
+        
+		<li id="specialize" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Data science<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+
+<!--               <li><a href="javascript:move(37,'Data_science')">R Program_old</a></li> -->
+			  <li><a href="javascript:move(41,'Data_science')">R Program</a></li>
+			  <li><a href="javascript:move(43,'Data_science')">R 특강</a></li>
+			  <li><a href="javascript:move(58,'Data_science')">Python</a></li>
+			  <li><a href="javascript:move(49,'Data_science')">데이터 분석 </a></li>
+			  <li><a href="javascript:move(59,'Data_science')">머신러닝</a></li>
+			  <li><a href="javascript:move(46,'Data_science')">딥러닝</a></li>
+ 			  <li><a href="javascript:move(52,'Data_science')">Django_web</a></li> 
+            </ul>
+        </li>
+        <li id="reference" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Reference<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/reqtiles/list.jsp?code=23">XML</a></li>
+              <li><a href="/reqtiles/list.jsp?code=24">Adroid</a></li>
+              <li><a href="/reqtiles/list.jsp?code=25">iPhone</a></li>
+              <li><a href="/reqtiles/list.jsp?code=26">eGovFrame</a></li>
+              <li><a href="/reqtiles/list.jsp?code=27">link</a></li>
+            </ul>
+        </li>
+        <li id="management" class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Management<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/reqtiles/list_code.jsp">Manage_board</a></li>
+              <li><a href="/reqtiles/glist_code.jsp">Manage_gboard</a></li>
+              <li><a href="/reqtiles/glist.jsp?code=1&flag=g">NOTICE</a></li>
+              <li><a href="/calendar/list_tiles.jsp">Calendar</a></li>
+            </ul>
+        </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav> 
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>게시글 생성</title>
+  <meta charset="utf-8">
+  <script type="text/javascript">
+   function input(f){
+      if(f.passwd.value==""){
+		  alert("비번을 입력하세요");
+		  f.passwd.focus();
+		  return false;
+	  }
+   }
+  </script>
+</head>
+<body>
+
+<div class="container">
+  <h3><span class="glyphicon glyphicon-lock"></span> Authentication</h3>
+  <p>보안 인증이 필요합니다. 패스워드를 입력하세요.</p>
+  <form action="/autho/loginProc.jsp" method="post" class="form-horizontal" role="form" onsubmit="return input(this)">
+    <input type="hidden" name="auth" value="null">
+    <input type="hidden" name="code" value="null">
+    <div class="form-group">
+      <label class="control-label col-sm-1" for="passwd">Password:</label>
+      <div class="col-sm-5">          
+        <input type="password" class="form-control"  name="passwd" id="passwd" placeholder="Enter password">
+      </div>
+    </div>
+     <div class="form-group">        
+      <div class="col-sm-offset-1 col-sm-11">
+        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="reset" class="btn btn-default">Reset</button>
+      </div>
+    </div>  
+  </form>
+</div>
+<br/><br/>
+<br/><br/>
+<br/><br/>
+</body>
+</html>
+<div id="footer">
+  <div class="container">
+    <p class="text-muted credit"><span class="glyphicon glyphicon-copyright-mark"></span> Copyright Lectureblue.pe.kr All rights reserved</p>
+  </div>
+</div>
+</div>
+</body>
+</html>
+</body>
+</html>
