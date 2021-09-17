@@ -1,4 +1,4 @@
-[평가문제] SQL 평가 문제
+## [평가문제] SQL 평가 문제
 
 1. 사원 테이블과 부서 테이블에서 사원 번호와 사원 이름, 소속부서 번호, 소속부서 이름을 출력하도록 표준 inner join 코드를 생성하세요
 
@@ -97,4 +97,37 @@ UPDATE PLAYER
 SET POSITION = 'MF'
 WHERE POSITION IS NULL;
 ```
+
+
+
+## SQL 문법 순서
+
+- SQL 문법 작성 순서
+
+```
+① SELECT 컬럼명
+② FROM 테이블명
+③ WHERE 조건식
+④ GROUP BY 컬럼명
+⑤ HAVING 조건식
+⑥ ORDER BY 칼럼명
+```
+
+- SQL 실행 작동 순서
+
+```
+① FROM
+② ON
+③ JOIN
+④ WHERE
+⑤ GROUP BY
+⑥ CUBE | ROLLUP
+⑦ HAVING
+⑧ SELECT 
+⑨ DISTINCT
+⑩ ORDER BY
+⑪ TOP
+```
+
+
 
