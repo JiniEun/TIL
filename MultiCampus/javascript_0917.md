@@ -190,15 +190,412 @@ function pl(str) {
 
 > 함수 예제 8 종류
 
+\- 매개변수(Parameter, 함수로 전달 값)가 있는 함수의 호출
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script type="text/javascript">
+        function pl(str) {
+            document.write(`value:${str}, type:${typeof str} <br>`);
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>함수의 사용예 2</h1>
+    <script>
+        temp1 = 10;
+        temp2 = '안녕하세요';
+        pl('두번째 함수 예제입니다.');
+        pl(temp1);
+        pl(temp2);
+        pl(10.5);
+        pl(true);
+    </script>
+</body>
+</html>
+```
+
+\- 함수 실행 후 반환값이 있는 함수의 호출
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script type="text/javascript">
+        // 함수의 정의, return type이 없음
+        function adding(x, y) {
+            //입력된 값의 합을 계산
+            let z = x + y;
+            return z;
+        }
+
+        //print 함수의 정의
+        function pl(str) {
+            //입력된 값과 <BR>태그를 연결하여 출력
+            document.write(str + "<br>");
+        }
+    </script>
+</head>
+
+<body>
+    <h1>함수의 사용예 3</h1>
+
+    <script type="text/javascript">
+        let a = 10;
+        let b = 20;
+        let c = adding(a, b);  // 숫자 전달시는 계산 
+        pl("두 변수의 합은 " + c);
+
+        a = "야식이 건강 해치는 진짜 이유";
+        b = "<br>-소화 불량, 숙면 방해, 비만 유발, 식도염 발생, 신진 대사 방해";
+        c = adding(a, b);      // 문자열 전달시는 연결이 됨
+        pl("두 변수의 합은 " + c);
+    </script>
+</body>
+</html>
+```
+
+\- confirm 내장함수 
+
+사용자가 확인이나 취소버튼을 클릭할 경우 true나 false를 리턴하는 함수
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script type="text/javascript" src="./utility.js"></script>
+</head>
+
+<body>
+    <h2>confirm의 사용 예제</h2>
+
+    <script type="text/javascript">
+        let temp;
+        temp = window.confirm("확인 또는 취소를 선택하세요");
+
+        //temp값은 true 또는 false
+        if (temp) {
+            pl(`확인 선택: ${temp}`);
+        } else {
+            pl(`취소 선택: ${temp}`);
+        }
+    </script>
+
+</body>
+</html>
+```
+
+ \- escape, unescape 내장 함수
+
+숫자, 영문자를 제외한 한글등을 16진수 Unicode 형태로 인코딩(변환)하여 서버로 전송함, 변환을 하지 않으면 한글 깨짐.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script type="text/javascript" src="./utility.js"></script>
+</head>
+
+<body>
+    <h1>escape, unescape 내장 함수</h1>
+    <script>
+        pl(`원본: 123-ABC-abc-미합중국/러시아/중국-!?#$% <br>`);
+        let temp1 = escape('123-ABC-abc-미합중국/러시아/중국-!?#$%');
+        let temp2 = unescape(temp1);
+        pl(`escape: ${temp1} <br><br>`);
+        pl(`unescape: ${temp2}`);
+    </script>
+</body>
+</html>
+```
+
+\- isFinite 내장 함수
+
+정상적인 숫자가 입력되면 true를 그렇지 않고 문자등이 입력되면 false 리턴
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script src="./utility.js"></script>
+</head>
+
+<body>
+    <H2>isFinite함수 예제<br>
+
+        <script type="text/javascript">
+
+            let temp1, temp2;
+
+            // 메시지, 기본값
+            temp1 = prompt("값을 입력하세요", 100);
+
+            // 숫자인지 검사
+            if (isFinite(temp1)) {
+                pl(`${temp1} 은 유한한 숫자`);
+            } else {
+                pl(`${temp1}은 무한대이거나 숫자가 아님`);
+            }
+        </script>
+
+    </H2>
+</body>
+</html>
+```
+
+\- isNaN 내장 함수
+
+입력된 값이 문자이면 true를 반환하고 그렇지 않고 숫자이면 false 리턴
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script src="./utility.js"></script>
+</head>
+
+<body>
+    <script>
+
+        let temp1 = prompt("값을 입력하세요", 100.5);
+
+        // 문자열 형태
+        // 문자 : true, 숫자 : false
+
+        if (isNaN(temp1)) {
+            pl(`${temp1} 은 문자임<br>`);
+        } else {
+            pl(`${temp1} 은 숫자임<br>`);
+        }
+    </script>
+</body>
+</html>
+```
+
+\- 문자열 관련 함수 응용
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script src="./utility.js"></script>
+</head>
+
+<body>
+    <h1>문자열 함수 예제</h1>
+    <strong>
+    <script>
+        let wc = "KOREA VICTORY";
+        let prn = wc.charAt(0);  // 0번째 문자 추출
+
+        //p('<b>');
+        pl(prn);                 
+        pl(wc.charAt(1));        
+        pl(wc.charAt(2));        
+        pl();                    
+        pl(`V의 위치: ${wc.indexOf('V')}`); // 6
+        pl(`R이 마지막으로 나타난 위치: ${wc.lastIndexOf('R')}`); // 11
+        pl(`문자열의 길이: ${'대한민국 WBC'.length}`); // 8
+
+        let tot = 10;
+        pl(`tot+tot: ${tot + tot}`); // 20
+        pl(`parseInt: ${parseInt('10') + parseInt('10')}`); //20
+
+        //p('</b>');
+    </script>
+    </strong>
+</body>
+</html>
+```
+
+\- 입력 값의 이동
+
+(value.html)
+
+```html
+<!--value.html-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let oldVal = '';
+        let newVal = '';
+
+        function ok(f) {
+            if (oldVal === '' && newVal === '') {
+                newVal = f.keyword.value;
+            } else if (f.keyword.value === '') {
+                return;
+            } else {
+                oldVal = newVal;
+                newVal = f.keyword.value;
+            }
+
+            let divTag = document.getElementById('panel');
+
+            let str = `oldVal: ${oldVal} / newVal: ${newVal}`;
+
+            divTag.innerHTML = divTag.innerHTML + '<br>' + str;
+            // divTag.append(`${str}`);
+            // ivTag.innerHTML = divTag.innerHTML + '<br>';
+
+        }
+    </script>
+</head>
+
+<body>
+    <form>
+        <input type='text' name='keyword' value='' style='width:90%'>
+        <button type='button' onclick="ok(this.form);">확인</button>
+    </form>
+    <br>
+    <div id='panel' style="font-size:24px"></div>
+</body>
+</html>
+```
+
+\- split 함수 응용
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script src="./utility.js"></script>
+</head>
+<body>
+    <h2>split() 함수</h2>
+    <hr>
+    <script>
+        let dtolist = '가길동, 100, 90/나길동, 100, 90/다길동, 100, 90';
+        let arraydto = dtolist.split('/');
+        console.log(`배열길이: ${arraydto.length}`);
+
+        for(let i=0; i < arraydto.length; i++){
+            pl(`${arraydto[i]} <br>`);
+        }
+        pl('<hr>');
+        pl(`<h2> <성적 계산 목록> </h2>`);
+
+        for(let i=0; i < arraydto.length; i++){
+            let str = arraydto[i].split(',');
+            console.log(`배열길이: ${str.length}`);
+
+            pl(`성명:${str[0]}`);
+            pl(`영어:${str[1]}`);
+            pl(`수학:${str[2]}`);
+            
+
+            let eng = parseInt(str[1]);
+            let math = parseInt(str[2]);
+
+            pl(`총점 : ${eng+math}`);
+            pl(`평균 : ${(eng + math)/2}`);
+
+            pl('------------------------');
+        }
 
 
-1~8
-
-
-
-
-
-
+    </script>
+    
+</body>
+</html>
+```
 
 
 
@@ -773,10 +1170,33 @@ function pl(str) {
 - 객체의 속성중 자료의 처리하는 속성을 메서드라 부른다.
 - 메소드 내에서 자신의 속성을 출력하고 싶을 때는 this 키워드 사용.
 
+```html
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
+<body>
+    <p id="demo"></p>
 
+    <script>
+        let person = {
+            firstName: "John",
+            lastName: "Doe",
+            id: 5566,
+            fullName: function () {
+                return `${this.firstName} ${this.lastName}`;
+            }
+        };
 
+        document.getElementById("demo").innerHTML = person.fullName();
+    </script>
+</body>
+</html>
+```
 
-
-ㅁㅇㄴㄹ
