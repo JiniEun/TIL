@@ -49,9 +49,34 @@
 
 
 
-
-
 # JavaScript
+
+## JavaScript
+
+ \- 1995년 Netscape의 브랜든 아이크에 의해 모카를 개발, 후에 LiveScript로 변경 되었으며 최종적으로 JavaScript로 지정되었다.  
+ \- HTML과 Server Script(백앤드) 사이에서 접속자의 마우스 클릭, 키보드 입력등 이벤트 처리를 주로 담당
+
+ HTML + CSS : 출력
+
+Javascript : 동작/이벤트
+
+백앤드 : 데이터베이스 접속 처리(Oracle, MySQL...)
+
+ \- Javascript는 Ajax 통신을 이용하여 서버와 태그단위로(JSP는 페이지단위 통신, 페이지단위 이동) 비동기 통신이 가능하며, jQuery로 Framework화 되어 발전되어 사용한다.
+
+ \- 요즘은 Ajax 통신의 결과를 SPA(Single Page Application)로 구현하기 위해 typescript, React등을 사용.
+
+ \- javascript 코드는 Chrome(V8 엔진, 가장 고속), IE, FF등의 브러우저가 처리함.
+
+ \- 모든 브라우저는 현재 ECMAScript 10 in 2019 등 표준화로 정착되어 사용한다.
+
+ \- 참조 사이트 : https://developer.mozilla.org/en-US/docs/Web/JavaScript
+
+
+
+### 1. 자바스크립트 실행
+
+
 
 
 
