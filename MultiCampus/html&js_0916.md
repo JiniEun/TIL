@@ -47,8 +47,6 @@
 
 
 
-
-
 # JavaScript
 
 ## JavaScript
