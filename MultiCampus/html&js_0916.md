@@ -600,6 +600,450 @@ for(let i = 0; i <  11; i++){
 
 
 
+#### (3) switch 분기문
+
+![image-20210922232128318](html&js_0916.assets/image-20210922232128318.png)
+
+-- js3.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+*{ 
+  font-family: gulim; 
+  font-size: 22px; 
+} 
+</style> 
+</head>
+<body>
+ 
+<H2>switch 문의 사용</H2>
+<HR>
+ 
+<script type="text/javascript">
+ 
+// 사용자로 부터 값을 입력 받는데 사용
+temp=prompt("현재의 계절을 입력하세요?\n(spring, summer, 가을, 겨울)", "가을");
+ 
+switch(temp){
+  case "spring" : // JDK 1.7부터 문자열 비교 가능하나 1.6을 많이 사용함으로 권장은 아님
+    document.write("봄이군요. 날씨가 따뜻하네요");
+    break;
+  case "summer" :
+    document.write("여름이군요. 날씨가 무척 덥네요");
+    break;
+  case "가을" :
+    document.write("가을이군요. 날씨가 시원하네요");
+    break;
+  case "겨울" :
+    document.write("겨울이군요. 날씨가 매우 춥네요");
+    break;
+  default :
+    document.write("알수없는 단어입니다.");
+}
+</script>
+ 
+</body>
+</html>
+```
+
+
+
+#### (4) while 반복문
+
+![image-20210922232208792](html&js_0916.assets/image-20210922232208792.png)
+
+-- js4.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+*{ 
+  font-family: gulim; 
+  font-size: 22px; 
+} 
+</style> 
+</head>
+<body>
+ 
+<H2>while 문의 사용</H2>
+<HR>
+ 
+<script type="text/javascript">
+var innum, i;
+ 
+// 숫자를 입력
+innum=prompt("1부터 9사이의 수를 입력하세요", "2");
+ 
+pl("입력한 숫자 " + innum + "에 대한 구구단<br>");
+i=1;
+ 
+//1부터 9까지 9번 반복실행
+while(i <= 9){
+  pl(innum + " X " + i + " = " + (innum * i));
+  //i값을 1 증가
+  i++;    
+}
+ 
+function pl(str){
+  document.write(str + "<br>");
+}
+ 
+</script>
+ 
+ 
+</body>
+</html>
+```
+
+
+
+#### for 반복분
+
+![image-20210922232257987](html&js_0916.assets/image-20210922232257987.png)
+
+-- js5.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+*{ 
+  font-family: gulim; 
+  font-size: 22px; 
+} 
+</style> 
+</head>
+<body>
+ 
+<H2>for 문의 사용</H2>
+<HR>
+ 
+<script type="text/javascript">
+var innum,i;
+ 
+//숫자를 입력
+innum=prompt("1부터 9사이의 수를 입력하세요", 2);
+ 
+pl("입력한 숫자 " + innum + "에 대한 구구단<br><br>");
+ 
+//1부터 9까지 9번 반복실행
+for(i=1; i<=9; i++){
+  pl(innum + " X " + i + " = " + (innum * i));
+}
+ 
+function pl(str){
+    document.write(str + "<br>");
+}
+</script>
+ 
+</body>
+</html>
+```
+
+
+
+#### do-while 반복문
+
+![image-20210922232335488](html&js_0916.assets/image-20210922232335488.png)
+
+-- js6.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+*{ 
+  font-family: gulim; 
+  font-size: 22px; 
+} 
+</style> 
+</head>
+<body>
+ 
+<H2>do-while 문의 사용</H2>
+<HR>
+ 
+<script type="text/javascript">
+var innum,i = 1;
+ 
+//숫자를 입력
+innum=prompt("1부터 9사이의 수를 입력하세요", 2);
+ 
+pl("입력한 숫자 " + innum + "에 대한 구구단<br><br>");
+ 
+// 1부터 9까지 9번 반복실행
+do{
+    pl(innum + " X " + i + " = " + (innum * i));
+        
+    i++; // i를 1씩 증가
+} while(i<=9);
+ 
+function pl(str){
+    document.write(str + "<br>");
+}
+</script>
+ 
+</body>
+</html>
+```
+
+
+
+#### (7) 제어문의 중첩
+
+![image-20210922232412907](html&js_0916.assets/image-20210922232412907.png)
+
+-- js7.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+*{ 
+  font-family: gulim; 
+  font-size: 22px; 
+} 
+</style> 
+</head>
+<body>
+ 
+<H2>제어구조의 중첩</H2>
+<HR>
+ 
+<!-- 표의 시작  -->
+<TABLE BORDER="1" cellspacing="0" cellpadding="2">
+<!-- 1행 시작  -->
+<TR>
+ 
+<script type="text/javascript">
+var i, j, result
+ 
+// 칸을 만들면서 2부터 9까지 제목을 출력
+for(i=2; i<=9; i++){
+    p("<TD ALIGN='CENTER' BGCOLOR='#EEEEEE'>");
+    p(i + "단");
+    p("</TD>");
+}
+ 
+// 1행의 끝과 2행 시작
+p("</TR>");
+p("<TR>");
+ 
+// 변수 i에 대해 j가 2부터 9까지 계산
+for(i=2; i<=9; i++){
+ 
+    p("<TD>");
+    for(j=1; j<=9; j++){
+        //곱셈결과를 계산하고 칸에 출력
+        result = i * j;
+        p(i + " X " + j + " = " + result + "<br>");
+    }
+    p("</TD>");
+}
+ 
+function p(str){
+  document.write(str);
+}
+ 
+function pl(str){
+  document.write(str + "<br>");
+}
+</script>
+</TR>
+</TABLE>
+ 
+</body>
+</html>
+```
+
+
+
+#### (8) Continue
+
+![image-20210922232516160](html&js_0916.assets/image-20210922232516160.png)
+
+-- js8.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+*{ 
+  font-family: gulim; 
+  font-size: 22px; 
+} 
+</style> 
+</head>
+<body>
+ 
+<H2>continue의 사용</H2>
+<HR>
+ 
+<script type="text/javascript">
+  var i;
+  i=0;
+  while(i<10){
+    i++;
+ 
+    // 짝수만 출력
+    if(i % 2 == 1) continue;
+    pl(i);
+  }
+ 
+  function p(str){
+    document.write(str);
+  }
+  
+  function pl(str){
+    document.write(str + "<br>");
+  }
+</script>
+ 
+</body>
+</html>
+```
+
+
+
+#### (9) break, javascript 파일의 include 사용
+
+![image-20210922232550478](html&js_0916.assets/image-20210922232550478.png)
+
+-- utility.js
+
+```js
+function p(str){
+    document.write(str);
+}
+ 
+function pl(str){
+    document.write(str + "<br>");
+}
+```
+
+-- js9.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+*{ 
+  font-family: gulim; 
+  font-size: 22px; 
+} 
+</style>
+ 
+<script type="text/javascript" src="./utility.js" ></script>
+ 
+</head>
+<body>
+ 
+<H2>break의 사용</H2>
+<HR>
+ 
+<script type="text/javascript">
+var i = 0;
+ 
+while(i<10){
+    i++;
+ 
+    //i가 5인 경우에는 루프를 종료
+    if(i==5) break;
+    pl(i);
+}
+</script>
+ 
+</body>
+</html>
+```
+
+
+
+**[과제 1] 국어, 영어, 수학 점수를 입력받아 점수, 총점과 평균을 출력하는 예제를 작성하세요. '★'표는 10점당 1개로 지정, 점수 입력은 prompt()함수 이용 결과는 테이블의 행으로 출력되도록 하세요.**
+
+![image-20210922232710313](html&js_0916.assets/image-20210922232710313.png)
+
+-- exam01.html
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+*{ 
+  font-family: gulim; 
+  font-size: 22px; 
+} 
+</style> 
+</head>
+<body>
+ 
+<H2>성적 처리</H2>
+<HR>
+ 
+<script type="text/javascript">
+  // 국어, 영어, 수학 점수 입력받기
+  var kuk = prompt("국어 점수를 입력하세요...", 0); // 문자열로 처리됨.
+  var eng = prompt("영어 점수를 입력하세요...", 0);
+  var mat = prompt("수학 점수를 입력하세요...", 0);
+ 
+  // 총점과 평균을 출력하는 예제를 작성하세요
+  var tot = parseInt(kuk) + parseInt(eng) + parseInt(mat);
+  var avg = tot / 3;
+  
+  var star = '';
+  for (var i=1; i <= avg/10; i++){
+ star = star + '★';
+  }
+  
+  document.write("<TABLE width='50%' border='1'>");
+  document.write("  <TR><TH>점수</TH></TR>");
+  document.write("  <TR><TD>국어: "+kuk+"</TD></TR>");
+  document.write("  <TR><TD>영어: "+eng+"</TD></TR>");
+  document.write("  <TR><TD>수학: "+mat+"</TD></TR>");
+  document.write("  <TR><TD>총점: "+tot+"</TD></TR>");
+  document.write("  <TR><TD>평균: "+avg+"</TD></TR>");
+  document.write("  <TR><TD>평가: "+star+"</TD></TR>");
+  document.write("</TABLE>");
+  
+</script> 
+ 
+</BODY>
+</HTML>
+```
+
+
+
+
+
+
+
 
 
 ~ [[03\][JS] 함수(현재)]까지 정리하기
