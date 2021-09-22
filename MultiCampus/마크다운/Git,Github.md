@@ -241,5 +241,5 @@ Github에서 제시하는 방법 2가지
 
 Repository에 Collaborator에 등록되지 않고 Pull request를 통한 협업 가능
 
-
+![31B6A913-6406-483E-9E63-93DAB69A1E93_1_105_c](Git,Github.assets/31B6A913-6406-483E-9E63-93DAB69A1E93_1_105_c.jpeg)
 

@@ -1,5 +1,3 @@
-
-
 # Javascript
 
 ## function(함수)
