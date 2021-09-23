@@ -904,7 +904,93 @@ deleteCount? 옵션으로 생략가능, 생략하면 추가될 요소가 하나 
 
 -- Upgrade: 'http://' 이 문자열이 없으면 주소 이동이 안됨으로, 입력이 없을시 자동으로 주소가 추가되도로 해주세요
 
+```html
+<!--event_upgrade.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script>
+        function sendit() {
+            let str = document.getElementById("url").value; //id 로 검색 
+            console.log(`str : ${str}`);
+
+            if (str == "") {
+                alert("주소를 입력해 주세요");
+                document.regiform.url.focus(); 
+            } else {
+                location.href = "https://" + str;     // https:// + str 로 이동
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form name='regiform'>
+        Https:// <input type="text" id="url" name="url" size="50">
+        <a href="javascript: sendit();">주소 이동</a>
+    </form>
+</body>
+</html>
+```
+
+
+
 -- Upgrade:  미리 버튼에 [DAUM], [기상청], [교보문고]를 준비하여 클릭시 주소가 자동으로 입력창에 할당 되도록 하기
+
+```html
+<!--event_upgrade2.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script>
+        function sendit() {
+            let str = document.getElementById("url").value; 
+            console.log(`str : ${str}`);
+
+            if (str == "") {
+                alert("주소를 입력해 주세요");
+                document.regiform.url.focus();
+            } else {
+                location.href = "https://" + str;     // https:// + str 로 이동
+            }
+        }
+
+        function moveDaum(){
+            location.href = 'https://www.daum.net';
+        }
+    </script>
+</head>
+<body>
+    <form name='regiform'>
+        Https:// <input type="text" id="url" name="url" size="50">
+        <a href="javascript: sendit();">주소 이동</a>
+        <button type="button" onclick="moveDaum()">DAUM</button>
+        <button type="button" onclick="location.href='https://www.weather.go.kr'">기상청</button>
+        <button type="button" onclick="location.href='https://www.kyobobook.co.kr'">교보문고</button>
+    </form>
+</body>
+</html>
+```
 
 
 
@@ -985,6 +1071,67 @@ deleteCount? 옵션으로 생략가능, 생략하면 추가될 요소가 하나 
 
 
 
+- [과제 1] Input 태그에서 행의 수와 열의 수를 입력받아 자바스크립트로 테이블을 생성하는 예제를 작성하세요.  입력되는 값은 수만 입력가능하며, 문자열 입력시 에러 메시지를 출력하세요. 입력 가능 값의 범위는 3 ~ 10 만 가능하며 이 값의 범위를 벗어나면 역시 에러메세지를 출력하세요.
+
+  조건: 1) 숫자 입력 여부 검사, 2) 입력되는 수의 범위 검사
+
+  힌트: 함수 안에서 다른 함수를 호출할 수 있습니다. 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script>
+        function makeTable() {
+            let row = document.getElementById("row").value;
+            let col = document.getElementById("col").value;
+            let table = "";
+
+            if (isNaN(row) || isNaN(col)) {
+                alert('숫자만 입력하세요(3~10)');
+            } else if (row < 3 || row > 10 || col < 3 || col > 10) {
+                alert('숫자만 입력하세요(3~10)');
+            } else {
+                table += '<table border="1.5">';
+                for (let i = 0; i < row; i++) {
+                    table += '<tr>';
+                    for (let j = 0; j < col; j++) {
+                        table += '<td>';
+                        table += (i + ", " + j);
+                        table += '</td>';
+                    }
+                    table += '</tr>';
+                }
+                table += '</table>';
+            }
+            console.log(table);
+            document.getElementById("panel").innerHTML = table;
+        }
+    </script>
+</head>
+<body>
+    <form>
+        행의수: <input type="text" name="row" id="row" value="5" size="20"><br>
+        열의수: <input type="text" name="col" id="col" value="5" size="20"><br>
+    </form>
+    <button onclick="makeTable()">table</button>
+    <div id='panel'></div>
+</body>
+</html>
+```
+
+
+
 
 
 ## CHECKBOX, RADIO 태그의 Event 처리
@@ -1047,14 +1194,421 @@ deleteCount? 옵션으로 생략가능, 생략하면 추가될 요소가 하나 
 
   \- 검색이되면 0보다 크거나 같은 값이 나오고 발견이 안되면 -1을 리턴함.
 
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script type="text/javascript">
+        function checkInput(word) {
+            var ext = word.toLowerCase();  // 소문자로 변경 
+
+            if (ext.lastIndexOf(".exe") > 0) {
+                alert('파일의 확장자가 EXE 인것은 전송할 수 없습니다.');
+                return false; // 실행 취소
+            }
+
+            if (ext.lastIndexOf(".jsp") > 0) {
+                alert('파일의 확장자가 JSP 인것은 전송할 수 없습니다.');
+                return false; // 실행 취소
+            }
+
+            if (ext.lastIndexOf(".jpg") > 0) {
+                alert('파일의 확장자가 JPG 인 이미지임으로 전송 가능.');
+            }
+
+            alert('전송할 수 있는 파일 형식입니다.');
+        }
+    </script>
+</head>
+
+<body>
+    자바 스크립트 확장자 호출 테스트입니다.<br>
+
+    <script type="text/javascript">
+        while (true) {
+            var filename = prompt('파일명을 입력하세요(종료는 999).', '');
+
+            if (filename == '999') {
+                break; // while 종료
+            }
+
+            checkInput(filename);
+
+        }
+
+        document.write('사용해 주셔서 감사합니다.');
+    </script>
+</body>
+</html>
 ```
+
+\- 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script type="text/javascript">
+        // 페이지 로딩시 자동 실행 함수, 이름이 없는 무명 함수로 1회만 실행됨.
+        window.onload = function () {
+            var word1 = document.getElementById("word1");
+            var result1 = document.getElementById("result1");
+
+            word1.innerHTML = "test.jsp";  // SPAN 태그로 값을 할당
+            var str = word1.innerHTML;     // SPAN 태그에서 값을 추출
+
+            if (str.lastIndexOf(".jsp") >= 0) {
+                result1.innerHTML = "전송할수 없는 형식입니다.";  // SPAN 태그로 값을 할당
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>자바 스크립트 확장자 검사</h1><br><br>
+
+    <div id="panel">
+        <span id="word1"></span>: <span id="result1"></span><br>
+    </div>
+</body>
+</html>
 ```
 
 
 
+#### RADIO, CHECKBOX Type의 사용
+
+  \- CHECKBOX는 같은 이름을 사용가능하며 RADIO 타입처럼 배열로 태그의 이름을 처리함.
+
+ ```html
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Document</title>
+     <style type="text/css">
+         * {
+             font-family: gulim;
+             font-size: 22px;
+         }
+     </style>
+     <script>
+         window.onload = function () {
+             // document.frm.태그 배열(같은 이름의 태그가 여러개 존재하면 자동으로 배열 발생)
+             document.frm.product[1].checked = true; 
+             // checked="checked"
+             check(document.frm); // 금액 계산 함수
+         }
+ 
+         function check(f) {
+             let wonkum = 0;  // 원금
+             let dc = 0;      // 주문 금액
+             let selectedImage = 0; // 현재 선택 이미지
+             let len = f.product.length; // product 태그의 갯수 출력
+             console.log(`제품의 갯수: ${len}`); 
+             
+             if (f.product[0].checked) {       // 첫번째 옵션이 체크
+                 wonkum = 1000000;                      
+                 selectedImage = f.product[0].value;    // 1
+             } else if (f.product[1].checked) { // 두번째 옵션이 체크
+                 wonkum = 700000;                        
+                 selectedImage = f.product[1].value;    // 2  
+             } else if (f.product[2].checked) { // 세번째 옵션이 체크
+                 wonkum = 400000;                        
+                 selectedImage = f.product[2].value;    // 3
+             }
+             
+             dc = wonkum; // 원금은 보관
+ 
+             if (f.check1.checked) { // 10%
+                 dc = wonkum - (wonkum * parseFloat(f.check1.value)); // 0.1
+             }
+ 
+             if (f.check2.checked) { // 5%
+                 dc = wonkum - (wonkum * parseFloat(f.check2.value)); // 0.05
+             }
+ 
+             if (f.check3.checked) { // 50%
+                 dc = wonkum - (wonkum * parseFloat(f.check3.value)); // 0.5
+             }
+ 
+             if (!f.check1.checked && !f.check2.checked && !f.check3.checked) {
+                 dc = wonkum;
+             }
+ 
+             f.orderval.value = wonkum; // 원금, 선택한 가격
+             f.discount.value = dc;     // 할인된 금액
+ 
+             var imgStr = '';
+             if (selectedImage == 1) {
+                 imgStr = "<img src='./notebook1.jpg' width='30%'>";
+             } else if (selectedImage == 2) {
+                 imgStr = "<img src='./notebook2.jpg' width='30%'>";
+             } else if (selectedImage == 3) {
+                 imgStr = "<img src='./notebook3.png' width='30%'>";
+             }
+             document.getElementById("panel").innerHTML = imgStr;
+         }
+     </Script>
+ </head>
+ 
+ <body>
+     <h1>노트북</h1>
+ 
+     <div id="panel"></div>
+ 
+     <form name="frm">
+         [선택]
+         <input type="radio" name="product" value="1" onclick="check(this.form);">고가제품
+         <input type="radio" name="product" value="2" onclick="check(this.form);">중가제품
+         <input type="radio" name="product" value="3" onclick="check(this.form);">저가제품
+         <br><br>
+ 
+         [할인율]
+         <input TYPE="checkbox" NAME="check1" value="0.1" onclick="check(this.form);">우수고객
+         <input TYPE="checkbox" NAME="check2" value="0.05" onclick="check(this.form);">장기고객
+         <input TYPE="checkbox" NAME="check3" value="0.5" onclick="check(this.form);">국가유공자
+         <br><br>
+ 
+         [선택한 가격]<input type="text" name="orderval"> <!-- 가격 출력 -->
+         [할인된 가격]<input type="text" name="discount"> <!-- 가격 출력 -->
+     </form>
+ </body>
+ </html>
+ ```
 
 
 
+##  SELECT ~ OPTION 태그 Event의 처리
+
+### Event의 처리 (SELECT ~ OPTION)
+
+   \- 입력 값의 범위 지정.
+
+   \- 사용자는 시각적인 인터페이스로 사용이 편리.
+
+   \- CheckBox, RADIO 버튼보다 좁은 공간에 많은 항목의 나열 가능.
+
+#### select 태그 자바스크립트에서 연동하기
+
+  \- SELECT 태그에서 선택한 값을 텍스트 상자에 출력되도록 아래의 소스를 완성하세요.
+
+  \- 지역변수로 선언해야 form 인식 가능
+
+  ` var frm = document.frmData;`
+
+  \- select 콘트롤에서 선택한 아이템의 인덱스(순번, 0부터 시작~)
+
+   `f.ansqu.selectedIndex`
+
+  \- select 콘트롤에서 선택한 아이템의 레이블(출력 문자열)
+
+   `var str = f.ansqu.options[f.ansqu.selectedIndex].text;`
+
+  \- select 콘트롤에서 선택한 아이템의 value
+
+  ` frm.ansqu.value = f.ansqu.options[f.ansqu.selectedIndex].value;`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <Script type="text/javascript">
+        function ansquChange(f) {
+            // f = document.frm
+
+            alert(f.ansqu.selectedIndex);  // 0부터 시작 ~
+            // SELECT 레이블 추출
+            // var str = f.ansqu.options[1].text;
+            var str = f.ansqu.options[f.ansqu.selectedIndex].text;
+            f.title.value = str;
+        }
+
+        function partChange(f) {
+            // f.pt.selectedIndex
+            var str = f.title.value;
+
+            // 기존값에 새로운 값 추가
+            str = str + f.pt.options[f.pt.selectedIndex].text + " ";
+            f.title.value = str;
+            f.title.focus();
+        }
+    </Script>
+</head>
+<body>
+    <form name="frm">
+        <!-- onchange: 값이 변경 되었을때 발생되는 이벤트 -->
+        <select name="ansqu" onchange='ansquChange(this.form)'>
+            <option selected='selected'> [종류 선택] </option> <!-- selectedIndex = 0 -->
+            <option> [질문] </option> <!-- selectedIndex = 1 -->
+            <option> [답변] </option>
+            <option> [참고] </option>
+            <option> [공지] </option>
+            <option> [추천] </option>
+            <option> [선택 안함] </option>
+        </select>
+
+        <select name="pt" onchange='partChange(this.form)'>
+            <option selected='selected'> [분야 선택] </option>
+            <option> [ANDROID] </option>
+            <option> [C] </option>
+            <option> [C++] </option>
+            <option> [JAVA] </option>
+            <option> [JSP] </option>
+            <option> [MOBILE] </option>
+            <option> [JavaScript] </option>
+            <option> [ORACLE] </option>
+            <option> [MS-SQL] </option>
+            <option> [DB 설계] </option>
+            <option> [SI/MIS/ERP] </option>
+            <option> [알고리즘] </option>
+            <option> [정보처리기사/기능사] </option>
+            <option> [사무자동화산업기사] </option>
+            <option> [전자상거래관리사] </option>
+            <option> [컴퓨터활용능력] </option>
+            <option> [선택 안함] </option>
+        </select>
+
+        <input type="text" name="title" size="60" style="font-size:12; color:#000000; height:18; border:1px dashed"
+            maxlength="100">
+    </form>
+</body>
+</html>
+```
+
+
+
+\- text, value 차이만
+
+```js
+  var str = f.ansqu.options[f.ansqu.selectedIndex].text; // 레이블
+  f.title.value=str;
+  
+  frm.ansqu.value = f.ansqu.options[f.ansqu.selectedIndex].value; // 서버로 전송되는 값
+```
+
+
+
+#### substring 함수
+
+(실습은 안함)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css"> 
+*{ 
+  font-family: gulim; 
+  font-size: 22px; 
+} 
+</style>
+</head>
+<body>
+<h1>
+<script type="text/javascript">
+    var str = '123ABC 가나다/가나다';
+    document.write(str + '<br>');
+ 
+    // '123'만 추출하세요.
+    // substring(start index, end index)
+    document.write(str.substring(0, 3) + '<br>');
+ 
+    // 'ABC'만 추출하세요.
+    document.write(str.substring(3, 6) + '<br>');
+ 
+    // '가나다/가나다'만 추출하세요.
+    // substring(start index)
+    document.write(str.substring(7) + '<br>');
+ 
+    // '가나다' 문자열이 마지막으로 나나탄 위치는?
+    document.write(str.lastIndexOf('가나다') + '<br>');
+ 
+</script>
+</h1>
+</body>
+</html>
+```
+
+
+
+#### 문자열에서 공백을 제거하는 스크립트
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script type="text/javascript">
+        function trimSpace(f) {
+            let str = f.txtData.value;
+            console.log(str);
+            for (let i = 0; i < str.length; i++) {
+                if (str.charAt(i) == ' ') {
+                    str = str.substring(0, i) + str.substring(i + 1, str.length);
+                    i = i - 1; // 빈공간이 생기기 때문에 인덱스 -1 해줘야 함.
+                }
+            }
+            // 폼으로 데이터를 주는 경우 
+            f.txtData2.value = str;
+        }
+
+    </script>
+</head>
+
+<body>
+    <form name="myform" method="GET">
+        원본 문자열 : <input name="txtData" type="text" size=60 maxlength=60>
+        <a href="javascript:trimSpace(myform)"><b>문자열 공백지우기</b></a>
+        <br><br>
+        공백 제거 문자열 : <input name="txtData2" type="text" size=60 maxlength=60>
+    </form>
+</body>
+</html>
+```
 
 
 
