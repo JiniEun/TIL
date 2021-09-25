@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>The push method returns the new array length.</p>
+    
+    <button onclick="myFunction()">Try it</button>
+    
+    <p id="demo"></p>
+    
+    <script>
+        // let fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+        var fruits = [1, 8, 5, 4];
+        document.getElementById('demo').innerHTML = fruits;
+        // + '<br>' + fruits.slice(1, 3);
+
+        function myFunction() {
+            // console.log(fruits.push("Kiwi"));
+            // console.log(fruits.pop());
+            // console.log(fruits.unshift("Lemon"));
+            // console.log(fruits.shift());
+            // console.log(fruits[fruits.length] = 'kiwi');
+            // console.log(fruits.splice(2, 0, "Lemon", "Kiwi"));
+            // fruits.splice(0,1);
+            fruits.sort();
+            fruits.reverse();
+            document.getElementById('demo').innerHTML = fruits;
+        }
+    </script>
+</body>
+</html>

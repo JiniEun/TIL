@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script>
+        function check(f) {
+            if (f.wname.value == '' || f.wname.value.length == 0) {
+                alert("이름을 입력하세요");
+                f.wname.focus();
+                // return false; // button이 submit기능을 가지고 있을 때 작성
+            } else if (f.subject.value.length == 0) {
+                alert("제목을 입력하세요");
+                f.subject.focus();
+                // return false; // button이 submit기능을 가지고 있을 때 작성
+            } else if (f.wcontent.value == "" || f.wcontent.value.length == 0) {
+                alert("내용을 입력하세요");
+                f.wcontent.focus();
+                // return false; // button이 submit기능을 가지고 있을 때 작성
+            } else {
+                // 모든 데이터를 입력 한 경우 서버로 전송
+                alert("데이터 정상 입력, 계속 진행합니다.");
+                f.submit(); // button이 submit 기능이 없을 때 호출
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <!-- 데이터 입력 형식 제공 -->
+    <form method='post' action='' name='myform' onsubmit="return check(this)">
+        <h2>방명록</h2>
+        이름 : <input name="wname" type="text"> <br>
+        제목 : <input name="subject" type="text" size="50"> <br>
+        내용 : <textarea name='wcontent' rows='8' cols='54'></textarea> <br>
+        <!--<button type="button" onclick="check(this.form)">저장</button>-->
+        <!--<button>저장</button> --><!--submit 버튼-->
+        <!--<button type='image' src='./disks.jpg' width="50px"></button>-->
+        <a href="javascript:check(myform)">
+            <img src="./disks.jpg" border='0'>
+        </a>
+
+
+    </form>
+</body>
+</html>

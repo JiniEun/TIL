@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>Creating a JavaScript Object.</p>
+    <p id="demo"></p>
+    <p id="demo2"></p>
+    <script>
+        let person = {
+            firstName: "John",
+            lastName: "Doe",
+            age: 50,
+            eyeColor: "blue"
+        };
+        document.getElementById("demo").innerHTML =
+            //`${person.firstName} is ${person.age} years old.`;
+            `${person['firstName']} is ${person['age']} years old2.`;
+
+        let output = '';
+        for (let key in person) {
+            output += `● ${key} : ${person[key]} <br>`;
+            // output += `● ${key} : ${person.key} <br>`; // undefined (출력 // 안됨 . 다음에는 name명이 와야)
+        }
+        document.getElementById('demo2').innerHTML = output;
+    </script>
+
+</body>
+
+</html>

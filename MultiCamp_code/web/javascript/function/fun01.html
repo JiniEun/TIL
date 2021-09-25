@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        // 함수 선언
+        function callTenTimes(callback) { // callboack 매개변수
+            for (let i = 0; i < 10; i++) {
+                callback();
+            }
+        }
+
+        callTenTimes(function (i) {
+                alert(`함수 호출${i}`);
+            });
+
+        // 함수 표현식
+        // let callback = function (i) {
+        //     alert(`함수 호출${i}`);
+        // }
+
+        // callTenTimes(callback); // callback 실인수, 전역변수의 값
+
+        
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

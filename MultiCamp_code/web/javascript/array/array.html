@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p id='demo'></p>
+    <script>
+        /*
+        let person = { firstName: "John", lastName: "Doe", age: 46 };
+        document.getElementById("demo").innerHTML = person["firstName"];
+        document.getElementById("demo").innerHTML = person['firstname'] + ": " + person; 
+        */
+        
+        let fruits, text, flen, i;
+        fruits = ["Banana", "Orange", "Apple", "Mango"];
+        flen = fruits.length;
+        /*
+        text = "<ul>";
+        
+        //for
+        for (i = 0; i < flen; i++) {
+            text += '<li>' + fruits[i] + "</li>";
+        }
+
+        // for of
+        for(let fruit of fruits){
+            console.log(fruit);
+        }
+
+        // forEach
+        fruits.forEach((fruit) => console.log(fruit));
+
+        text += '</ul>';
+        
+        document.getElementById("demo").innerHTML = text;
+        */
+        document.getElementById("demo").innerHTML = fruits.toString();
+        document.getElementById("demo").innerHTML = fruits.join(' * ');
+    </script>
+</body>
+
+</html>

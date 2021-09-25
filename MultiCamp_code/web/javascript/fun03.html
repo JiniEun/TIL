@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script type="text/javascript">
+        // 함수의 정의, return type이 없음
+        function adding(x, y) {
+            //입력된 값의 합을 계산
+            let z = x + y;
+            return z;
+        }
+
+        //print 함수의 정의
+        function pl(str) {
+            //입력된 값과 <BR>태그를 연결하여 출력
+            document.write(str + "<br>");
+        }
+    </script>
+</head>
+
+<body>
+    <h1>함수의 사용예 3</h1>
+
+    <script type="text/javascript">
+        let a = 10;
+        let b = 20;
+        let c = adding(a, b);  // 숫자 전달시는 계산 
+        pl("두 변수의 합은 " + c);
+
+        a = "야식이 건강 해치는 진짜 이유";
+        b = "<br>-소화 불량, 숙면 방해, 비만 유발, 식도염 발생, 신진 대사 방해";
+        c = adding(a, b);      // 문자열 전달시는 연결이 됨
+        pl("두 변수의 합은 " + c);
+    </script>
+
+</body>
+</html>

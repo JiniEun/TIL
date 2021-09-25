@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script src="./utility.js"></script>
+</head>
+
+<body>
+    <H2>isFinite함수 예제<br>
+
+        <script type="text/javascript">
+
+            let temp1, temp2;
+
+            // 메시지, 기본값
+            temp1 = prompt("값을 입력하세요", 100);
+
+            // 숫자인지 검사
+            if (isFinite(temp1)) {
+                pl(`${temp1} 은 유한한 숫자`);
+            } else {
+                pl(`${temp1}은 무한대이거나 숫자가 아님`);
+            }
+        </script>
+
+    </H2>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script>
+        function check() {
+            let f = document.frm; // frm : form name
+            let str = f.data.value;
+            // console.log(str);
+
+            let warning = ["가을", "단풍"];   // 금지어
+
+            // javascript는 (java)replaceAll()이 없음으로 직접 구현
+            for (let i = 0; i < warning.length; i++) {  // 금지어 수 만큼 순환
+                let sw = true;               
+
+                while (sw) {
+                    let index = str.indexOf(warning[i]);   // 금지어 검색
+                    if (index >= 0) {  // 발견 안되면 -1
+                        // alert('index: ' + index);
+                        str = str.replace(warning[i], "XX"); // 금지어 변경
+                    } else {
+                        sw = false; // 단어가 없을 경우 순환 중지
+                    }
+                }
+            }
+            // document.getElementById("panel").innerHTML = str; // 출력
+            f.panel.value = str;
+            
+        }
+    </script>
+</head>
+<body>
+    <form name='frm'>
+        <textarea name='data' rows='10' cols='70'>
+가을에는 단풍 여행을 내장산으로 가야한다고 한다.
+내장산은 단풍이 웅장하고 걷기편해 산책하기 좋다.
+단풍 나무와 함께 감나무에 감이 주렁주렁 열려 가을을 느끼기에 아주 좋다.
+하지만 단풍과 기암 괴석의 경치를 감사하고 싶으면 가을 설악의 단풍을
+추천한다. 하지만 교통체증이 너무 심해 새벽 2시 출발을 각오해야 한다.  
+        </textarea>
+        <br><br>
+        <input type='button' value='변환' onclick="check();">
+
+        <br><br>
+        <textarea name='panel' rows='10' cols='70'></textarea>
+    </form>
+</body>
+</html>

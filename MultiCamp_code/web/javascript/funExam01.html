@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script src="./utility.js"></script>
+</head>
+
+<body>
+    <h2>Math.round, Math.pow 함수 사용</h2>
+    <hr>
+    <script>
+        pl(Math.round(3.4595));
+        pl(Math.round(3.5595));
+        pl('<hr>');
+
+        let digits = Math.pow(10, 1);
+        let t = Math.round(3.5595 * digits);
+
+        pl(`10^1 거듭제곱 : ${digits}`);
+        pl(`t: ${t}`);
+        pl(`${t / digits} <br/>`);
+
+        digits = Math.pow(10, 2);
+        t = Math.round(3.5595 * digits);
+
+        pl(`10^2 거듭제곱 : ${digits}`);
+        pl(`t: ${t}`);
+        pl(`${t / digits}`);
+
+    </script>
+
+</body>
+
+</html>

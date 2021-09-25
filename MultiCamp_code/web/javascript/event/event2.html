@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script type="text/javascript">
+        // 페이지 로딩시 자동 실행 함수, 이름이 없는 무명 함수로 1회만 실행됨.
+        window.onload = function () {
+            var word1 = document.getElementById("word1");
+            var result1 = document.getElementById("result1");
+
+            word1.innerHTML = "test.jsp";  // SPAN 태그로 값을 할당
+            var str = word1.innerHTML;     // SPAN 태그에서 값을 추출
+
+            if (str.lastIndexOf(".jsp") >= 0) {
+                result1.innerHTML = "전송할수 없는 형식입니다.";  // SPAN 태그로 값을 할당
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>자바 스크립트 확장자 검사</h1><br><br>
+
+    <div id="panel">
+        <span id="word1"></span>: <span id="result1"></span><br>
+    </div>
+</body>
+</html>

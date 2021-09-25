@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script src="./utility.js"></script>
+</head>
+<body>
+    <h2>split() 함수</h2>
+    <hr>
+    <script>
+        let dtolist = '가길동, 100, 90/나길동, 100, 90/다길동, 100, 90';
+        let arraydto = dtolist.split('/');
+        console.log(`배열길이: ${arraydto.length}`);
+
+        for(let i=0; i < arraydto.length; i++){
+            pl(`${arraydto[i]} <br>`);
+        }
+        pl('<hr>');
+        pl(`<h2> <성적 계산 목록> </h2>`);
+
+        for(let i=0; i < arraydto.length; i++){
+            let str = arraydto[i].split(',');
+            console.log(`배열길이: ${str.length}`);
+
+            pl(`성명:${str[0]}`);
+            pl(`영어:${str[1]}`);
+            pl(`수학:${str[2]}`);
+            
+
+            let eng = parseInt(str[1]);
+            let math = parseInt(str[2]);
+
+            pl(`총점 : ${eng+math}`);
+            pl(`평균 : ${(eng + math)/2}`);
+
+            pl('------------------------');
+        }
+
+
+    </script>
+    
+</body>
+</html>

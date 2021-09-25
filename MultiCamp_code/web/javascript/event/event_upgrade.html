@@ -1,0 +1,36 @@
+<!--event_upgrade.html-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script>
+        function sendit() {
+            let str = document.getElementById("url").value; //id 로 검색 
+            console.log(`str : ${str}`);
+
+            if (str == "") {
+                alert("주소를 입력해 주세요");
+                document.regiform.url.focus(); 
+            } else {
+                location.href = "https://" + str;     // https:// + str 로 이동
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <form name='regiform'>
+        Https:// <input type="text" id="url" name="url" size="50">
+        <a href="javascript: sendit();">주소 이동</a>
+    </form>
+</body>
+</html>

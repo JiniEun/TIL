@@ -1,0 +1,45 @@
+<!--value.html-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let oldVal = '';
+        let newVal = '';
+
+        function ok(f) {
+            if (oldVal === '' && newVal === '') {
+                newVal = f.keyword.value;
+            } else if (f.keyword.value === '') {
+                return;
+            } else {
+                oldVal = newVal;
+                newVal = f.keyword.value;
+            }
+
+            let divTag = document.getElementById('panel');
+
+            let str = `oldVal: ${oldVal} / newVal: ${newVal}`;
+
+            divTag.innerHTML = divTag.innerHTML + '<br>' + str;
+            // divTag.append(`${str}`);
+            // ivTag.innerHTML = divTag.innerHTML + '<br>';
+
+        }
+    </script>
+</head>
+
+<body>
+    <form>
+        <input type='text' name='keyword' value='' style='width:90%'>
+        <button type='button' onclick="ok(this.form);">확인</button>
+    </form>
+    <br>
+    <div id='panel' style="font-size:24px"></div>
+</body>
+
+</html>

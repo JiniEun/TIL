@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script>
+        function makeTable() {
+            let row = document.getElementById("row").value;
+            let col = document.getElementById("col").value;
+            let table = ""; // table 만드는 html 태그 저장 
+
+            if (isNaN(row) || isNaN(col)) {
+                alert('숫자만 입력하세요(3~10)');
+            } else if (row < 3 || row > 10 || col < 3 || col > 10) {
+                alert('숫자만 입력하세요(3~10)');
+            } else {
+                table += '<table border="1.5">';
+                for (let i = 0; i < row; i++) { // row 크기만큼
+                    table += '<tr>';
+                    for (let j = 0; j < col; j++) { // col 수만큼 
+                        table += '<td>';
+                        table += (i + ", " + j);
+                        table += '</td>';
+                    }
+                    table += '</tr>';
+                }
+                table += '</table>';
+            }
+            console.log(table);
+            document.getElementById("panel").innerHTML = table;
+        }
+    </script>
+</head>
+
+<body>
+    <form>
+        행의수: <input type="text" name="row" id="row" value="5" size="20"><br>
+        <!--행의 수 입력-->
+        열의수: <input type="text" name="col" id="col" value="5" size="20"><br>
+        <!--열의 수 입력-->
+    </form>
+    <button onclick="makeTable()">table</button>
+    <div id='panel'></div>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <Script type="text/javascript">
+        function ansquChange(f) {
+            // f = document.frm
+
+            alert(f.ansqu.selectedIndex);  // 0부터 시작 ~
+            // SELECT 레이블 추출
+            // var str = f.ansqu.options[1].text;
+            var str = f.ansqu.options[f.ansqu.selectedIndex].text;
+            f.title.value = str;
+        }
+
+        function partChange(f) {
+            // f.pt.selectedIndex
+            var str = f.title.value;
+
+            // 기존값에 새로운 값 추가
+            str = str + f.pt.options[f.pt.selectedIndex].text + " ";
+            f.title.value = str;
+            f.title.focus();
+        }
+    </Script>
+</head>
+<body>
+    <form name="frm">
+        <!-- onchange: 값이 변경 되었을때 발생되는 이벤트 -->
+        <select name="ansqu" onchange='ansquChange(this.form)'>
+            <option selected='selected'> [종류 선택] </option> <!-- selectedIndex = 0 -->
+            <option> [질문] </option> <!-- selectedIndex = 1 -->
+            <option> [답변] </option>
+            <option> [참고] </option>
+            <option> [공지] </option>
+            <option> [추천] </option>
+            <option> [선택 안함] </option>
+        </select>
+
+        <select name="pt" onchange='partChange(this.form)'>
+            <option selected='selected'> [분야 선택] </option>
+            <option> [ANDROID] </option>
+            <option> [C] </option>
+            <option> [C++] </option>
+            <option> [JAVA] </option>
+            <option> [JSP] </option>
+            <option> [MOBILE] </option>
+            <option> [JavaScript] </option>
+            <option> [ORACLE] </option>
+            <option> [MS-SQL] </option>
+            <option> [DB 설계] </option>
+            <option> [SI/MIS/ERP] </option>
+            <option> [알고리즘] </option>
+            <option> [정보처리기사/기능사] </option>
+            <option> [사무자동화산업기사] </option>
+            <option> [전자상거래관리사] </option>
+            <option> [컴퓨터활용능력] </option>
+            <option> [선택 안함] </option>
+        </select>
+
+        <input type="text" name="title" size="60" style="font-size:12; color:#000000; height:18; border:1px dashed"
+            maxlength="100">
+    </form>
+</body>
+</html>

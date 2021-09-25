@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script src="./utility.js"></script>
+</head>
+
+<body>
+    <h1>문자열 함수 예제</h1>
+    <strong>
+    <script>
+        let wc = "KOREA VICTORY";
+        let prn = wc.charAt(0);  // 0번째 문자 추출
+
+        //p('<b>');
+        pl(prn);                 
+        pl(wc.charAt(1));        
+        pl(wc.charAt(2));        
+        pl();                    
+        pl(`V의 위치: ${wc.indexOf('V')}`); // 6
+        pl(`R이 마지막으로 나타난 위치: ${wc.lastIndexOf('R')}`); // 11
+        pl(`문자열의 길이: ${'대한민국 WBC'.length}`); // 8
+
+        let tot = 10;
+        pl(`tot+tot: ${tot + tot}`); // 20
+        pl(`parseInt: ${parseInt('10') + parseInt('10')}`); //20
+
+        //p('</b>');
+    </script>
+    </strong>
+</body>
+
+</html>

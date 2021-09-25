@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            font-family: gulim;
+            font-size: 22px;
+        }
+    </style>
+    <script type="text/javascript" src="./utility.js"></script>
+</head>
+
+<body>
+    <h1>escape, unescape 내장 함수</h1>
+    <script>
+        pl(`원본: 123-ABC-abc-미합중국/러시아/중국-!?#$% <br>`);
+        let temp1 = escape('123-ABC-abc-미합중국/러시아/중국-!?#$%');
+        let temp2 = unescape(temp1);
+        pl(`escape: ${temp1} <br><br>`);
+        pl(`unescape: ${temp2}`);
+    </script>
+</body>
+
+</html>

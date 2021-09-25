@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let output = '';
+        let student = {
+            이름: '연하진',
+            국어: 92,
+            수학: 98,
+            영어: 96,
+            과학: 98
+        };
+
+        // in 키워드 사용
+        output += `이름 in student (${'이름' in student}) `;
+        output += `성별 in student (${'성별' in student}) `;
+        console.log(output);
+
+        // with 사용안한 겨웅 출력
+        let output2 = '';
+        output2 += `이름 : ${student.이름} \n`;
+        output2 += `국어 : ${student.국어} \n`;
+        output2 += `수학 : ${student.수학} \n`;
+        output2 += `영어 : ${student.영어} \n`;
+        output2 += `과학 : ${student.과학} \n`;
+        output2 += `총점 : ${(student.국어 + student.수학 + student.영어 + student.과학)} \n`;
+        console.log(output2);
+
+        // with 사용
+        console.log("with 사용");
+        let output3 = '';
+        with (student) {
+            output3 += `이름 : ${이름} \n`;
+            output3 += `국어 : ${국어} \n`;
+            output3 += `수학 : ${수학} \n`;
+            output3 += `영어 : ${영어} \n`;
+            output3 += `과학 : ${과학} \n`;
+            output3 += `총점 : ${(국어 + 수학 + 영어 + 과학)} \n`;
+        }
+        console.log(output3);
+    </script>
+</head>
+<body>
+
+</body>
+</html>
