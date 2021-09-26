@@ -3,7 +3,7 @@
 <br><br> 공부, 정리, 코드 등 공부한 것들 매일 꾸준히! 성실하게! 기록 남기기
 
 - Blog 운영
-  - 내용 정리 -> posting
+  - 내용 정리 
   - https://velog.io/@jini_eun
   - https://jules-jc.tistory.com/
 
