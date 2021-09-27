@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            let div1text = document.all.div1.innerText;
+            let div2el = document.getElementById('div2');
+            let div2text = div2el.firstChild.nodeValue;
+            let div3text = document.getElementById('div3').textContent;
+        
+            console.log(`div1text : ${div1text}, div2text : ${div2text}, div3text : ${div3text}`);
+        }
+    </script>
+</head>
+<body>
+    <div id='div1'>백두산</div><br>
+    <div id='div2'>한라산</div><br>
+    <div id='div3'>금강산</div><br>
+    <div id='div4'>설악산</div><br>
+    <div id='div5'>관악산</div><br>
+</body>
+</html>

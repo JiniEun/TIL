@@ -30,6 +30,8 @@
 
 ![image-20210923172613821](HTML_Ajax.assets/image-20210923172613821.png)
 
+> 파일명 : dom.html
+
 -- getElementById
 
 ```html
@@ -171,7 +173,7 @@ document.getElementById("demo").innerHTML =
 </html>
 ```
 
--- htmlobjectFind.html
+-- htmlobjectFind
 
 ```html
 <!DOCTYPE html>
@@ -208,6 +210,25 @@ document.getElementById("demo").innerHTML =
 </body>
 </html>
 ```
+
+
+
+- Changing HTML Elements
+
+| Method                                   | Description                              |
+| ---------------------------------------- | ---------------------------------------- |
+| `element.innerHTML` = *new html content* | Change the inner HTML of an element      |
+| `element.attribute` = *new value*        | Change the attribute value of an element |
+| `element.setAttribute(attribute, value)` | Change the attribute value of an element |
+| `element.style.property` = *new style*   |                                          |
+
+
+
+
+
+
+
+
 
 
 
