@@ -28,7 +28,15 @@
 
 ### HTML DOM 활용
 
-![image-20210923172613821](HTML_Ajax.assets/image-20210923172613821.png)
+Finding HTML Elements
+
+| Method                                | Description                   |
+| ------------------------------------- | ----------------------------- |
+| `document.getElementById(id)`         | Find an element by element id |
+| `document.getElementsByTagName(name)` | Find elements by tag name     |
+| document.getElementsByClassName(name) | Find elements by class name   |
+
+
 
 > 파일명 : dom.html
 
@@ -220,9 +228,27 @@ document.getElementById("demo").innerHTML =
 | `element.innerHTML` = *new html content* | Change the inner HTML of an element      |
 | `element.attribute` = *new value*        | Change the attribute value of an element |
 | `element.setAttribute(attribute, value)` | Change the attribute value of an element |
-| `element.style.property` = *new style*   |                                          |
+| `element.style.property` = *new style*   | Change the style of an element           |
 
 
+
+- Adding and Deleting Elements
+
+| Method                            | Description                       |
+| --------------------------------- | --------------------------------- |
+| `document.createElement(element)` | Create an HTML element            |
+| `document.removeChild(element)`   | Remove an HTML element            |
+| `document.appendChild(element)`   | Add an HTML element               |
+| `document.replaceChild(element)`  | Replace an HTML element           |
+| `document.write(text)`            | Write into the HTML output stream |
+
+
+
+- Adding Events Handlers
+
+| Method                                                   | Description                                   |
+| -------------------------------------------------------- | --------------------------------------------- |
+| `document.getElementById(id).onclick = function(){code}` | Adding event handler code to an onclick event |
 
 
 
