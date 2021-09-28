@@ -292,37 +292,276 @@ getHen()
 //     .catch(console.log);
 ```
 
+![image-20210928092539591](Ajax_callback_0927.assets/image-20210928092539591.png)
+
+```js
+// 중간 오류 잡기
+getHen()
+    .then(hen => getEgg(hen))
+    .catch(error => {
+        return '🥖';
+    })
+    .then(egg => cook(egg))
+    .then(meal => console.log(meal))
+    .catch(error => { console.log(error) });
+```
 
 
 
+- callback-hell 예제를 Promise를 사용한 예제로 변경하여 개선할 수 있다.
+
+>  index.html
+>
+> `<script src="async/promise2.js" defer></script>`
+
+> topromise.js
+
+```js
+class UserStorage {
+    loginUser(id, password) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (
+                    (id === 'study' && password === 'aistudy') ||
+                    (id === 'coder' && password === 'academy')
+                ) {
+                    resolve(id);
+                } else {
+                    reject(new Error('not found'))
+                }
+            }, 2000);
+
+        });
+    }
+    getRoles(user) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (user === 'study') {
+                    resolve({ name: 'study', role: 'admin' });
+                } else {
+                    reject(new Error('no access'))
+                }
+            }, 1000);
+        });
+    }
+}
+
+const userStorage = new UserStorage();
+const id = prompt('enter your id');
+const password = prompt('enter your password');
+userStorage
+    .loginUser(id, password) //로그인 성공하면 id 전달
+    .then(user => userStorage.getRoles(user)) //id의 역할을 전달
+    .then(user => alert(`Hello ${user.name}, you have a ${user.role} role`)) //역할 확인
+    .catch(console.log); //문제발생시 오류출력
+```
 
 
 
+### async, await 사용
+
+- `**async function**` 선언 : AsyncFunction 객체를 반환하는 하나의 비동기 함수 정의.
+- 암시적으로 promise를 사용하여 결과를 반환.
+- 비동기 함수를 사용하는 코드의 구문과 구조는, 동기 함수를 사용하는 것처럼 보임.
+- async 함수에는 await식이 포함될 수 있다. 
+- await은 async 함수의 실행을 일시 중지하고 전달 된 Promise의 해결을 기다린 다음 async 함수의 실행을 다시 시작하고 완료후 값을 반환한다.
+- await 키워드는 async 함수에서만 유효하다
+- 너무 많은 체인을 사용하면 callback함수를 겹겹히 사용하는 것처럼 가독성이 떨어지는데 async, await는 좀더 간결한 코드를 만들기 위해서 사용.
+
+> index.html
+>
+>  `<script src="async/async.js" defer></script>`
+
+> async/async.js
+
+-- async : 코드블럭이 자동으로 promise로 변환
+
+```js
+//async & await
+//clear style of using promise
+//1. async : 코드블럭이 자동으로 promise로 변환
+// function fetchUser(){
+//     return new Promise((resolve, reject) => {
+//         //do network request in 10 secs....
+//         resolve('study');
+//     });
+// }
+//위의 내용을 아래코드로 간단히 만든다.
+async function fetchUser() {
+    //do network request in 10 secs....
+    return 'study';
+}
+
+
+const user = fetchUser();
+user.then(console.log)
+console.log(user);
+```
+
+-- await
+
+async 함수 안에서 사용
+
+delay함수호출이 끝날때까지 기다린다.
+
+```js
+//async 함수 안에서 사용
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+async function getApple() {
+    await delay(2000); //delay함수호출이 끝날때까지 기다린다.
+    //throw 'error'; //임의의 에러발생시킴
+    return '🍎';
+}
+
+async function getBanana() {
+    await delay(1000);
+    return '🍌';
+}
+```
+
+-- *Promise도 중첩적으로 체인잉을 하면 콜백지옥 같은 문제점 발생*
+
+```js
+//Promise도 중첩적으로 체인잉을 하면 콜백지옥 같은 문제점 발생
+function pickFruits() {
+    return getApple()
+        .then(apple => {
+            return getBanana().then(banana => `${apple} + ${banana}`);
+        });
+}
+pickFruits().then(console.log);
+```
 
 
 
+-- await 적용
+
+-- 좀 더 개선된 코드
+
+```js
+// 좀 더 개선된 코드
+// 49 라인에서 1초, 50라인에서 1초 해서 총 2초가 소요
+async function pickFruits(){
+    try{
+        const apple = await getApple();
+        const banana = await getBanana();
+        return `${apple} + ${banana}`;
+    }catch{
+        console.log(new Error('error'));//29라인 에러처리
+    }
+}
+pickFruits().then(console.log);
+```
 
 
 
+--*독립적인 처리기능을 순차적으로 하는 대신 병렬처리로 하면 더 개선된 코드*
+
+-- *병렬처리를 위해서 Promise를 사용한다. 동시수행으로 총 1초가 소요된다.*
+
+```js
+// 독립적인 처리기능을 순차적으로 하는 대신 병렬처리로 하면 좀 더 개선된 코드가 된다.
+// 병렬처리를 위해서 Promise를 사용한다. 동시수행으로 총 1초가 소요된다.
+async function pickFruits(){
+    const applePromise = getApple(); //Promise 리턴, 바로 promise 실행
+    const banaaPromise = getBanana(); //Promise 리턴, 바로 promise 실행
+    const apple = await applePromise;
+    const banana = await banaaPromise;
+    return `${apple} + ${banana}`;
+}
+
+pickFruits().then(console.log);
+```
 
 
 
+-- useful Promise APIs - 위의 병렬처리 코드를 좀더 개선하는 방법
+
+-- promise.all([]);배열형태로 함수를 전달하면 모든 함수가 병렬처리된다.
+
+```js
+//3. useful Promise APIs - 위의 병렬처리 코드를 좀더 개선하는 방법
+//promise.all([]);배열형태로 함수를 전달하면 모든 함수가 병렬처리된다.
+//then에 전달되는 결과 값도 배열형태이다.
+function pickAllFruits() {
+    return Promise.all([getApple(), getBanana()]) //배열로 병렬처리기능을 나열
+    .then(fruits => fruits.join(' + '));
+}
+pickAllFruits().then(console.log);
+```
 
 
 
+-- 둘 중에 먼저 수행되는 것 하나만 처리결과를 가져온다. apple의 시간을 늘려서 확인
+
+```js
+// 둘 중에 먼저 수행되는 것 하나만 처리결과를 가져온다. apple의 시간을 늘려서 확인
+function pickOnlyOne(){
+    return Promise.race([getApple(), getBanana()]);
+}
+
+pickOnlyOne().then(console.log);
+```
 
 
 
+- async, await 추가해서 코드 개선
+
+>  **topromise.js 에 async, await 추가해서 수정한 소스**
+>
+> ```js
+> class UserStorage {
+>     loginUser(id, password) {
+>       return new Promise((resolve, reject) => {
+>         setTimeout(() => {
+>           if (
+>             (id === 'study' && password === 'aistudy') ||
+>             (id === 'coder' && password === 'academy')
+>           ) {
+>             resolve(id);
+>           } else {
+>             reject(new Error('not found'));
+>           }
+>         }, 2000);
+>       });
+>     }
+>   
+>     getRoles(user) {
+>       return new Promise((resolve, reject) => {
+>         setTimeout(() => {
+>           if (user === 'study') {
+>             resolve({ name: 'study', role: 'admin' });
+>           } else {
+>             reject(new Error('no access'));
+>           }
+>         }, 1000);
+>       });
+>     }
+>   
+>     // 추가된 곳 ?
+>     async getUserWithRole(user, password) {
+>       const id = await this.loginUser(user, password);
+>       const role = await this.getRoles(id);
+>       return role;
+>     }
+>   }
+>   
+>   const userStorage = new UserStorage();
+>   const id = prompt('enter your id');
+>   const password = prompt('enter your passrod');
+> //변경된곳
+>   userStorage
+>   .getUserWithRole(id, password) //
+>   .then(user => alert(`Hello ${user.name}, you have a ${user.role} role`))
+>   .catch(console.log)
+> ```
+>
+> 
 
 
 
-
-
-
-
-
-
-
-
-
+*Fin.🐧*
 
