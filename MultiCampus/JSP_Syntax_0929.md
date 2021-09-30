@@ -849,7 +849,7 @@ Description: 새로운 HTML5 기반 JSP 생성시 기초 소스
 
 > ❗️sts에서 자바 문법 공부한 jsp 파일들은 모두
 >
-> core_jsp folder로 이동 (+menu, index.jsp 예제 이후 파일들도)
+> (jsptest project) core_jsp folder로 이동 (+menu, index.jsp 예제 이후 파일들도)
 >
 > (Menu페이지 제작 부분 까지의 파일들.)
 >
