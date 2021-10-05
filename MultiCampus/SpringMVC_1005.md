@@ -61,7 +61,7 @@
 
 #### Controller의 처리순서
 
-
+![image-20211005173737193](SpringMVC_1005.assets/image-20211005173737193.png)
 
 
 
@@ -69,7 +69,11 @@
 
 #### Command Pattern에 기반한 Controller의 처리순서 
 
+ \- Command Handler 
+  . Interface, 추상 클래스의 형태 
+  . JSP Beans, EJB를 통해서 Command Handler를 구현한다. 
 
+![image-20211005173745969](SpringMVC_1005.assets/image-20211005173745969.png)
 
 
 
@@ -1014,12 +1018,15 @@ public class Controller extends HttpServlet {
 			request.setAttribute("CONTENT_PAGE", viewPage);
 		}
 		
-		//jsp페이지로 포워드
+		// jsp페이지로 포워드<jsp:forward page="대신 보여줄 페이지"/>
+		
+		// jsp페이지로 포워드
 		RequestDispatcher dispatcher = request.getRequestDispatcher(usingTemplate ? templatePage : viewPage);
 		dispatcher.forward(request, response);
 		
 	}
 }
+
 ```
 
 
@@ -1187,11 +1194,100 @@ http://127.0.0.1:8000/mvc/mvc/hello2.do
 
 
 
+- 추가로 예제 진행해봄
+
+
+
+> config.properties
+
+```
+/mvc/hello.do=action.HelloAction
+/mvc/date.do=action.DateAction
+/mvc/myinfo.do=action.MyinfoAction
+```
+
+
+
+MyinfoAction.java
+
+```java
+package action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.CommandService;
+
+public class MyinfoAction implements Action {
+
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+		CommandService service = new CommandService();
+		StringBuffer sb = service.getMyinfo();
+				
+		request.setAttribute("myinfo", sb);
+		
+		
+		return "/view/myinfo.jsp"; // 보여 줄 viewpage return
+	}
+
+}
+```
 
 
 
 
 
+
+
+CommandService.java
+
+```java
+public StringBuffer getMyinfo() {
+		StringBuffer sb = new StringBuffer();
+
+		sb.append("<li> 이름 : 홍길동 <br>");
+		sb.append("<li> 나이 : 30 <br>");
+		sb.append("<li> 보유 기술 : Java, JSP, Spring <br>");
+		sb.append("<li> 성격 : 호의적. <br>");
+
+		return sb;
+	}
+```
+
+
+
+/view/myinfo.jsp
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div align="center"> 
+<br>
+<h1> 
+<%= request.getAttribute("myinfo") %> 
+</h1> 
+</div> 
+</body>
+</html>
+```
+
+
+
+> 실행 결과 확인
+
+```
+http://localhost:8000/mvc/mvc/myinfo.do
+```
+
+![image-20211005174748732](SpringMVC_1005.assets/image-20211005174748732.png)
 
 
 
