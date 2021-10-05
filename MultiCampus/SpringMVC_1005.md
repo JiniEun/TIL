@@ -134,17 +134,245 @@ java.lang.Object
 
 jdbc.properties
 
+드라이버 뒤에 빈공간 없어야 함.
+
+```properties
+#---------------------------------- 
+#  jdbc.properties 
+#---------------------------------- 
+driver=oracle.jdbc.pool.OracleDataSource
+url=jdbc:oracle:thin:@오라클디비이름_high?전자지갑경로/
+account=username
+password=디비_비밀번호
+```
 
 
 
+#### properties 이용 클래스
+
+> test/src/main/java/properties/PropertyTest.java 
+
+```java
+package properties; 
+
+import java.io.File; 
+import java.io.FileInputStream; 
+import java.io.IOException; 
+import java.sql.Connection; 
+import java.sql.DriverManager; 
+import java.sql.PreparedStatement; 
+import java.sql.ResultSet; 
+import java.util.Iterator; 
+import java.util.Properties; 
+
+public class PropertyTest { 
+
+    public static void main(String[] args) { 
+        Properties prop = new Properties(); 
+         
+        FileInputStream fis = null;   // 파일을 읽어 오는 역활을 합니다. 
+        //  경로  산출 
+        File file = new File("jdbc.properties"); 
+        System.out.println("절대경로: " + file.getAbsoluteFile()); 
+                
+        try { 
+            fis = new FileInputStream(file); 
+            //속성 파일을 객체로 로딩, 키와 문자열 값으로 저장됩니다. 
+            prop.load(fis); 
+        } catch (IOException e) { 
+            e.printStackTrace(); 
+        } finally { 
+            if (fis != null) try { fis.close(); } catch(IOException ex) {} 
+        } 
+         
+        // properties 객체에서 키목록을 추출합니다. 
+        // driver, url, account, password 
+        Iterator keyIter = prop.keySet().iterator(); 
+        while( keyIter.hasNext() ) { 
+            String key = (String)keyIter.next();  //키 추출 
+            String value = prop.getProperty(key); //키에 따른 값 추출 
+            System.out.println(key + "=" + value); 
+        } 
+         
+        Connection con = null; 
+        PreparedStatement pstmt = null; 
+        ResultSet rs = null; 
+        String sql = ""; 
+        String driver = ""; 
+        String url = ""; 
+        String account = ""; 
+        String password=""; 
+         
+        driver = prop.getProperty("driver"); 
+        url = prop.getProperty("url"); 
+        account = prop.getProperty("account"); 
+        password = prop.getProperty("password"); 
+
+        try{ 
+            Class.forName(driver); 
+            con = DriverManager.getConnection(url, account, password); 
+            sql = "SELECT count(*) cnt FROM tab"; 
+            pstmt = con.prepareStatement(sql); 
+            rs = pstmt.executeQuery(); 
+            if (rs.next()){ 
+                System.out.print(account + " 계정의 테이블 갯수: "); 
+                System.out.println(rs.getInt("cnt")); 
+            } 
+        }catch(Exception e){ 
+            System.out.println(e); 
+        }         
+    } 
+} 
+```
 
 
 
+### 문자열 추출
+
+> StringTest.java
+
+```java
+package properties; 
+
+public class StringTest { 
+
+    public static void main(String[] args) { 
+        String mapping = "/mvc/hello.do"; 
+         
+        // 'hello.do' 문자열의 추출 
+        System.out.println(mapping); 
+        System.out.println("-----------------------"); 
+        System.out.print(mapping.charAt(0));   // '/' 
+        System.out.print(mapping.charAt(1));   // 'm' 
+        System.out.print(mapping.charAt(2));   // 'v' 
+        System.out.println(mapping.charAt(3)); // 'c' 
+        System.out.println("-----------------------");         
+        System.out.println("mapping.substring(5): " + mapping.substring(5)); 
+        System.out.println("-----------------------");         
+         
+        // 문자열이 '/mvc'로 시작하는지 검사하여 boolean값 리턴 
+        System.out.println("startsWith: " + mapping.startsWith("/mvc")); 
+
+        // 문자열이 '/mvc'로 끝나는지 검사하여 boolean값 리턴 
+        System.out.println("endsWith: " + mapping.endsWith("/hello.do"));         
+         
+        // 마지막으로 "/"문자가 나타난 index 값 리턴 
+        int index = mapping.lastIndexOf("/"); 
+        System.out.println("index: " + index); 
+         
+        System.out.println("substring(index+1): " + mapping.substring(index+1)); 
+         
+        System.out.println("substring(0, 3): " + mapping.substring(0, 3));   
+         
+    } 
+} 
+```
+
+> StringTest2.java
+
+```java
+package properties; 
+
+public class StringTest2 { 
+
+    public static void main(String[] args) { 
+         
+        String str = "mail@domain.com"; 
+     
+        pl("ⓐ '@'문자가 있는지의 여부를 출력하는 루틴 제작"); 
+        pl(str.indexOf('@'));      // 4 
+        pl(str.indexOf('X'));      // 존재하지 않음으로 -1 
+        pl(str.indexOf("domain")); // domain 문자열의 시작위치 5 
+        pl(str.indexOf('.'));      // 11 
+        pl(str.length());          // 15 
+        pl(str.replaceAll("domain", "www.java")); // mail@www.java.com 
+
+        for(int i=0; i < str.length(); i++){ 
+            p(str.charAt(i)); 
+        } 
+
+    } 
+     
+    public static void pl(String str){ 
+        System.out.println(str); 
+    } 
+
+    public static void pl(int i){ 
+        System.out.println(i); 
+    } 
+     
+    public static void p(char i){ 
+        System.out.print(i); 
+    }     
+} 
+```
 
 
 
+### 실습 문제
+
+▷ 콘솔상에서 파일명을 입력받아 파일명과 확장자를 추출하여 출력하는 프로그램을 작성하세요. 단, 잘못된 파일명(abc, .txt, abc.)을 입력했을때 오류메세지 출력후 다시 입력받아 처리 할 수 있도록 작성하세요
+
+```java
+package properties;
+
+import java.util.Scanner;
+
+public class Ex01 {
+
+	public static void main(String[] args) {
+		// InputStream i = System.in;
+		// BufferedReader r = new BufferedReader(new InputStreamReader(i));
+		// System.out.println("파일명을 입력하세요");
+		// String file = r.readLine();
+
+		Scanner r = new Scanner(System.in);
+		System.out.println("파일명을 입력하세요");
+		String file = r.nextLine();
+
+		System.out.println(file);
+
+		while (true) {
+			// indexOf(), startsWith(), endsWith()
+			if (file.indexOf('.') == -1 || file.startsWith(".") || file.endsWith(".")) {
+				System.out.println("옳지 않은 파일명입니다.");
+				System.out.println("파일명을 입력하세요");
+				file = r.nextLine();
+
+				System.out.println(file);
+			} else {
+				int idx = file.indexOf('.');
+				String filename = file.substring(0, idx);
+				System.out.println("파일명은 " + filename + "입니다.");
+
+				String fileExtension = file.substring(idx + 1, file.length());
+				System.out.println("파일명의 확장자는 " + fileExtension + "입니다.");
+				break;
+			}
+		}
+		r.close();
+	}
+}
+
+```
 
 
+
+> --- 실행 결과 --- 
+>   파일명을 입력하세요.: abc.txt 
+>
+>   파일명은 abc 입니다. 
+>   파일의 확장자는 txt 입니다. 
+>
+>
+>   파일명을 입력하세요.: abc.html 
+>
+>   파일명은 abc 입니다. 
+>   파일의 확장자는 html 입니다. 
+
+
+
+### Class class
 
 > classTest.java
 
@@ -154,8 +382,118 @@ jdbc.properties
 
 코드
 
+```java
+package properties;
+
+interface Action {
+	void execute();
+}
+
+class Spring implements Action {
+	
+	@Override
+	public void execute() {
+		System.out.println("따뜻한 봄 입니다. - 새싹");
+	}
+}
+
+class Summer implements Action {
+	
+	@Override
+	public void execute() {
+		System.out.println("더운 여름입니다. - 바다");
+	}
+}
+
+class Fall implements Action {
+	
+	@Override
+	public void execute() {
+		System.out.println("시원한 가을입니다. - 등산");
+	}
+}
+
+class Winter implements Action {
+	
+	@Override
+	public void execute() {
+		System.out.println("눈이오는 겨울입니다. - X-MAS");
+	}
+}
+
+public class ClassTest {
+
+	public static void main(String[] args) {
+
+		try {
+			String className = args[0];
+			Class object = Class.forName(className);
+			Action instance = (Action) object.newInstance();
+			instance.execute();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			System.out.println(e);
+		}
+	}
+}
+
 ```
+
+
+
+> ClassTest2.java
+
+```java
+package properties;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class ClassTest2 {
+
+	public static void main(String[] args) {
+		String className = args[0];
+		Map map = new HashMap();
+		Class object = null;
+		Action instance = null;
+		
+		try {
+			object = Class.forName("properties.Spring");
+			instance = (Action)object.newInstance();
+			
+			map.put("Spring", instance);
+			
+			object = Class.forName("properties.Summer");
+			instance = (Action)object.newInstance();
+			
+			map.put("Summer", instance);
+			
+			object = Class.forName("properties.Fall");
+			instance = (Action)object.newInstance();
+			
+			map.put("Fall", instance);
+			
+			object = Class.forName("properties.Winter");
+			instance = (Action)object.newInstance();
+			
+			map.put("Winter", instance);
+			
+			instance = (Action)map.get(className);
+			instance.execute();
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}
 ```
+
+
+
+
 
 
 
@@ -396,15 +734,18 @@ http://localhost:8000/test/request/pageinfo.jsp
  \- STS Setting 
   . Project Type: Dynamic Web Project 
   .       Name: mvc (web.xml 만들어지도록 선택하고 생성)
+
+![image-20211005141356226](SpringMVC_1005.assets/image-20211005141356226.png)
+
   . Package Name: action, controller, model
 
-   \- 폴더 구조 
-    mvc/src/main/webapp/view     : jsp 파일들 
-    mvc/src/main/webapp/template  : template관련 파일들 
-    mvc/src/main/webapp/WEB-INF  : web.xml 환경 설정 파일 위치 
-    mvc/src/main/java           : 서블릿 클래스 위치
-    mvc/src/main/webapp/WEB-INF/config  : properties 파일등, 기타 리소스 파일 
-    mvc/src/main/webapp/WEB-INF/lib     : jar 파일의 라이브러리 위치, 자동 생성 
+- 폴더 구조 
+  mvc/src/main/webapp/view     : jsp 파일들 
+  mvc/src/main/webapp/template  : template관련 파일들 
+  mvc/src/main/webapp/WEB-INF  : web.xml 환경 설정 파일 위치 
+  mvc/src/main/java                         : 서블릿 클래스 위치
+  mvc/src/main/webapp/WEB-INF/config : properties 파일등, 기타 리소스 파일 
+  mvc/src/main/webapp/WEB-INF/lib  : jar 파일의 라이브러리 위치, 자동 생성 
 
 
 
@@ -448,8 +789,16 @@ public class CommandService {
 
 > Action.java 
 
-```
+```java
+package action;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public interface Action {
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Throwable;
+
+}
 ```
 
 
@@ -533,6 +882,308 @@ public class NullAction implements Action {
 }
 
 ```
+
+
+
+
+
+## MVC의 구현(Controller, config, web.xml)
+
+
+
+### Controller Servlet
+
+\- 속성 파일 이용
+
+
+
+> Controller.java
+>
+> new Servlet 으로 생성
+
+```java
+package controller;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Properties;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import action.Action;
+import action.NullAction;
+
+public class Controller extends HttpServlet {
+	private boolean usingTemplate = false; // template 사용 여부 (계속 유지되는 top, bottom 부분 물어보는 것.)
+	private String templatePage = null; // template 사용할 경우 template page 경로.
+	private Map map = new java.util.HashMap();
+
+	public void init(ServletConfig config) throws ServletException {
+		// web.xml에서 configfile 파라메터값 읽어옴.
+		String configFile = config.getInitParameter("configFile");
+		Properties prop = new Properties();
+		FileInputStream fis = null;
+
+		try {
+			fis = new FileInputStream(configFile);
+			prop.load(fis);
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (fis != null)
+				try {
+					fis.close();
+				} catch (IOException ex) {
+				}
+		}
+
+		Iterator keyIter = prop.keySet().iterator();
+		while (keyIter.hasNext()) {
+			String command = (String) keyIter.next();
+			String handlerClassName = prop.getProperty(command).trim();
+
+			try {
+				// 클래스를 JVM으로 로딩.
+				Class handlerClass = Class.forName(handlerClassName);
+
+				// 읽어들인 클래의 객체를 생성.
+				Object handlerInstance = handlerClass.newInstance();
+
+				// MAP에 키와 각 클래스별 객체가 저장.
+				map.put(command, handlerInstance);
+
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		} // while end
+
+		// web.xml에서 templatePage 파라메터값 가져옴.
+		templatePage = config.getInitParameter("templatePage");
+
+		if (templatePage != null && !templatePage.equals("")) {
+			usingTemplate = true; // 템플릿 페이지 존재
+		}
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		process(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		process(request, response);
+	}
+
+	private void process(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// 요청 분석 - 어떤 명령어인지 확인 /mvc/mvc/hello.do
+		String command = request.getRequestURI();
+		if (command.indexOf(request.getContextPath()) == 0) {
+			command = command.substring(request.getContextPath().length());
+		}
+		
+		Action action = (Action)map.get(command);
+		
+		if(action == null) {
+			action = new NullAction();
+		}
+		
+		String viewPage = null;
+		
+		try {
+			viewPage = action.execute(request, response);
+		} catch (Throwable e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if(usingTemplate) {
+			request.setAttribute("CONTENT_PAGE", viewPage);
+		}
+		
+		//jsp페이지로 포워드
+		RequestDispatcher dispatcher = request.getRequestDispatcher(usingTemplate ? templatePage : viewPage);
+		dispatcher.forward(request, response);
+		
+	}
+}
+```
+
+
+
+### /WEB-INF/config/config.properties 
+
+\- #: 주석. 
+\- *.do: 일반적으로 명령어에 확장자로 'do'를 사용.
+
+> config.properties 
+
+```properties
+/mvc/hello.do=action.HelloAction
+/mvc/date.do=action.DateAction
+```
+
+
+
+### /WEB-INF/web.xml 
+
+  \- xml 선언문 앞에 공백이나 빈 문자가 있으면 안된다. 
+  \- `<load-on-startup>`: Application 로딩시 자동으로 실행하라는 
+   태그입니다. 
+  \- `<url-pattern></url-pattern>`
+   . 폴더 매핑  : /mvc 
+   . 폴더 매핑  : /mvc/* 
+   . 확장자 매핑 : *.do 
+
+> web.xml
+>
+> url mapping
+>
+> servlet mapping
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>mvc</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<servlet>
+		<servlet-name>Controller</servlet-name>
+		<servlet-class>controller.Controller</servlet-class>
+		<init-param>
+			<param-name>configFile</param-name>
+			<param-value>/config파일경로/config.properties</param-value>
+		</init-param>
+		<init-param>
+			<param-name></param-name>
+			<param-value></param-value>
+		</init-param>
+	</servlet>
+</web-app>
+```
+
+
+
+## Jsp View
+
+### webapp/view/hello.jsp 
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hello.jsp</title>
+</head>
+<body>
+<div align="center"> 
+<br>
+<h1> 
+<%= request.getAttribute("hello") %> 
+</h1> 
+</div> 
+</body>
+</html>
+```
+
+
+
+### webapp/view/date.jsp 
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>date.jsp</title>
+</head>
+<body>
+<div align="center"> 
+<br>
+<h1> 
+<%= request.getAttribute("date") %> 
+</h1> 
+</div> 
+</body>
+</html>
+```
+
+
+
+### webapp/view/nullCommand.jsp 
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>nullCommand.jsp</title>
+</head>
+<body>
+<div align="center"> 
+<br>
+<h1> 
+일치하는 명령어가 없습니다.<br> 
+</h1> 
+</div> 
+</body>
+</html>
+```
+
+
+
+### 테스트
+
+```
+http://127.0.0.1:8000/mvc/mvc/hello.do 
+```
+
+![image-20211005162809007](SpringMVC_1005.assets/image-20211005162809007.png)
+
+```
+http://127.0.0.1:8000/mvc/mvc/date.do 
+```
+
+![image-20211005162625989](SpringMVC_1005.assets/image-20211005162625989.png)
+
+```
+http://127.0.0.1:8000/mvc/mvc/hello2.do 
+```
+
+![image-20211005162830733](SpringMVC_1005.assets/image-20211005162830733.png)
+
+
+
+
 
 
 
