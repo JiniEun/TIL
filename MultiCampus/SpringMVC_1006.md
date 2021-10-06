@@ -698,6 +698,188 @@ String root = request.getContextPath();
 
 
 
+- create
+
+update, delete 도 유사한 방식.
+
+createAction.java
+
+```java
+package action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class CreateAction implements Action {
+
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse responae) throws Throwable {
+		// TODO Auto-generated method stub
+		return "/view/createForm.jsp";
+	}
+
+}
+
+```
+
+
+
+createFrom.jsp
+
+```jsp
+<%@ page contentType="text/html; charset=UTF-8" %> 
+ 
+<!DOCTYPE html> 
+<html> 
+<head>
+  <title>homepage</title>
+  <meta charset="utf-8">
+</head>
+<body> 
+
+<div class="container">
+<h1 class="col-sm-offset-2 col-sm-10">게시판 생성</h1>
+<form class="form-horizontal" 
+      action="createProc.do"
+      method="post">
+
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="wname">작성자</label>
+    <div class="col-sm-6">
+      <input type="text" name="wname" id="wname" class="form-control">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="title">제목</label>
+    <div class="col-sm-8">
+      <input type="text" name="title" id="title" class="form-control">
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="content">내용</label>
+    <div class="col-sm-8">
+    <textarea rows="12" cols="7" id="content" name="content" class="form-control"></textarea>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="passwd">비밀번호</label>
+    <div class="col-sm-8">
+      <input type="password" name="passwd" id="passwd" class="form-control">
+    </div>
+  </div>
+
+   <div class="form-group">
+   <div class="col-sm-offset-2 col-sm-5">
+    <button class="btn">등록</button>
+    <button type="reset" class="btn">취소</button>
+   </div>
+ </div>
+</form>
+</div>
+</body> 
+</html> 
+```
+
+
+
+CreateProcAction.java
+
+```java
+package action;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import model.BbsDAO;
+import model.BbsDTO;
+
+public class CreateProcAction implements Action {
+
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse responae) throws Throwable {
+		BbsDAO dao = new BbsDAO();
+		BbsDTO dto = new BbsDTO();
+		request.setCharacterEncoding("utf-8");
+		dto.setWname(request.getParameter("wname"));
+		dto.setTitle(request.getParameter("title"));
+		dto.setContent(request.getParameter("content"));
+		dto.setPasswd(request.getParameter("passwd"));
+
+		boolean flag = dao.create(dto);
+		request.setAttribute("flag", flag);
+		
+		return "/view/createProc.jsp";
+	}
+
+}
+```
+
+
+
+
+
+createProc.jsp
+
+```jsp
+<%@ page contentType="text/html; charset=UTF-8"%>
+<%
+	boolean flag = (boolean)request.getAttribute("flag");
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>게시판 생성</title>
+<meta charset="utf-8">
+</head>
+<body>
+	<div class="container">
+		<div class="well well-lg">
+			<%
+			if (flag) {
+				out.print("글 등록 성공입니다.");
+			} else {
+				out.print("글 등록 실패입니다.");
+			}
+			%>
+		</div>
+		<button class="btn" onclick="location.href='create.do'">다시 등록</button>
+		<button class="btn" onclick="location.href='list.do'">목록</button>
+	</div>
+</body>
+</html>
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+- mvc_memo 실습
+
+1. 첫 시작은 top.jsp에서 시작
+/memo/list.do
+/memo/create.do
+가 제일 먼저 필요하기 때문에 config.properties에서 명령어 선언
+2. 선언된 Action들 각각 작성
+항상 return을 표시할 jsp페이지로 작성하고
+각각의 jsp 페이지 수정
+3. jsp 페이지의 <~ action= > 태그 확인
+~Proc.jsp를 ~Proc.do로 수정하고 다시 config.properties에서 명령어 선언
+4. list와 create가 끝나면 list.jsp 수정
+read.jsp를 read.do로 수정하고 config.properties에서 명령어 선언
+Action 작성 , jsp 수정
+5. read.jsp로부터 delete update reply 반복
 
 
 
