@@ -1048,8 +1048,7 @@ public class Controller extends HttpServlet {
 ### /WEB-INF/web.xml 
 
   \- xml 선언문 앞에 공백이나 빈 문자가 있으면 안된다. 
-  \- `<load-on-startup>`: Application 로딩시 자동으로 실행하라는 
-   태그입니다. 
+  \- `<load-on-startup>`: Application 로딩시 자동으로 실행하라는 태그. 
   \- `<url-pattern></url-pattern>`
    . 폴더 매핑  : /mvc 
    . 폴더 매핑  : /mvc/* 
@@ -1063,32 +1062,33 @@ public class Controller extends HttpServlet {
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
-	id="WebApp_ID" version="4.0">
-	<display-name>mvc</display-name>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	</welcome-file-list>
-
-	<servlet>
-		<servlet-name>Controller</servlet-name>
-		<servlet-class>controller.Controller</servlet-class>
-		<init-param>
-			<param-name>configFile</param-name>
-			<param-value>/config파일경로/config.properties</param-value>
-		</init-param>
-		<init-param>
-			<param-name></param-name>
-			<param-value></param-value>
-		</init-param>
-	</servlet>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
+  <display-name>mvc</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>Controller</servlet-name>
+  	<servlet-class>controller.Controller</servlet-class>
+  	<init-param>
+  		<param-name>configFile</param-name>
+        <param-value>/파일경로/config.properties</param-value>
+	</init-param>
+	<init-param>
+  		<param-name>templatePage</param-name>
+    	<param-value>/template/template.jsp</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Controller</servlet-name>
+  	<url-pattern>*.do</url-pattern>
+  </servlet-mapping>
 </web-app>
 ```
 
