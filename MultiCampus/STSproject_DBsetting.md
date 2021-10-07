@@ -32,7 +32,7 @@ Work with에서
 
 ### STS에 톰캣 연결
 
-File -> New -> Other -> Web -> Dynamin New Project 생성시 톰캣연결
+File -> New -> Other -> Web -> Dynamic New Project 생성시 톰캣연결
 
 ![image-20210929034810629](STSproject_DBsetting.assets/image-20210929034810629.png) 
 
