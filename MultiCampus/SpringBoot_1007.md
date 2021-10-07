@@ -1762,6 +1762,68 @@ http://localhost:8000/test4?id=hong&name=홍길동
 
 ### 1. VO Class
 
+> ClacVO.java
+
+```java
+package com.example.validator;
+
+public class CalcVO {
+	private String menu;
+	private int price;
+	private int count;
+	private int payment;
+
+	public CalcVO() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public CalcVO(String menu, int price, int count, int payment) {
+		super();
+		this.menu = menu;
+		this.price = price;
+		this.count = count;
+		this.payment = payment;
+	}
+
+	@Override
+	public String toString() {
+		return "CalcVO [menu=" + menu + ", price=" + price + ", count=" + count + ", payment=" + payment + "]";
+	}
+
+	public String getMenu() {
+		return menu;
+	}
+
+	public void setMenu(String menu) {
+		this.menu = menu;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public int getPayment() {
+		return payment;
+	}
+
+	public void setPayment(int payment) {
+		this.payment = payment;
+	}
+}
+```
+
 
 
 
@@ -1770,17 +1832,53 @@ http://localhost:8000/test4?id=hong&name=홍길동
 
 ### 2. Validator Class
 
+- 유효성 검증 클래스 선언
 
+> CalcValidator.java
 
+```java
+package com.example.validator;
 
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
+public class CalcValidator implements Validator {
 
+	public CalcValidator() {
+		// TODO Auto-generated constructor stub
+	}
 
+	@Override
+	public boolean supports(Class<?> clazz) {
+		// TODO Auto-generated method stub
+		return CalcVO.class.isAssignableFrom(clazz);
 
+	}
 
-### 3. Validator Class
+	@Override
+	public void validate(Object target, Errors errors) {
+		CalcVO calcVO = (CalcVO) target;
+		String menu = calcVO.getMenu();
+		if (menu == null || menu.trim().isEmpty()) {
+			System.out.println("menu가 등록이 누락되었습니다.");
+			errors.rejectValue("menu", "error");
+			// 임의 값 지정 가능, 에러 발생을 나타냄
+		}
 
+		int price = calcVO.getPrice();
+		if (price < 1000 || price >= 10000000) {
+			System.out.println("금액은 1000원이상 천만원 이하여야합니다.");
+			errors.rejectValue("price", "error");
+		}
 
+		int count = calcVO.getCount();
+		if (count <= 0 || count >= 1000) {
+			System.out.println("수량은 1개이상 천개 이하여야합니다.");
+			errors.rejectValue("count", "error");
+		}
+	}
+}
+```
 
 
 
@@ -1790,49 +1888,210 @@ http://localhost:8000/test4?id=hong&name=홍길동
 
 
 
+### 3. Controller Class
 
+> CalcController.java
 
+```java
+package com.example.validator;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
+@Controller
+public class CalcController {
+
+	public CalcController() {
+		System.out.println("CalcController created");
+	}
+
+	// http://localhost:8000/calc
+	@GetMapping("/calc")
+	public String calc() {
+		return "/calc/form";
+	}
+
+	// 에러가 발생했을때 자동으로 이전 폼으로 이동
+	@PostMapping("/calc")
+	public String calc(CalcVO calcVO, BindingResult result, Model model) {
+
+		CalcValidator calcValidator = new CalcValidator();
+		calcValidator.validate(calcVO, result); // 검증
+
+		if (result.hasErrors()) { // 에러 발생시
+			return "/calc/form";
+		} else { // 에러 미발생
+			int payment = calcVO.getPrice() * calcVO.getCount();
+			model.addAttribute("payment", payment);
+			return "/calc/proc";
+		}
+	}
+
+}
+```
+
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+### 4. SampleApplication에 새로운 패키지 추가 등록
+- @ComponentScan(basePackages = {"com.example.validator"});
+  Controller등 자동 인식 package 설정
+
+> SampleApplication.java
+>
+> ```java
+> @ComponentScan(basePackages = {"com.example.validator"}); // 어노테이션 추가
+> ```
+>
+> 
+
+```java
+package com.example.sample;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+@SpringBootApplication
+@ComponentScan(basePackages = { "com.example.validator" })
+public class SampleApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SampleApplication.class, args);
+	}
+}
+```
+
+
+
+### 5. View 페이지
+
+> views/calc/form.jsp
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<title>form.jsp</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h2>form.jsp</h2>
+		<form class="form-horizontal" method="post" action="./calc">
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="menu">메뉴명:</label>
+				<div class="col-sm-8">
+					<input type="text" class="form-control" autofocus="autofocus"
+						id="menu" value="김밥" name="menu">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="price">가격:</label>
+				<div class="col-sm-8">
+					<input type="number" class="form-control" id="price" name="price"
+						value="3000">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="count">수량:</label>
+				<div class="col-sm-8">
+					<input type="number" class="form-control" id="count" name="count"
+						value="2">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default">처리</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
+```
+
+
+
+> views/calc/proc.jsp
+
+```jsp
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>proc.jsp</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body> 
+<div class="container">
+  <h2>메뉴명</h2>
+  <div class="panel panel-default">
+    <div class="panel-body">${param.menu}</div>
+  </div>
+  <h2>가격</h2>
+  <div class="panel panel-default">
+    <div class="panel-body">${param.price}</div>
+  </div>
+  <h2>수량</h2>
+  <div class="panel panel-default">
+    <div class="panel-body">${param.count}</div>
+  </div>
+  <h2>결제</h2>
+  <div class="panel panel-default">
+    <div class="panel-body">${payment}</div>
+  </div>
+</div>
+</body>
+</html>
+```
+
+
+
+### 6. 실행 결과
+
+
+
+#### 정상 처리
+
+> form.jsp
+>
+> ```
+> http://localhost:8000/calc
+> ```
+>
+> ![image-20211008015707545](SpringBoot_1007.assets/image-20211008015707545.png)
+
+
+
+> proc.jsp
+>
+> ```
+> http://localhost:8000/calc + 처리 버튼 클릭
+> ```
+>
+> ![image-20211008015838643](SpringBoot_1007.assets/image-20211008015838643.png)
+
+
+
+#### 비정상 처리되는 경우
+- 유효성 검사후 오류이면 다시 form으로 이동한다.
+
+(수량 - 일 경우)
+
+
+
+
+
+*Fin.🐧*
