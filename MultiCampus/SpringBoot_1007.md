@@ -1828,8 +1828,6 @@ public class CalcVO {
 
 
 
-
-
 ### 2. Validator Class
 
 - 유효성 검증 클래스 선언
