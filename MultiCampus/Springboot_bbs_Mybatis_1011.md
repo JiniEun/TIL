@@ -4,6 +4,8 @@
 
 ## Spring Boot bbs 만들기
 
+bbs 실습
+
 
 
 ### 1. Spring Starter Project 실행
@@ -669,9 +671,45 @@ public static String saveFileSpring(MultipartFile mf, String basePath) {
 
 ### 1. Controller class 수정
 
-> com.study.controller/Controller.java
+> com.study.controller/BbsController.java
 
-```
+```java
+package com.study.controller;
+
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.study.model.BbsMapper;
+
+@Controller
+public class BbsController {
+
+	@Autowired
+	private BbsMapper mapper;
+
+	@GetMapping("/")
+	public String home(Locale locale, Model model) {
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		String formattedDate = dateFormat.format(date);
+		model.addAttribute("serverTime", formattedDate);
+
+		return "/home";
+	}
+
+	@GetMapping("/bbs/create")
+	public String create() {
+		return "/bbs/create";
+	}
+
+}
+
 ```
 
 
@@ -748,6 +786,564 @@ public static String saveFileSpring(MultipartFile mf, String basePath) {
 </body>
 </html>
 ```
+
+
+
+
+
+(1012 이어서)
+
+
+
+static은 resource안에
+
+main/java
+
+> BbsController.java
+>
+> @PostMapping create 함수 (/bbs/create)
+
+```java
+@PostMapping("/bbs/create")
+	public String create(BbsDTO dto, HttpServletRequest request) {
+		String basePath = new ClassPathResource("/static/storage").getFile().getAbsolutePath();
+
+		if (dto.getFilenameMF() != null) {
+			dto.setFilename(Utility.saveFileSpring(dto.getFilenameMF(), basePath));
+			dto.setFilesize((int) dto.getFilenameMF().getSize());
+		}
+
+		boolean flag = false;
+
+		int cnt = mapper.create(dto);
+
+		if (cnt > 0) {
+			flag = true;
+		}
+
+		if (flag) {
+			return "redirect:/bbs/list";
+		} else {
+			return "/bbs/error";
+		}
+	}
+```
+
+redirect : 재요청
+
+
+
+> package com.study.model;
+>
+> BbsMapper.java (interface)
+
+```
+package com.study.model;
+
+public interface BbsMapper {
+
+	int create(BbsDTO dto);
+
+}
+```
+
+
+
+> mybatis/bbs.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?> 
+ 
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.study.model.BbsMapper">
+	<insert id="create" parameterType="com.study.model.BbsDTO">
+		insert into bbs(bbsno, wname, title, content, passwd, wdate,grpno,filename,filesize)
+		values((select nvl(max(bbsno),0) + 1 as bbsno from bbs), 
+		#{wname}, #{title}, #{content}, #{passwd}, sysdate,
+		(select nvl(max(grpno),0) + 1 as grpno from bbs),#{filename},#{filesize})
+	</insert>
+</mapper>
+```
+
+
+
+❗️mac 파일경로 때문에 saveFileSpring 함수 수정
+
+> package com.study.utility;
+>
+> Utility.java
+>
+> 수정 (슬래시)
+>
+> String serverFullPath = basePath + "/" + filename;
+
+```java
+public static String saveFileSpring(MultipartFile mf, String basePath) {
+		InputStream inputStream = null;
+		OutputStream outputStream = null;
+		String filename = "";
+		long filesize = mf.getSize();
+		String originalFilename = mf.getOriginalFilename();
+		try {
+			if (filesize > 0) { // 파일이 존재한다면
+				// 인풋 스트림을 얻는다.
+				inputStream = mf.getInputStream();
+
+				File oldfile = new File(basePath, originalFilename);
+
+				if (oldfile.exists()) {
+					for (int k = 0; true; k++) {
+						// 파일명 중복을 피하기 위한 일련 번호를 생성하여
+						// 파일명으로 조합
+						oldfile = new File(basePath, "(" + k + ")" + originalFilename);
+
+						// 조합된 파일명이 존재하지 않는다면, 일련번호가
+						// 붙은 파일명 다시 생성
+						if (!oldfile.exists()) { // 존재하지 않는 경우
+							filename = "(" + k + ")" + originalFilename;
+							break;
+						}
+					}
+				} else {
+					filename = originalFilename;
+				}
+				// make server full path to save
+				String serverFullPath = basePath + "/" + filename;
+
+				System.out.println("fileName: " + filename);
+				System.out.println("serverFullPath: " + serverFullPath);
+
+				outputStream = new FileOutputStream(serverFullPath);
+
+				// 버퍼를 만든다.
+				int readBytes = 0;
+				byte[] buffer = new byte[8192];
+
+				while ((readBytes = inputStream.read(buffer, 0, 8192)) != -1) {
+					outputStream.write(buffer, 0, readBytes);
+				}
+				outputStream.close();
+				inputStream.close();
+
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+
+		}
+
+		return filename;
+	}
+```
+
+
+
+`<![CDATA[ ]]>` : xml 문법
+
+문자 그대로
+
+
+
+> tiles.xml
+>
+> list 부분 추가
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+ 
+<tiles-definitions>
+  <!-- main -->
+  <definition name="main"
+    template="/WEB-INF/views/template/template.jsp">
+    <put-attribute name="header"
+      value="/WEB-INF/views/template/top.jsp" />
+  </definition>
+  <definition name="/home" extends="main">
+    <put-attribute name="title" value="기본페이지"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/index.jsp" />
+  </definition>
+  <definition name="/bbs/create" extends="main">
+    <put-attribute name="title" value="게시판 생성"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/createForm.jsp" />
+  </definition>
+  <definition name="/bbs/list" extends="main">
+    <put-attribute name="title" value="게시판 목록"></put-attribute>
+    <put-attribute name="body"
+      value="/WEB-INF/views/list.jsp" />
+  </definition>
+ 
+</tiles-definitions>
+```
+
+
+
+
+
+bbs/read
+
+> BbsController.java
+
+```java
+@GetMapping("/bbs/read")
+	public String read(int bbsno, Model model) {
+		mapper.upViewcnt(bbsno);
+		BbsDTO dto = mapper.read(bbsno);
+		
+		String content = dto.getContent().replaceAll("\r\n", "<br>");
+		dto.setContent(content);
+		
+		model.addAttribute("dto",dto);
+		
+		return "/bbs/read";
+	}
+```
+
+
+
+
+
+create, list, read, update
+
+
+
+
+
+
+
+## 답변이 있는 글 삭제 못하게 처리
+
+### 1. SQL 컬럼 추가
+
+- 답변글의 부모글 bbsno 저장할 컬럼 생성
+
+```sql
+alter table bbs
+add (refnum number(7) default 0);
+```
+
+- 테스트를 위해 기존 답변글의 부모글 삭제
+
+```
+```
+
+
+
+### 2. 답변처리 수정
+
+- 답변글 생성할때 refnum에 답변글의 부모글을 저장
+
+> bbs.xml
+
+```xml
+<insert id="createReply" parameterType="com.study.model.BbsDTO">
+		INSERT INTO bbs(bbsno, wname, title,
+		content, passwd, wdate, grpno,
+		indent, ansnum, filename,filesize, refnum)
+		VALUES(
+		(SELECT NVL(MAX(bbsno), 0)+1 FROM bbs),
+		#{wname}, #{title}, #{content}, #{passwd}, sysdate,
+		#{grpno}, #{indent}+1, #{ansnum}+1, #{filename}, #{filesize}, #{bbsno} )
+	</insert>
+
+<select id="checkRefnum" parameterType="int" resultType="int">
+		SELECT
+		count(*) FROM bbs
+		WHERE refnum = #{bbsno}
+	</select>
+```
+
+
+
+### 3. 삭제 처리 수정
+
+- 삭제하려는 글이 부모글인지 확인
+
+> BbsMapper.java
+
+```java
+boolean checkRefnum(int bbsno);
+```
+
+
+
+> BbsController.java
+
+```java
+@GetMapping("/bbs/delete")
+	public String delete(int bbsno, Model model) {
+
+		boolean flag = mapper.checkRefnum(bbsno);
+
+		model.addAttribute("flag", flag);
+
+		return "/bbs/delete";
+
+	}
+```
+
+
+
+> deleteForm.jsp
+
+```jsp
+<%@ page contentType="text/html; charset=UTF-8" %> 
+<%
+    boolean flag = (Boolean)request.getAttribute("flag");
+%>
+<!DOCTYPE html> 
+<html> 
+<head>
+  <title>homepage</title>
+  <meta charset="utf-8">
+  <style>
+   #red{
+    color:red;
+   }
+  </style>
+</head>
+<body> 
+<div class="container">
+<%
+  if(flag){
+  out.print("<div class='well well-lg'>");
+  out.print("답변있는 글이므로 삭제할 수 없습니다.<br><br>");
+  out.print("<button class='btn' onclick='history.back()'>다시시도</button>");
+      out.print("<br></div>");
+  }else{  
+%>
+<h1 class="col-sm-offset-2 col-sm-10">삭제</h1>
+<form class="form-horizontal" 
+      action="delete"
+      method="post"
+      enctype="multipart/form-data"
+      >
+ <input type="hidden" name='bbsno' value='<%= request.getParameter("bbsno")%>'>
+ <input type="hidden" name='col' value='<%= request.getParameter("col")%>'>
+ <input type="hidden" name='word' value='<%= request.getParameter("word")%>'>
+ <input type="hidden" name='nowPage' value='<%= request.getParameter("nowPage")%>'>
+ <input type="hidden" name='oldfile' value='<%= request.getParameter("oldfile")%>'>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="passwd">비밀번호</label>
+    <div class="col-sm-6">
+      <input type="password" name="passwd" id="passwd" class="form-control">
+    </div>
+  </div>
+  
+  <p id='red' class="col-sm-offset-2 col-sm-6">삭제하면 복구할 수 없습니다.</p>
+  
+   <div class="form-group">
+   <div class="col-sm-offset-2 col-sm-5">
+    <button class="btn">삭제</button>
+    <button type="reset" class="btn">취소</button>
+   </div>
+ </div>
+</form>
+<%} %>
+</div>
+</body> 
+</html> 
+```
+
+
+
+>  BbsDTO.java
+>
+> refnum 추가
+
+```java
+package com.study.model;
+
+import org.springframework.web.multipart.MultipartFile;
+
+public class BbsDTO {
+	/** 번호 */
+	private int bbsno;
+	/** 글쓴이 */
+	private String wname;
+	/** 제목 */
+	private String title;
+	/** 내용 */
+	private String content;
+	/** 패스워드 */
+	private String passwd;
+	/** 조회수 */
+	private int viewcnt;
+	/** 등록일 */
+	private String wdate;
+	/** 그룹 번호 */
+	private int grpno;
+	/** 답변 차수 */
+	private int indent;
+	/** 답변 순서 */
+	private int ansnum;
+	/** 파일 이름 */
+	private String filename;
+	/** 파일 사이즈 */
+	private int filesize;
+	/** form에서 선택한 파일을 서버에서 처리할 수 있는 타입으로 선언 */
+	private MultipartFile filenameMF;
+
+	private int refnum;
+
+	public BbsDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "BbsDTO [bbsno=" + bbsno + ", wname=" + wname + ", title=" + title + ", content=" + content + ", passwd="
+				+ passwd + ", viewcnt=" + viewcnt + ", wdate=" + wdate + ", grpno=" + grpno + ", indent=" + indent
+				+ ", ansnum=" + ansnum + ", filename=" + filename + ", filesize=" + filesize + ", filenameMF="
+				+ filenameMF + ", refnum=" + refnum + "]";
+	}
+
+	public BbsDTO(int bbsno, String wname, String title, String content, String passwd, int viewcnt, String wdate,
+			int grpno, int indent, int ansnum, String filename, int filesize, MultipartFile filenameMF, int refnum) {
+		super();
+		this.bbsno = bbsno;
+		this.wname = wname;
+		this.title = title;
+		this.content = content;
+		this.passwd = passwd;
+		this.viewcnt = viewcnt;
+		this.wdate = wdate;
+		this.grpno = grpno;
+		this.indent = indent;
+		this.ansnum = ansnum;
+		this.filename = filename;
+		this.filesize = filesize;
+		this.filenameMF = filenameMF;
+		this.refnum = refnum;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public int getFilesize() {
+		return filesize;
+	}
+
+	public void setFilesize(int filesize) {
+		this.filesize = filesize;
+	}
+
+	public MultipartFile getFilenameMF() {
+		return filenameMF;
+	}
+
+	public void setFilenameMF(MultipartFile filenameMF) {
+		this.filenameMF = filenameMF;
+	}
+
+	public int getBbsno() {
+		return bbsno;
+	}
+
+	public void setBbsno(int bbsno) {
+		this.bbsno = bbsno;
+	}
+
+	public String getWname() {
+		return wname;
+	}
+
+	public void setWname(String wname) {
+		this.wname = wname;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getPasswd() {
+		return passwd;
+	}
+
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+
+	public int getViewcnt() {
+		return viewcnt;
+	}
+
+	public void setViewcnt(int viewcnt) {
+		this.viewcnt = viewcnt;
+	}
+
+	public String getWdate() {
+		return wdate;
+	}
+
+	public void setWdate(String wdate) {
+		this.wdate = wdate;
+	}
+
+	public int getGrpno() {
+		return grpno;
+	}
+
+	public void setGrpno(int grpno) {
+		this.grpno = grpno;
+	}
+
+	public int getIndent() {
+		return indent;
+	}
+
+	public void setIndent(int indent) {
+		this.indent = indent;
+	}
+
+	public int getAnsnum() {
+		return ansnum;
+	}
+
+	public void setAnsnum(int ansnum) {
+		this.ansnum = ansnum;
+	}
+
+	public int getRefnum() {
+		return refnum;
+	}
+
+	public void setRefnum(int refnum) {
+		this.refnum = refnum;
+	}
+
+}
+```
+
+
+
+
 
 
 
