@@ -115,8 +115,6 @@
 
 
 
-
-
 #### (4) views/read.jsp
 
 > read.jsp에 delete_Ajax.jsp 확인을 위한 버튼
@@ -439,29 +437,141 @@ config.filebrowserFlashUploadUrl = "../ckfinder/core/connector/java/connector.ja
 
 
 
+#### (1) createForm.jsp
+
+- checkIn 함수 : 글 필수 입력 체크
+
+```jsp
+<script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+<script type="text/JavaScript">
+ $(function() {
+         CKEDITOR.replace('content'); // <TEXTAREA>태그 id 값
+   });
+
+	function checkIn(f) {
+		if (f.wname.value == "") {
+			alert("글쓴이를 입력하세요");
+			f.wname.focus();
+			return false;
+		}
+		if (f.title.value == "") {
+			alert("제목를 입력하세요");
+			f.title.focus();
+			return false;
+		}
+		if (CKEDITOR.instances['content'].getData() == '') {
+			window.alert('내용을 입력해 주세요.');
+			CKEDITOR.instances['content'].focus();
+			return false;
+		}
+		if (f.passwd.value == "") {
+			alert("패스워드를 입력하세요");
+			f.passwd.focus();
+			return false;
+		}
+	}
+</script>
+```
+
+- content textarea 태그에 `id="content"` 추가
+
+```jsp
+<div class="form-group">
+				<label class="control-label col-sm-2" for="content">내용</label>
+				<div class="col-sm-8">
+					<textarea rows="12" cols="7" id="content" name="content"
+						class="form-control"></textarea>
+				</div>
+			</div>
+```
+
+
+
+#### (2) updateForm.jsp
+
+```jsp
+  <script type="text/javascript" src="${pageContext.request.contextPath}/ckeditor/ckeditor.js"></script>
+<script type="text/JavaScript">
+ $(function() {
+         CKEDITOR.replace('content'); // <TEXTAREA>태그 id 값
+   });
+ </script>
+```
+
+- content textarea 태그에 `id="content"` 추가
+
+```jsp
+<div class="form-group">
+    <label class="control-label col-sm-2" for="content">내용</label>
+    <div class="col-sm-8">
+    <textarea rows="12" cols="7" id="content" name="content" class="form-control">${dto.content}</textarea>
+    </div>
+  </div>
+```
+
+
+
+#### (3) read.jsp
+
+```jsp
+<div class="panel-heading">내용</div>
+      <div class="panel-body" style="height: 200px">${dto.content}</div>
+```
+
+
+
+\+ replyFrom.jsp에도 createForm.jsp처럼 함수 추가
+
+
+
+### 9. Spring Boot에 서블릿의 등록 
+
+> com.study.bbs;
+>
+> ServletRegister.java
+
+```java
+package com.study.bbs;
+ 
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.http.HttpServlet;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import com.ckfinder.connector.ConnectorServlet;
+ 
+@Configuration
+public class ServletRegister {
+  //CKEditor 서블릿 등록
+  @Bean
+  public ServletRegistrationBean<HttpServlet> getConnectorServlet() {
+    ServletRegistrationBean<HttpServlet> registrationBean = new ServletRegistrationBean<HttpServlet>(
+        new ConnectorServlet());
+    registrationBean.addUrlMappings("/ckfinder/core/connector/java/connector.java"); // 접근 주소
+    Map<String, String> params = new HashMap<String, String>();
+    params.put("XMLConfig", "/WEB-INF/ckfinder-config.xml");
+    params.put("debug", "false");
+    registrationBean.setInitParameters(params);
+    registrationBean.setLoadOnStartup(1);
+    return registrationBean;
+  }
+}
+```
 
 
 
 
 
+### 10. 결과
+
+글에 이미지 첨부
+
+![image-20211014031239316](Springboot_ajax_1013.assets/image-20211014031239316.png)
+
+![image-20211014031317130](Springboot_ajax_1013.assets/image-20211014031317130.png)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+*Fin.🐧*
 
