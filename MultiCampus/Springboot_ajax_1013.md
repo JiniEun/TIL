@@ -301,9 +301,7 @@
 
 ![image-20211013143114556](Springboot_ajax_1013.assets/image-20211013143114556.png)
 
-![image-20211013143143994](Springboot_ajax_1013.assets/image-20211013143143994.png)
-
-
+![image-20211014040828635](Springboot_ajax_1013.assets/image-20211014040828635.png)
 
 
 
