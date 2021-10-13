@@ -309,6 +309,144 @@
 
 
 
+## 블로그 형 게시판의 제작 - 웹에디터 CKEditor와 CKFinder 함께 사용하기
+
+
+
+### 1. 'ckeditor' 다운로드
+
+```
+https://ckeditor.com/ckeditor-4/
+```
+
+- preset: Full, 언어 한국어 추가하고 datadown으로 다운로드
+
+- '/spring_bbs/resources/static'로 'ckeditor' 폴더 복사
+
+
+
+## 2. ckfinder 다운로드
+
+Java -> previous 버전 -> 자바 2.6.3 버전으로 다운로드
+
+-  다운로드한 'ckfinder_java_2.6.3.zip' 압축 해제
+
+- 해제 후 ckfinder/CKFinderJava-2.6.3.war 압축해제
+
+- war파일 압축푼 폴더 안 ckfinder 폴더 이동 
+
+- 'CKFinderJava-2.6.3/ckfinder' 폴더를 '**/src/main/resources/static**'로 복사
+
+- 복사할 jar 파일들
+
+  CKFinderJava-2.6.3/ckfinder/WEB-INF/lib/
+
+  ```
+  'CKFinder-2.6.3.jar',
+  'CKFinderPlugin-FileEditor-2.6.3.jar',
+  'CKFinderPlugin-ImageResize-2.6.3.jar',
+  'thumbnailator-0.4.8.jar' 
+  ```
+
+
+
+### 3. ckfinder/CKFinderJava-2.6.3/WEB-INF/config.xml 이동
+
+- '/CKFinderJava-2.5.0/WEB-INF/config.xml'을 ckfinder-config.xml로 변경 후 '**/spring_bbs/main/webapp/WEB-INF/ckfinder-config.xml**' 로 이동
+
+
+
+### 4. 파일 저장용 폴더 생성
+
+ \- '/src/main/resources/static/ckstorage'를 생성
+
+![image-20211013155146440](Springboot_ajax_1013.assets/image-20211013155146440.png)
+
+
+
+### 5. ckfinder 파일업로드 웹어플리케이션 경로 설정
+
+- '/WEB-INF/ckfinder-config.xml' 
+- 상단 enabled, baseDir, baseURL 태그를 아래처럼 수정한다.
+
+```xml
+	<enabled>true</enabled>
+	<!--
+	Configure the location of uploaded files. See the following article for more details:
+	http://docs.cksource.com/CKFinder_2.x/Developers_Guide/Java/Configuration/baseURL_and_baseDir
+	-->
+	<baseDir>/Users/jules/Study/AIstudy/spring/workspace/spring_bbs/bin/main/static/ckstorage</baseDir>
+	<baseURL>/ckstorage</baseURL>
+	<licenseKey></licenseKey>
+	<licenseName></licenseName>
+```
+
+
+
+### 6.  spring_bbs에서 확인
+
+![image-20211013160327745](Springboot_ajax_1013.assets/image-20211013160327745.png)
+
+
+
+
+
+### 7. 'ckeditor/config.js' 설정하기
+
+> ckeditor/config.js
+
+```js
+CKEDITOR.editorConfig = function( config ) {
+// Define changes to default configuration here. For example:
+// config.language = 'fr';
+// config.uiColor = '#AADC6E';
+config.height = 600;
+//config.uiColor = '#9AB8F3';
+config.uiColor = '#D3D3D3';
+config.enterMode = CKEDITOR.ENTER_BR; //엔터키 태그 1:<p>, 2:<br>, 3:<div>
+config.font_defaultLabel = 'Malgun Gothic'; //기본글씨
+config.font_names = '굴림체/Gulim;돋움체/Dotum;맑은 고딕/Malgun Gothic;';
+config.fontSize_defaultLabel = '22px';
+config.fontSize_sizes = '14/14px;18/18px;22/22px;24/24px;28/28px;36/36px;48/48px;72/72px;';
+config.toolbar = [
+{ name: 'basicstyles', items: [ 'Bold', 'Underline', 'Subscript', 'Superscript', '-', 'CopyFormatting', 'RemoveFormat' ] },
+{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock' ] },
+{ name: 'links', items: [ 'Link', 'Unlink' ] },
+{ name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar' ] },
+{ name: 'clipboard', items: ['Copy', 'PasteText'] },
+{ name: 'styles', items: ['Font', 'FontSize' ] },
+{ name: 'colors', items: [ 'TextColor', 'BGColor' ] },
+{ name: 'tools', items: [ 'Maximize' ] },
+];
+// Remove some buttons provided by the standard plugins, which are
+// not needed in the Standard(s) toolbar.
+config.removeButtons = 'Underline,Subscript,Superscript';
+// Set the most common block elements.
+config.format_tags = 'p;h1;h2;h3;pre';
+// Simplify the dialog windows.
+config.removeDialogTabs = 'image:advanced;link:advanced';
+config.filebrowserBrowseUrl = "../ckfinder/ckfinder.html";
+config.filebrowserFlashBrowseUrl = "../ckfinder/ckfinder.html?type=Flash";
+config.filebrowserUploadUrl = "../ckfinder/core/connector/java/connctor.java?command=QuickUpload&type=Files";
+config.filebrowserImageUploadUrl = "../ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images";
+config.filebrowserFlashUploadUrl = "../ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash";
+};
+```
+
+
+
+### 8. View 파일 수정
+
+
+
+
+
+
+
+
+
+
+
 
 
 
