@@ -1465,11 +1465,91 @@ class ReplyControllerTest {
 
 ### 4. 실행
 
+![image-20211015002623631](RestController_1013.assets/image-20211015002623631.png)
 
 
 
+(디비 부분 때문에 달라서 그런지 안되는 부분들이 있어서 숫자는 조금씩 고침.)
 
+> ReplyControllerTest.java
 
+```java
+package com.study.controller;
+
+@ExtendWith(SpringExtension.class)
+@WebMvcTest(controllers = ReplyController.class)
+@ContextConfiguration(classes = SpringBbsApplication.class)
+class ReplyControllerTest {
+
+	@Autowired
+	private MockMvc mvc;
+
+	@Test
+	@DisplayName("댓글 조회-json결과")
+	public void testGet() throws Exception {
+
+		mvc.perform(MockMvcRequestBuilders.get("/bbs/reply/{rnum}", 1).accept(MediaType.APPLICATION_JSON))
+				.andDo(print()).andExpect(status().isOk()).andExpect(MockMvcResultMatchers.jsonPath("$.rnum").value(1));
+
+	}
+
+	@Test
+	@DisplayName("댓글 목록")
+	public void testGetList() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.get("/bbs/reply/list/{bbsno}/{sno}/{eno}", 1, 1, 3)
+				.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.[*].rnum").exists())
+				.andExpect(MockMvcResultMatchers.jsonPath("$.[*].rnum").isNotEmpty());
+	}
+
+	@Test
+	@DisplayName("댓글 페이징")
+	public void testGetPage() throws Exception {
+		MultiValueMap<String, String> info = new LinkedMultiValueMap<>();
+
+		info.add("nPage", "1");
+		info.add("nowPage", "1");
+		info.add("bbsno", "5");
+		info.add("col", "");
+		info.add("word", "");
+
+		mvc.perform(get("/bbs/reply/page").params(info)).andDo(print()).andExpect(status().isOk());
+	}
+
+	@Test
+	@DisplayName("댓글 생성")
+	void testCreate() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.post("/bbs/reply/create")
+				.content(asJsonString(new ReplyDTO(0, "content4", "", "user1", 1)))
+				.contentType(MediaType.APPLICATION_JSON).accept(MediaType.APPLICATION_JSON)).andDo(print())
+				.andExpect(status().isOk());
+	}
+
+	@Test
+	@DisplayName("댓글 수정")
+	public void testModify() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.put("/bbs/reply/{rnum}", 1)
+				.content(asJsonString(new ReplyDTO(1, "test1", "", "user1", 1))).contentType(MediaType.APPLICATION_JSON)
+				.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isOk());
+	}
+
+	public static String asJsonString(final Object obj) {
+		try {
+			return new ObjectMapper().writeValueAsString(obj);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
+	@Test
+	@DisplayName("댓글 삭제")
+	public void testRemove() throws Exception {
+		mvc.perform(MockMvcRequestBuilders.delete("/bbs/reply/{rnum}", 12)).andExpect(status().isOk());
+	}
+
+}
+
+```
 
 
 
