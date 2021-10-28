@@ -305,25 +305,151 @@ print(random.uniform(0, 10))
 
 
 
+##### 2) time.ctime()
+
+- 현재 시간을 문자열로 알려준다.
+ - 함수로 얻은 시간정보를 문자열함수로 분리해 사용할 수 있다.
+ - split() 함수는 각요소를 분리해서 리스트로 반환해 준다.
+ - split() 괄호에 인자가 없으면 공백으로 분리해준다.
 
 
 
+##### 3) time.sleep()
+- 프로그램을 잠시 쉬게 해주는 기능을 가진 함수이다.
+- 주로 반복문 안에서 사용되고, 초를 실수 값으로 입력할 수도 있다.
+
+```python
+import time
+ 
+for t in range(6): #0~5번까지 반복
+    print(time.ctime()) #현재 시간정보를 출력
+    time.sleep(1) #1초동안 딜레이 된다.
+```
+
+<img src="Python_1026.assets/image-20211027230255466.png" alt="image-20211027230255466" style="zoom:50%;" />
+
+(1초에 한 줄씩 출력된다.)
 
 
 
+#### (4) datetime 모듈
+- 이 모듈은 time모듈에 date 모듈을 합친 모듈이다.
+- 날짜와 시간을 모두 다루고 있다.
+- datetime.now() : 현재 시간
+- 이때 얻은 값으로 year, month, day... 와 같은 방법으로 값을 사용
+- weekday() 요일을 알려준다. 0~6 까지 숫자이다. (0 : 월요일 ~ 6 : 일요일)
+
+```python
+import datetime
+ 
+d = datetime.datetime.now() #현재시간
+print(d)
+ 
+print(d.year, d.month, d.day, sep='/') #얻은 객체로 년,월,일을 얻을 수 있다.
+print(d.hour, d.minute, d.second, d.microsecond, sep=':')#시간,분,초,마이크로초 획득
+print(d.weekday()) #요일을 알려준다.
+```
+
+<img src="Python_1026.assets/image-20211027230454009.png" alt="image-20211027230454009" style="zoom:50%;" />
 
 
 
+### 3. 파일 입출력
+
+- 컴퓨터가 문자열을 처리할때는 텍스트와 바이트 단위로 처리한다.
+- 파이썬도 문자열을 처리하기 위해서 유니코드와 바이트로 처리한다.
+- 텍스트를 기준으로 파일을 처리하면 유니코드 문자열로 처리해야 한다.
+- 바이트를 기준으로 파일을 처리할때는 영어 알파벳기준인 바이트 단위로 처리한다.
+- 파일도 하나의 클래스 이므로 open()를 호출하면 객체가 만들어진다.
+- open()함수 : 파일명과, 파일의 상태를 표시한 모드를 인자로 가진다.
+
+ 
+
+#### (1) 파일의 상태를 표시하는 모드
+
+- mode는 혼합해서 사용할 수 있다.
+- 바이너리 파일을 쓰기 모드로 열고 싶으면 mode에 ‘bw’, ‘wb’를 입력한다.
+- mode에 아무것도 쓰지 않으면 ‘rt’와 같은 기능을 한다. 
+- 즉, 읽기 모드이면서 텍스트 모드로 파일을 연다.
+- mode에 ‘w’만 입력하면 ‘wt’모드로 파일을 연다.
+
+![image-20211027230628759](Python_1026.assets/image-20211027230628759.png)
 
 
 
+#### (2) 파일에 데이터 쓰기
+
+- open()에 저장할 파일명, mode의 w, wb, wt를 사용하여 데이터를 저장한다.
+- 생성된 파일객체를 close()함수로 파일객체 사용을 종료한다.
+- 파일을 열때(open) 파일의 경로는 절대경로와 상대경로가 있다.
+- 파일은 경로에 없으면 자동으로 생성된다.(w,wb,wt) 
+- 폴더는 경로에 없으면 오류가 발생함으로 미리 폴더를 생성 해준다.
+
+▷ 절대경로 : 작업폴더와 무관하게 절대적인 위치를 가리키는 경로
+
+ex ) `c:/workspace/file, c:/temp`
+
+▷ 상대경로 : 소스코드(*.py)가 있는 작업 폴더를 기준으로 상대적인 위치를 가리키는 경로
+
+ex) `../file/, ./src/images (. : 현재폴더, .. : 상위폴더로 이동)`
 
 
 
+##### 1) write()
+
+- 문자열의 데이터를 파일에 저장할 수 있는 함수
+
+```python
+f = open('/Users/jules/pywork/myfile.txt', 'w') #경로에서 파일을 확인한다.
+ 
+memo = '파일을 열었으니 데이터를 저장하자'
+f.write(memo)
+ 
+f.close()
+```
+
+해당 위치에 myfile.txt가 생성됨.
 
 
 
+##### 2) writelines()
 
+- 문자열이나 list의 데이터를 파일에 저장할 수 있는 함수
+- 상대경로 notebook/files/data.txt에 데이터 저장한다.
+- open()에 세번째 인자에 encoding='utf-8'로 작성하면 jupyter notebook의 브라우저에서 한글이 안깨지고 보인다.
+
+```python
+s = """ 라인1
+라인2
+라인3
+"""
+
+s
+```
+
+<img src="Python_1026.assets/image-20211027232413903.png" alt="image-20211027232413903" style="zoom:50%;" />
+
+
+
+```python
+s2 = ["첫번째\n", '두번째\n', '세번째\n']
+ 
+s2
+```
+
+<img src="Python_1026.assets/image-20211027232425989.png" alt="image-20211027232425989" style="zoom:50%;" />
+
+
+
+```python
+f = open("./files/data.txt","x",encoding='utf-8') #jupyter notebook 브라우저에서 확인
+ 
+f.writelines(s2) #f.writelines(s), 문자열도 저장한다.
+ 
+f.close()
+```
+
+files 폴더 위치에 data.txt가 생성됨.
 
 
 
