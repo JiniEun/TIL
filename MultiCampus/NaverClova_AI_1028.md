@@ -1,8 +1,42 @@
 # Naver Clova
 
+강의에서 제공해주는 계정을 통해 Naver Clova AI API 활용 실습 진행
 
 
 
+## Naver Clova 음성인식 AI API 활용(CSR)
+
+- 문자 -> 음성, 음성 -> 문자로 변환을 제공하는 사이트
+- 최대 100자까지 지원되며, 한글은 50자 까지만 지원됨.  
+- https://soundoftext.com/
+
+![image-20211030235949689](NaverClova_AI_1028.assets/image-20211030235949689.png)
+
+- 문자 -> 음성
+
+- Play 확인 및 sample.mp3로 다운로드
+
+
+
+### Naver Cloud 
+
+- AI Service 접속 -> Clova Speech Recognition(CSR) 이용신청
+- Application 등록 후 Service선택 , 서비스환경 등록 -> web Service URL : `http://localhost`
+- 한도 및 알림 설정(월별 한도 설정 : 30,000 , 50% (약 8시간, 최소값) / 일별 한도 설정 :  3,600 , 90% (1시간))
+- 인증정보 확인 (-> Python 에서 Client ID, Client Secret 이용)
+
+
+
+### Naver Clova 음성 인식 AI API 활용
+
+
+
+
+
+## Naver Clova 문자 인식 AI API 활용 (OCR)
+
+- 문서를 인식하고, 사용자가 지정한 영역의 텍스트와 데이터를 정확하게 추출한다.
+- 100건까지 무료, 300건의 경우 600원의 이용 요금 부과됨
 
 
 
