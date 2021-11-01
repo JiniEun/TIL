@@ -27,9 +27,7 @@
 
 
 
-### Naver Clova 음성 인식 AI API 활용
-
-#### (1) Python
+### Naver Clova 음성 인식 AI API 활용 Python 테스트
 
 > ainaver/notebook/csr/CSR-음성인식.ipynb
 
@@ -67,10 +65,128 @@ else :
 - 문서를 인식하고, 사용자가 지정한 영역의 텍스트와 데이터를 정확하게 추출한다.
 - 100건까지 무료, 300건의 경우 600원의 이용 요금 부과됨
 
+### 1. 서비스 신청
 
+#### (1) ncloud 로그인
 
+#### (2) CLOVA OCR
 
+이용신청
 
+#### (3) 설정
+
+도메인이름, 도메인코드 자유롭게 설정가능, 인식언어 한국어,  서비스 타입은 General
+
+- General 도메인 : 입력 이미지에서 텍스트만 추출하는 Text OCR
+- Template 도메인: 입력 이미지에서 판독할 영역을 직접 지정해 영역에 포함된 텍스트만 추출
+
+(요금안내 메세지 - 확인)
+
+- 정상적으로 도메인 리스트가 등록된지 확인
+
+#### (4) NCloud -> 서비스 -> API Gateway   
+
+- API 사용 요금등 통합 모니터링 지원
+
+- API Gateway 이용신청 -> 콘솔에서 확인
+
+#### (5) Text OCR
+
+Secret Key 생성 -> APIGW 자동 연동 
+
+(SecretKey Python에서 사용할 것임으로 복사하여 보관)
+
+#### (6) 설정완료
+
+- APIGW Invoke URL Python에서 사용할 것임으로 복사하여 보관
+
+### Python 테스트
+
+> /OCR/OCR-문자 인식.ipynb
+
+```python
+import json
+import base64
+import requests
+ 
+with open("./sample1.jpg", "rb") as f:
+    img = base64.b64encode(f.read())
+ 
+# 본인의 APIGW Invoke URL로 치환
+URL = "https://f121a84............................................................................"
+   
+# 본인의 Secret Key로 치환
+KEY = "aE9w..................................................................................."
+    
+headers = {
+    "Content-Type": "application/json",
+    "X-OCR-SECRET": KEY
+}
+    
+data = {
+    "version": "V1",
+    "requestId": "sample_id", # 요청을 구분하기 위한 ID, 사용자가 정의
+    "timestamp": 0, # 현재 시간값
+    "images": [
+        {
+            "name": "sample_image",
+            "format": "jpg",
+            "data": img.decode('utf-8')
+        }
+    ]
+}
+data = json.dumps(data)
+response = requests.post(URL, data=data, headers=headers)
+res = json.loads(response.text)
+print(res)
+
+print(res['images'][0]['fields']) # 단어 정보와 밀접한 부분
+
+# return 되는 JSON 형식 분해
+# [
+#   {
+#     'valueType': 'ALL', 
+#     'boundingPoly': {'vertices': [{'x': 356.0, 'y': 35.0}, {'x': 424.0, 'y': 35.0}, {'x': 424.0, 'y': 62.0}, {'x': 356.0, 'y': 62.0}]}, 
+#     'inferText': '사랑의', 
+#     'inferConfidence': 0.9993
+#   }, 
+#   {
+#     'valueType': 'ALL', 
+#     'boundingPoly': {'vertices': [{'x': 431.0, 'y': 34.0}, {'x': 501.0, 'y': 34.0}, {'x': 501.0, 'y': 63.0}, {'x': 431.0, 'y': 63.0}]},
+#     'inferText': '불시착', 
+#     'inferConfidence': 1.0
+#   }, 
+#   {
+#     'valueType': 'ALL', 
+#     'boundingPoly': {'vertices': [{'x': 504.0, 'y': 35.0}, {'x': 562.0, 'y': 35.0}, {'x': 562.0, 'y': 61.0}, {'x': 504.0, 'y': 61.0}]}, 
+#     'inferText': '주연:', 
+#     'inferConfidence': 0.9982
+#   }, 
+#   {
+#     'valueType': 'ALL', 
+#     'boundingPoly': {'vertices': [{'x': 567.0, 'y': 35.0}, {'x': 623.0, 'y': 35.0}, {'x': 623.0, 'y': 64.0}, {'x': 567.0, 'y': 64.0}]},
+#     'inferText': '현빈,',
+#     'inferConfidence': 0.9996}, 
+#   {
+#     'valueType': 'ALL',
+#     'boundingPoly': {'vertices': [{'x': 626.0, 'y': 35.0}, {'x': 694.0, 'y': 35.0}, {'x': 694.0, 'y': 61.0}, {'x': 626.0, 'y': 61.0}]},
+#     'inferText': '손예진',
+#     'inferConfidence': 0.9978
+#   }
+# ]
+
+# print(len(res))
+words = res['images'][0]['fields']
+print(type(words)) # 단어의 수
+print(len(words)) # 단어의 수
+print(type(words[0])) # <class 'dict'>
+
+wlist = []
+for word in words:
+    wlist.append((word['inferText']))
+    
+print(" ".join(wlist))
+```
 
 
 
@@ -160,6 +276,8 @@ if(rescode==200):
 else:
     print("Error Code:" + rescode)
 ```
+
+
 
 
 
