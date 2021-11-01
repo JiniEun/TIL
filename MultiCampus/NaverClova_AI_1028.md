@@ -29,7 +29,36 @@
 
 ### Naver Clova 음성 인식 AI API 활용
 
+#### (1) Python
 
+> ainaver/notebook/csr/CSR-음성인식.ipynb
+
+```python
+!pip show requests
+ 
+# !pip install requests
+ 
+import requests
+client_id = "1fpjq.............."
+ 
+client_secret = "h4....................................."
+lang = "Kor" # 언어코드{Kor, Jpn, Eng, Chn}
+url = "https://naveropenapi.apigw.ntruss.com/recog/v1/stt?lang=" + lang
+# data = open('./hi.m4a', 'rb') # read byte
+data = open('./msg2.mp3', 'rb')
+# data = open('./ma.mp3', 'rb') # 60초넘어서 ST001 Error발생
+headers = {
+    "X-NCP-APIGW-API-KEY-ID": client_id,
+    "X-NCP-APIGW-API-KEY": client_secret,
+    "Content-Type" : "application/octet-stream"
+}
+response = requests.post(url, data=data, headers=headers)
+rescode = response.status_code
+if(rescode == 200):
+    print(response.text)
+else :
+    print("Error : " + response.text)
+```
 
 
 
@@ -37,6 +66,14 @@
 
 - 문서를 인식하고, 사용자가 지정한 영역의 텍스트와 데이터를 정확하게 추출한다.
 - 100건까지 무료, 300건의 경우 600원의 이용 요금 부과됨
+
+
+
+
+
+
+
+
 
 
 
