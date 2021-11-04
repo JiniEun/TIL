@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        /*body {
+                min-height: 100vh;
+                background: -webkit-gradient(linear, left bottom, right top, from(#92b5db), to(#326fa8));
+                background: -webkit-linear-gradient(bottom left, #92b5db 0%, #326fa8 100%);
+                background: -moz-linear-gradient(bottom left, #92b5db 0%, #326fa8 100%);
+                background: -o-linear-gradient(bottom left, #92b5db 0%, #326fa8 100%);
+                background: linear-gradient(to top right, #92b5db 0%, #326fa8 100%);
+            } */
+
+        .input-form {
+            max-width: 680px;
+            margin-top: 50px;
+            padding: 30px;
+            background: #fff;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+        }
+    </style>
+
+    </head>
+    <body>
+        <div class="container-sm">
+            <div class="input-form-backgroud row">
+                <div class="input-form col-md-12 mx-auto">
+                    <h4 class="mb-3">고객센터 Q&A</h4>
+                    <form class="validation-form" novalidate>
+                        <div class="row">
+                            <div class="col-md-6 mb-3"> <label for="name">문의</label> <input type="text"
+                                    class="form-control" id="name" placeholder="" value="" required>
+                            <button class="btn btn-primary btn-lg btn-block" type="submit"><</button>
+
+                            </div>
+
+                        </div>
+
+
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            window.addEventListener('load', () => { const forms = document.getElementsByClassName('validation-form'); Array.prototype.filter.call(forms, (form) => { form.addEventListener('submit', function (event) { if (form.checkValidity() === false) { event.preventDefault(); event.stopPropagation(); } form.classList.add('was-validated'); }, false); }); }, false);
+        </script>
+    </body>
+</html>
