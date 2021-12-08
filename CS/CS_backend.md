@@ -1,13 +1,5 @@
 # CS _ backend(Spring 위주)
 
-#### [CORS]
-
-CORS(Cross-Origin-Resource-Sharing)란 
-도메인이 다른 2개의 사이트가 데이터를 주고 받을 때 발생하는 문제이다. 
-예를 들어 jj.com에서 jin.com으로 데이터를 요청한다고 할 때, 
-따로 설정을 해주지 않는 한 CORS 에러를 만나게 된다.
-
-
 #### [was와 ws의 차이]
 
 - WAS(Web Application Server)
