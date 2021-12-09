@@ -34,11 +34,22 @@ CORS(Cross-Origin-Resource-Sharing) = 교차 출처 리소스 공유라고도 �
 
 ### 응답 헤더 목록
 
-- Origin
+- Access-Control-Allow-Origin <br>
+브라우저가 해당 origin이 자원에 접근할 수 있도로 허용한다. <br>
+`*`은 credentials이 없는 요청에 한해서 모든 origin에서 접근이 가능하도록 허용한다.
 
-- Access-Control-Request-Method <br>
-`preflight` 요청을 할 때 실제 요청에서 어떤 Method를 사용할 것인지 서버에세 알리기 위해 사용된다.
+- Access-Control-Expose-Headers <br>
+브라우저가 액세스할 수 있는 서버 화이트리스트 헤더를 허용한다.
 
-- Access-Control-Request-Headers <br>
-`preflight` 요청을 할 때 실제 요청에서 어떤 Header를 사용할 것인지 서버에세 알리기 위해 사용된다.
+- Access-Control-Max-Age <br>
+얼마나 오랫동안 preflight요청이 캐싱 될 수 있는지를 나타낸다.
 
+- Access-Control-Allow-Credentials <br>
+`Credentials`가 true 일 때 요청에 대한 응답이 노출될 수 있는지를 나타내며, `preflight`요청에 대한 응답의 일부로 사용되는 경우 실제 자격 증명을 사용하여 실제 요청을 수행 할 수 있는지를 나타낸다. <br>
+간단한 GET 요청은 `preflight`되지 않으므로 자격 증명이 있는 리소스를 요청하면 헤더가 리소스와 함께 반환되지 않으면 브라우저에서 응답을 무시하고 웹 콘텐츠로 반환하지 않는다.
+
+- Access-Control-Allow-Methods <br>
+`preflight`요청에 대한 대한 응답으로 허용되는 메서드들을 나타낸다.
+
+- Access-Control-Allow-Headers <br>
+`preflight`요청에 대한 대한 응답으로 실제 요청 시 사용할 수 있는 HTTP 헤더를 나타낸다.
