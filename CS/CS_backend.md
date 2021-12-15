@@ -1,6 +1,6 @@
 # CS _ backend(Spring 위주)
 
-#### [was와 ws의 차이]
+### [was와 ws의 차이]
 
 - WAS(Web Application Server)
 
@@ -12,14 +12,18 @@ Tomcat, PHP, ASP, .Net 등
 비지니스 로직을 넣을 수 없음
 Nginx, Apache 등
 
-#### [ 많은 트래픽이 발생한 경우 대처하는 방법 ]
+<br>
+
+### [ 많은 트래픽이 발생한 경우 대처하는 방법 ]
 
 스케일 업(Scale Up): 서버에 CPU나 RAM 등을 추가하여 서버의 하드웨어 스펙을 향상시키는 방법이다.
 스케일 아웃(Scale Out): 서버를 여러 대 추가하여 시스템을 증가시키는 방법이다.
 
+<br>
+
 ### (서버)
 
-#### 톰캣
+#### [ 톰캣 ]
 아파치 톰캣(Apache Tomcat)은 아파치 소프트웨어 재단에서 개발한 서블릿 컨테이너(또는 웹 컨테이너)만 있는 웹 애플리케이션 서버이다.<br>
 톰캣은 웹 서버와 연동하여 실행할 수 있는 자바 환경을 제공하여 자바서버 페이지(JSP)와 자바 서블릿이 실행할 수 있는 환경을 제공하고 있다. 톰캣은 관리툴을 통해 설정을 변경할 수 있지만, XML 파일을 편집하여 설정할 수도 있다. 그리고, 톰캣은 HTTP 서버도 자체 내장하기도 한다.<br>
 아파치서버와는 다르게 DB연결, 다른 응용프로그램과 상호 작용 등 동적인 기능들을
@@ -28,14 +32,16 @@ Nginx, Apache 등
 #### [ 톰캣은 멀티 프로세스인가 멀티 쓰레드인가? ]
 톰캣은 요청을 처리하기 위한 쓰레드 풀을 관리하고 있다. 그리고 요청이 오면 해당 쓰레드 풀에서 쓰레드를 꺼내 요청을 처리하도록 한다.
 
-#### 아파치
+### [ 아파치 ]
 흔히 아파치라고 부르는 것은 Apache HTTP Server를 의미하는 데
 이는 오픈 소스 소프트웨어 그룹인 아파치 소프트웨어 재단(Apache Software Foundation, ASF)에서 만든 웹서버 프로그램이다. <br>
 1998년 6월에 처음 세상에 공개가 되었고,
 오픈소스를 통해 많은 개발자들에 의해 개발이 이루어졌으며, 이루어져가고 있는 상태이다.
 
-#### [ 아파치는 멀티 프로세스인가 멀티 쓰레드인가? ]
+### [ 아파치는 멀티 프로세스인가 멀티 쓰레드인가? ]
 아파치는 기본적으로 멀티 프로세스로 구현되어 있다. 하지만 설정에 따라 멀티 쓰레드를 같이 운용할 수 있다.
+
+<br>
 
 ### [ 디자인 패턴 ]
 
@@ -65,3 +71,25 @@ UnitFactory => FactoryPattern을 사용하여 객체 생성을 최적화 + Singl
 BaseFrame => ObserverPattern을 사용하여 사용자의 정보가 생신되면 View의 값들도 갱신되게 함 <br>
 
 PlayerInfo => StrategyPattern을 사용하여 상황에 따라 다른 스킬을 사용 <br>
+
+<br>
+
+### [ Servlet(서블릿)이란? ]
+서블릿 = 클라이언트의 요청을 처리하고, 그 결과를 반환하는 Servlet 클래스의 구현 규칙을 지킨 자바 웹 프로그래밍 기술  <br>
+Spring MVC에서 Controller로 이용되며, 사용자의 요청을 받아 처리한 후에 결과를 반환한다.
+
+<br>
+
+### [ Spring 기초지식(DI, DL, IoC, AOP) ]
+DI(Dependency Injection): 한 객체에서 다른 객체를 필요로 하여 의존성을 갖게 하는 기술 <ㅠㄱ>
+DL(Dependency Look-up): 한 객체에서 필요로 하는 다른 객체를 찾아서 사용하는 기술
+IoC(Inversion of Control): 직접 제어야하는 부분에 대한 권한을 프레임워크 등에 넘기는 기술
+AOP(Aspect Oriented Programming): 공통의 관심 사항을 추출하여 원하는 곳에 적용하는 기술
+
+<br>
+
+### [ VO와 DTO, BO, DAO란? ]
+DTO(Data Transfer Object): 데이터를 주고 받기 위해 사용하는 클래스 <br>
+DAO(Data Access Object): DB에 접근하여 실제 데이터를 조회 또는 조작하는 클래스, Repository 또는 Mapper에 해당 <br>
+VO(Value Object): 실제 데이터만을 저장하는 클래스 <br>
+BO(Business Object): 여러 DAO를 활용해 비지니스 로직을 처리하는 클래스, Service에 해당 <br>
