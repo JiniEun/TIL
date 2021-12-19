@@ -104,3 +104,9 @@ AOP에서는 핵심기능과 공통기능을 분리시켜 핵심 로직에 영�
 
 ## MVC (Model2)_Spring Framework의 특징 3
 
+<img src="https://user-images.githubusercontent.com/49184115/146664630-a94df682-ce2f-49bc-ad42-cebafbe2223d.png" alt="drawing" width="70%"/>
+
+<br>
+
+
+
