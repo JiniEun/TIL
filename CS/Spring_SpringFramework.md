@@ -108,5 +108,29 @@ AOP에서는 핵심기능과 공통기능을 분리시켜 핵심 로직에 영�
 
 <br>
 
+MVC란 Model, View, Controller 구조를 말한다.
+사용자 인터페이스와 비즈니스 로직을 분리하여 개발하는 것이다.
+Model1과 Model2로 나누어져 있고, 일반적인 MVC는 Model2를 말한다.
 
+Model, View, Controller를 나누는 이유는 소스를 분리하여 각 소스의 목적이 명확해, 유지보수하는데 용이하기 때문이다.
 
+### Model
+Model은 데이터를 처리하는 역할을 한다.
+Service와 DAO 영역으로 나눠진다.
+Service 부분은 불필요하게 HTTP 통신을 하지 않고, request, response와 같은 객체를 매개변수로 받지 않는다. Model 부분의 Service는 view에 종속적인 코드가 없고 View 부분이 변경되더라도 Service 부분은 그대로 재사용 할 수 있어야 한다.
+
+<span style="color:red">Model은 View와 Controller 어떠한 정보도 가지고 있어서는 안된다.</span>
+
+### View
+사용자 Interface를 담당하며 사용자에게 보여지는 부분이다.
+자신이 요청을 보낼 Controller의 정보만 알고 있어야 한다.
+Controller를 통해 모델에 데이터에 대한 시각화를 담당한다.
+
+<span style="color:red">View는 Model이 가지고 있는 정보를 저장해서는 안되며 Model, Contoller의 구성 요소를 알아서는 안된다.</span>
+
+### Controller
+View에 받은 요청을 가공하여 Model(Service 영역)에 전달한다. 
+Model로 부터 받은 결과를 View로 넘겨주는 역할을 한다. 
+Controller에서는 모든 요청 에러와 모델 에러를 처리하며 View와 Controller의 정보를 알고 있어야 한다.
+
+<span style="color:red">Controller는 Model과 View의 정보를 알고 있어야 한다.</span>
