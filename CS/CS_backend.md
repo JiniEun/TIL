@@ -98,7 +98,7 @@ BO(Business Object): 여러 DAO를 활용해 비지니스 로직을 처리하는
 
 ### [ 디스패처 서블릿(Dispatcher Servlet)이란? ]
 디스패처 서블릿이란 톰캣과 같은 서블릿 컨테이너를 통해 들어오는 모든 요청을 제일 앞에서 받는 컨트롤이다. 디스패처 서블릿은 공통된 작업을 처리한 후에, 적절한 세부 컨트롤러로 작업을 위임한다. 각각의 세부 컨트롤러는 처리할 부분을 처리하고 반환할 view를 Dispatcher Servlet에 넘기게 된다.
-![image](https://user-images.githubusercontent.com/49184115/146943178-a153c93f-db8a-4bb7-8897-354d02da3015.png)
+<img src="https://user-images.githubusercontent.com/49184115/146943178-a153c93f-db8a-4bb7-8897-354d02da3015.png" style="width:70%">
 
 <br>
 
