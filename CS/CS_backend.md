@@ -81,7 +81,7 @@ Spring MVC에서 Controller로 이용되며, 사용자의 요청을 받아 처�
 <br>
 
 ### [ Spring 기초지식(DI, DL, IoC, AOP) ]
-DI(Dependency Injection): 한 객체에서 다른 객체를 필요로 하여 의존성을 갖게 하는 기술 <ㅠㄱ>
+DI(Dependency Injection): 한 객체에서 다른 객체를 필요로 하여 의존성을 갖게 하는 기술 
 DL(Dependency Look-up): 한 객체에서 필요로 하는 다른 객체를 찾아서 사용하는 기술
 IoC(Inversion of Control): 직접 제어야하는 부분에 대한 권한을 프레임워크 등에 넘기는 기술
 AOP(Aspect Oriented Programming): 공통의 관심 사항을 추출하여 원하는 곳에 적용하는 기술
@@ -94,8 +94,13 @@ DAO(Data Access Object): DB에 접근하여 실제 데이터를 조회 또는 �
 VO(Value Object): 실제 데이터만을 저장하는 클래스 <br>
 BO(Business Object): 여러 DAO를 활용해 비지니스 로직을 처리하는 클래스, Service에 해당 <br>
 
+<br>
+
 ### [ 디스패처 서블릿(Dispatcher Servlet)이란? ]
 디스패처 서블릿이란 톰캣과 같은 서블릿 컨테이너를 통해 들어오는 모든 요청을 제일 앞에서 받는 컨트롤이다. 디스패처 서블릿은 공통된 작업을 처리한 후에, 적절한 세부 컨트롤러로 작업을 위임한다. 각각의 세부 컨트롤러는 처리할 부분을 처리하고 반환할 view를 Dispatcher Servlet에 넘기게 된다.
+![image](https://user-images.githubusercontent.com/49184115/146943178-a153c93f-db8a-4bb7-8897-354d02da3015.png)
+
+<br>
 
 ### [ Spring에서의 싱글톤 패턴 ]
 싱글톤 패턴은 1개의 클래스당 1개의 객체만을 생성하여 사용하는 디자인 패턴이다. Spring에서는 스프링 컨테이너가 관리하는 객체인 Bean을 싱글톤패턴으로 구현하여 제공한다.(당연히 스코프를 변경할 수 있다.)
@@ -104,8 +109,13 @@ Spring에서는 private 생성자나 static 메소드를 사용하지 않고도 
 
 또한 Java의 싱글톤은 해당 클래스로더 내에서 1개의 인스턴스만을 생성할 수 있지만, Spring에서는 스프링 컨테이너의 컨텍스트에서 1개의 인스턴스를 생성할 수 있다. 그에 따라서 Java의 싱글톤은 JVM에 라이프사이클의 제어가 되지만, Spring의 싱글톤은 스프링 컨텍스트에 의해 제어가 된다. 또한 Spring에서의 싱글톤은 Thread Safety를 자동으로 보장하는 반면 Java로 구현한 싱글톤 패턴은 반드시 보장하지 못한다.
 
+<br>
+
 ## [ CDN(Content Delivery Network)란? ]
 
 CDN(Content Delivery Network)는 물리적으로 떨어져 있는 사용자에게 컨텐츠를 더 빠르게 제공하기 위해 고안된 기술이다. 만약 우리나라에 있는 사람이 미국에 있는 서버로부터 이미지나 파일 등을 다운받으려고 하면 시간이 오래 걸린다. 따라서 느린 응답속도와 다운로드 시간을 극복하기 위해 서버를 분산시켜 캐싱해두고, 빠르게 다운받을 수 있게 한다.
 
 CDN은 콘텐츠에 대한 요청이 발생하면 사용자와 가장 가까운 위치에 존재하는 서버로 매핑시켜, 요청된 파일의 캐싱된(사전 저장된) 버전으로 요청을 처리한다. 서버가 파일을 찾는 데 실패하는 경우 CDN 플랫폼의 다른 서버에서 콘텐츠를 찾은 다음 엔드유저에게 응답을 전송한다. 
+
+<br>
+
