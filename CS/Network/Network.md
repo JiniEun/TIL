@@ -2,6 +2,8 @@
 
 - [웹 동작 방식](#웹-동작-방식)
 - [TCP와 UDP 차이](#tcp와-udp-차이)
+- [GET과 POST 차이](#get과-post-차이)
+- [공인 IP와 사설 IP](#공인-ip와-사설-ip)
 
 <br>
 
