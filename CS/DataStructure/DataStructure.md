@@ -5,9 +5,9 @@
 <hr/>
 
 - [자료구조와 알고리즘](#자료구조와-알고리즘)
-- [스택, 큐, 트리, 힙 구조 ](#스택,-큐,-트리,-힙-구조)
+- [스택, 큐, 트리, 힙 구조 ](#스택-큐-트리-힙-구조)
 - [우선순위 큐](#우선순위-큐)
-- [LinkedList / ArrayList](#linkedlist-/-arraylist)
+- [LinkedList / ArrayList](#linkedlist--arraylist)
 
 <hr/>
 
