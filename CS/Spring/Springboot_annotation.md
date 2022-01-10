@@ -2,7 +2,7 @@
 
 <br>
 
-- [Java에서 어노테이션이란?](#java에서-어노테이션이란?)
+- [Java에서 어노테이션이란?](#java에서-어노테이션이란)
 - [@PostConstruct](#postconstruct)
 
 
