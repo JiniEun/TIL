@@ -15,3 +15,12 @@ div 박스 밖으로 넘치는 것은 보여주지 않고 그냥 숨겨 버리�
 
 - white-space:nowrap;
 문자열이 길면 다음줄로 자동으로 행갈이가 되는데, nowrap 은 행갈이를 하지 말고 한 줄로 길게 이어서 쓰라는 의미이다. 프로그래밍 소스 코드 등을 표현할 때에는 행갈이를 하지 않는 것이 자연스럽다. <br>
+
+
+```html
+<div style="overflow:scroll; width:300px; height:150px; padding:10px; background-color:gold;">
+
+스크롤바 예시(이런식으로 스타일을 적용해 사용한다)
+
+</div>
+```
