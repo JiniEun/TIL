@@ -7,7 +7,7 @@
 ```
 [보여지는 텍스트](#이동할위치)
 ~생략~
-#이동할위치
+# 이동할위치
 ```
 
 <br>
@@ -25,7 +25,7 @@
 ```
 [markdown](#markdown-link)
 
-#markdown link
+# markdown link
 ```
 
 <br>
