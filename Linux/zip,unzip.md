@@ -1,4 +1,4 @@
-# Linux zip/unzip 으로 압축하고 해제하기
+# [Linux] Linux zip/unzip 으로 압축하고 해제하기
 
 <br>
 
