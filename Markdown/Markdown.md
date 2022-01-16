@@ -7,8 +7,12 @@
 - [헤딩(Heading)](#헤딩heading)
 - [리스트](#리스트)
 - [코드 블럭(Code Block)](#코드-블럭code-block)
-- [텍스트 강조](#텍스트-강조)
 - [링크(link)](#링크link)
+- [이미지](#이미지)
+- [텍스트 강조](#텍스트-강조)
+- [수평선](#수평선)
+- [인용문](#인용문)
+- [Table](#table)
 
 <hr/>
 
@@ -65,6 +69,8 @@ print("Hello World!")
 
 [google](https://www.google.com)
 
+<br>
+
 ## 이미지
 
 이미지 삽입
@@ -81,7 +87,6 @@ print("Hello World!")
 
 <br>
 
-
 ## 텍스트 강조 
 
 굵게, 기울임, 취소선
@@ -91,6 +96,8 @@ print("Hello World!")
 ```
 
 **Bold**  *italic*  ~~취소선~~
+
+<br>
 
 ## 수평선
 
@@ -102,6 +109,8 @@ print("Hello World!")
 ```
 
 ---
+
+<br>
 
 ## 인용문
 
@@ -119,7 +128,7 @@ print("Hello World!")
 >>
 >> 
 
-
+<br>
 
 ## Table
 
