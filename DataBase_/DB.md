@@ -7,6 +7,7 @@
 - [인덱스(index)란?](#인덱스index란)
 - [DB 정규화](#db-정규화)
 - [트랜잭션(Transaction)](#트랜잭션transaction)
+- [RDBMS와 NoSQL 차이](#rdbms와-nosql-차이)
 
 <hr/>
 
@@ -99,7 +100,7 @@ DB 락은 여러 개의 트랜잭션들이 하나의 데이터로 동시에 접�
 
 <br>
 
-## [ RDBMS와 NoSQL 차이 ]
+## RDBMS와 NoSQL 차이
 
 ### RDBMS
 
