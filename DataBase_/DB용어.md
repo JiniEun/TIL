@@ -83,4 +83,11 @@
 
 ## 논리모델 vs 물리모델
 
+| 논리모델 | 물리모델 |
+| ------- | -------- |
+| 개체(Entity) | 테이블(Table) |
+| 속성(Attribute) | 컬럼(Column) |
+| 관계(Relation) | 관계(Relation) |
+| 키 그룹(Key group) | 인덱스(Index) |
+
 <br>
