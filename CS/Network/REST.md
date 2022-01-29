@@ -1,7 +1,7 @@
 # [Network] REST, REST API, RESTful이란?
 
-- [REST의 개념]
-- [REST의 특징]
+- [REST의 개념](#rest의-개념)
+- [REST의 특징](#rest-특징)
 - [REST API의 개념]
 - [REST API의 설계 규칙]
 - [RESTful의 개념]
@@ -95,4 +95,28 @@ HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고
 
 ## REST 구성 요소
 
+### 1. 자원(Resource) : URI
+
+- 모든 자원에 고유한 ID가 존재하고, 이 자원은 Server에 존재한다.
+
+- 자원을 구별하는 ID는 '/groups/:group_id'와 같은 HTTP URI이다.
+
+- Client는 URI를 이용해서 자원을 지정하고 해당 자원의 상태(정보)에 대한 조작을 Server에 요청한다.
+
+### 2. 행위(Verb) : HTTP Method
+
+- HTTP 프로토콜의 Method를 사용한다.
+
+- HTTP 프로토콜을 GET, POST, PUT, DELETE와 같은 Method를 제공한다.
+
+### 3. 표현(Representation of Resource)
+
+- Client가 자원의 상태(정보)에 대한 조작을 요청하면 Server는 이에 적절한 응답(Representation)을 보낸다.
+
+- REST에서 하나의 자원은 JSON, XML, TEXT, RSS 등 여러 형태의 Representation으로 나타낼 수 있다.
+
+- JSON 혹은 XML를 통해 데이터를 주고 받는 것이 일반적이다.
+
 <br>
+
+## REST 특징
