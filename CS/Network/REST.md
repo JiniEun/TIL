@@ -120,3 +120,14 @@ HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고
 <br>
 
 ## REST 특징
+
+### 1. Server-Client(서버-클라이언트 구조)
+
+- REST Server : (자원이 있는 쪽) API를 제공하고 
+
+- Client : (자원 요청) 
+
+### 2. Stateless(무상태)
+
+
+### 3. Cacheable(캐시 처리 가능)
