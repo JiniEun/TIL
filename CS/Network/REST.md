@@ -121,13 +121,31 @@ HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고
 
 ## REST 특징
 
+<br>
+
 ### 1. Server-Client(서버-클라이언트 구조)
 
-- REST Server : (자원이 있는 쪽) API를 제공하고 
+- REST Server : (자원이 있는 쪽) API를 제공하고 비즈니스 로직 처리 및 저장을 책임진다.
 
-- Client : (자원 요청) 
+- Client : (자원 요청) 사용자 인증이나 context(세션, 로그인 정보) 등을 직접 관리하고 책임진다.
+
+<br>
+
+서로 간 의존성이 줄어든다.
+
+<br>
 
 ### 2. Stateless(무상태)
+
+- HTTP 프로토콜은 Stateless Protocol이므로 REST 역시 Stateless 이다. 
+
+- Client의 context를 Server에 저장하지 않는다.
+    - 즉, 세션과 쿠키와 같은 context 정보를 신경쓰지 않아도 되므로 구현이 단순해진다.
+
+- Server
+
+
+
 
 
 ### 3. Cacheable(캐시 처리 가능)
