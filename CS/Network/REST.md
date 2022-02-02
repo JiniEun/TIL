@@ -193,3 +193,13 @@ HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고
 ## REST API
 
 ### REST API란?
+
+#### API = Application Programming Interface
+
+데이터와 기능의 집합을 제공하여 컴퓨터 프로그램간 상호작용을 촉진하며, 서로 정보를 교환가능 하도록 하는 것 
+
+#### REST API의 정의
+
+REST 기반으로 서비스 API를 구현한 것.
+
+최근 
