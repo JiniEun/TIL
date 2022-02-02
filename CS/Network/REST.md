@@ -163,6 +163,11 @@ HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고
 
 ### 4. Layered System(계층화)
 
+- Client는 REST API Server만 호출한다.
+
+- REST Server는 다중 계층으로 구성될 수 있다.
+    - API Server는 순수 비즈니스 로직을 수행하고 그 앞단에 보안, 로드밸런싱, 암호화, 사용자 인증 등을 추가하여 구조상의 유연성을 줄 수 있다.
+    - 로드밸런싱, 공유 캐시 등을 통해 확장성과 보안성을 향상시킬 수 있다.
 <br>
 
 ### 5. Code-On-Demand(optional)
