@@ -168,12 +168,28 @@ HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고
 - REST Server는 다중 계층으로 구성될 수 있다.
     - API Server는 순수 비즈니스 로직을 수행하고 그 앞단에 보안, 로드밸런싱, 암호화, 사용자 인증 등을 추가하여 구조상의 유연성을 줄 수 있다.
     - 로드밸런싱, 공유 캐시 등을 통해 확장성과 보안성을 향상시킬 수 있다.
+
+- PROXY, 게이트웨이 같은 네트워크 기반의 중간 매체를 사용할 수 있다.
+
 <br>
 
 ### 5. Code-On-Demand(optional)
+
+- Server로부터 스크립트를 받아서 Client에서 실행한다.
+
+- 반드시 충족할 필요는 없다.
 
 <br>
 
 ### 6. Uniform Interface(인터페이스 일관성)
 
-<br>
+- URI로 지정한 Resource에 대한 조작을 통일되고 한정적인 인터페이스로 수행한다.
+
+- HTTP 표준 프로토콜에 따르는 모든 플랫폼에서 사용이 가능하다.
+    - 특정 언어나 기술에 종속되지 않는다.
+
+<br><br>
+
+## REST API
+
+### REST API란?
