@@ -229,4 +229,35 @@ REST는 HTTP 표준을 기반으로 구현하므로, HTTP를 지원하는 프로
 
 2. 자원에 대한 행위는 HTTP Method(GET, PUT, POST, DELETE 등)로 표현한다.
 
+<br><br>
+
+## RESTful
+
 <br>
+
+### RESTful이란?
+
+일반적으로 REST라는 아키텍처를 구현하는 웹 서비스를 나타내기 위해 사용되는 용어이다.
+<br>
+즉, 'REST API'를 제공하는 웹 서비스를 'RESTful'하다고 할 수 있다.
+<br>
+REST를 REST답게 쓰기 위한 방법으로, 누군가가 공식적으로 발표한 것이 아니며, 즉, REST 원리를 따르는 시스템은 RESTful이란 용어로 지칭된다.
+
+<br>
+
+### RESTful의 목적
+
+RESTful의 목적은 결국 이해하기 쉽고, 사용하기 쉬운 REST API를 만드는 것이라 할 수 있다.
+
+RESTful한 API를 구현하는 근본적인 목적은 성능 향상이라기 보다는 일관적인 컨벤션을 통한 API의 이해도 및 호환성을 높이는 것이 주 동기기 때문에
+성능이 중요한 상황에서는 굳이 RESTful한 API를 구현할 필요는 없다.
+
+### RESTful하지 못한 경우
+
+ex1) CRUD 기능을 모두 POST로만 처리하는 API
+<br>
+ex2) route에 resource, id 외의 정보가 들어가는 경우(/students/updateName)
+
+<br><br>
+
+끝🐧
