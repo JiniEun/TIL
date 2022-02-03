@@ -1,10 +1,13 @@
 # [Network] REST, REST API, RESTful이란?
 
 - [REST의 개념](#rest의-개념)
+- [REST의 장단점](#rest의-장단점)
+- [REST 구성 요소](#rest-구성-요소)
 - [REST의 특징](#rest-특징)
-- [REST API의 개념]
-- [REST API의 설계 규칙]
-- [RESTful의 개념]
+- [REST API](#rest-api)
+- [REST API의 정의](#rest-api의-정의)
+- [REST API 설계 기본 규칙](#rest-api-설계-기본-규칙)
+- [RESTful](#restful)
 
 <hr/>
 
@@ -247,10 +250,12 @@ REST를 REST답게 쓰기 위한 방법으로, 누군가가 공식적으로 발�
 
 ### RESTful의 목적
 
-RESTful의 목적은 결국 이해하기 쉽고, 사용하기 쉬운 REST API를 만드는 것이라 할 수 있다.
+RESTful의 목적은 결국 이해하기 쉽고, 사용하기 쉬운 REST API를 만드는 것이라 할 수 있다. <br>
 
 RESTful한 API를 구현하는 근본적인 목적은 성능 향상이라기 보다는 일관적인 컨벤션을 통한 API의 이해도 및 호환성을 높이는 것이 주 동기기 때문에
-성능이 중요한 상황에서는 굳이 RESTful한 API를 구현할 필요는 없다.
+성능이 중요한 상황에서는 굳이 RESTful한 API를 구현할 필요는 없다. <br>
+
+<br>
 
 ### RESTful하지 못한 경우
 
