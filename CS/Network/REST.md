@@ -6,10 +6,13 @@
 - [REST API의 설계 규칙]
 - [RESTful의 개념]
 
-
 <hr/>
 
+<br>
+
 ## REST의 개념
+
+<br>
 
 ### REST의 정의
 
@@ -49,9 +52,11 @@ HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고
 
 웹 사이트의 이미지, 텍스트, DB 내용 등의 모든 자원에 고유한 ID인 HTTP URI를 부여한다. <br>
 
-<br>
+<br><br>
 
 ## REST의 장단점
+
+<br>
 
 ### REST의 장점
 
@@ -79,7 +84,7 @@ HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고
 
 - 구형 브라우저가 제대로 지원하지 못하는 부분이 존재한다. (PUT, DELETE를 사용하지 못하는 점, pushState를 지원하지 않는 점)
 
-<br>
+<br><br>
 
 ## REST가 필요한 이유
 
@@ -91,7 +96,7 @@ HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고
 
 - 멀티 플랫폼에 대한 지원을 위해 서비스 자우너에 대한 아키텍처를 세우고 이용하는 방법과의 연관성
 
-<br>
+<br><br>
 
 ## REST 구성 요소
 
@@ -117,7 +122,7 @@ HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고
 
 - JSON 혹은 XML를 통해 데이터를 주고 받는 것이 일반적이다.
 
-<br>
+<br><br>
 
 ## REST 특징
 
@@ -192,14 +197,28 @@ HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고
 
 ## REST API
 
+<br>
+
 ### REST API란?
 
 #### API = Application Programming Interface
 
 데이터와 기능의 집합을 제공하여 컴퓨터 프로그램간 상호작용을 촉진하며, 서로 정보를 교환가능 하도록 하는 것 
 
+<br>
+
 #### REST API의 정의
 
 REST 기반으로 서비스 API를 구현한 것.
 
-최근 
+최근 OpenAPI (*누구나 사용 가능하도록 공개된 API;구글 맵, 공공 데이터*), 마이크로 서비스(*하나의 큰 애플리케이션을 여러 개의 작은 애플리케이션으로 나눠 변경과 조합이 가능하도록 만든 아키텍처*) 등을 제공하는 업체 대부분이 REST API를 제공한다.
+
+<br>
+
+### REST API 특징
+
+사내 시스템들도 REST 기반으로 시스템을 분산해 확장성과 재사용성을 높여 유지보수 및 운용을 편리하게 할 수 있다.
+<br>
+REST는 HTTP 표준을 기반으로 구현하므로, HTTP를 지원하는 프로그램 언어로 클라이언트, 서버를 구현할 수 있다.
+<br>
+즉, REST API를 제작하면 자바, C#, 웹 등을 이용해 클라이언트를 제작할 수 있다.
