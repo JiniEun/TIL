@@ -262,6 +262,18 @@ REST는 HTTP 표준을 기반으로 구현하므로, HTTP를 지원하는 프로
 - /리소스명/리소스 ID/관계가 있는 다른 리소스명
 
 
+#### REST API 설계 예시
+
+| CRUD | HTTP verbs |
+| :--: | :--------: |
+| resource들의 목록 표시 | GET |
+| resource 하나의 내용 표시 | GET |
+| resource 생성 | POST |
+| resource 수정 | PUT |
+| resource 삭제 | DELETE |
+
+<br><br>
+
 > **참고 응답상태코드** <br>
 > 1xx : 전송 프로토콜 수준의 정보 교환 <br>
 > 2xx : 클라어인트 요청이 성공적으로 수행됨 <br>
