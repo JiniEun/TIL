@@ -21,7 +21,7 @@ Byte Ordering이란 데이터가 저장되는 순서를 의미한다.
 
 <br>
 
-> **MSB, LSB**
+> **MSB, LSB** <br>
 > LSB란 <br>
 > = Least Significant Bit <br>
 > 하나의 데이터 형에서의 가장 낮은 위치의 Bit를 의미한다.
@@ -30,6 +30,31 @@ Byte Ordering이란 데이터가 저장되는 순서를 의미한다.
 > Most Significant Bit <br>
 > 어떠한 데이터 형의 최상위 비트를 의미한다.
 
+<br><br>
+
+## 메모리란
+메모리란 컴퓨터에서 작업을 수행하기 위해 처리 대상이나 결과 등을 저장하기 위한 공간이다. <br>
+프로그램을 실행하기 위한 정보들은 메모리에 저장되어 처리된다.
+
+<br><br>
+
+## process 와 thread의 차이
+
+### Process 
+
+정의 : 메모리에 올라와 실행되고 있는 프로그램의 인스턴스
+
+특징
+
+- 운영체제로부터 독립된 메모리 영역을 할당받는다. (다른 프로세스의 자원에 접근 X)
+- 프로세스들은 독립적이기 때문에 통신하기 위해 IPC를 사용해야 한다.
 
 
+### Thread
 
+<br><br>
+
+> **IPC** <br>
+> Inter Process Communication : 프로세스 간 통신 
+
+<br><br>
