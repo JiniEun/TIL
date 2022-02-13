@@ -23,7 +23,7 @@ REST = Representational State Transfer
 
 자원을 이름(자원의 표현)으로 구분하여 해당 자원의 상태(정보)를 주고 받는 모든 것. <br>
 
-즉, 자원(resource)의 표현(representation) 에 의한 상태 전달
+즉, 자원(resource)의 표현(representation)에 의한 상태 전달
 
 <br>
 
@@ -50,6 +50,17 @@ ex) DB 안에 들어가 있는 데이터 하나하나, 이미지 하나하나 �
 
 HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고, HTTP Method(POST, GET, PUT, DELETE)를 통해
 해당 자원에 대한 CRUD Operation을 적용하는 것이다. <br>
+
+> **CRUD** <br>
+> CRUD(CREATE, READ, Update, Delete) <br>
+> **HTTP Method(POST, GET, PUT, DELETE)**
+> GET : 지정된 URL에서 리소스의 표현 조회 <br>
+> POST : 지정된 URL에 신규 리소스 생성 <br>
+> PUT : 지정된 URL에 리소스를 생성하거나 업데이트 <br>
+> PATCH : 리소스의 부분 업데이트 <br>
+> DELETE : 지정된 URL의 리소스 제거 <br>
+
+<br><br>
 
 즉, 자원 기반의 구조(ROA, Resource Oriented Architecture) 설계의 중심에 Resource가 있고 HTTP Method를 통해 Resource를 처리하도록 설계된 아키텍처이다. <br>
 
