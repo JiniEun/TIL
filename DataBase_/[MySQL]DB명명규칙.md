@@ -27,7 +27,7 @@
 
 ### Column
 
-1. auto increment 속성의 PK를 대리키로 사용하는 경우, "테이블 이름의 단수형"_id의 규칙으로 명명한다.
+1. auto increment 속성의 PK를 대리키로 사용하는 경우, '테이블 이름의 단수형'_id의 규칙으로 명명한다.
 
 2. snake case를 사용한다. (underscore(_))
 
@@ -39,6 +39,7 @@
 
 
 ### Index
+
 1. snake case를 사용한다. (underscore(_))
 
 2. 접두어
@@ -46,8 +47,19 @@
     2. spatial index : six
     3. index : nix
 
-3. "접두어" - "테이블 이름" - "컬럼 이름" - "컬럼 이름"
+3. '접두어' - '테이블 이름' - '컬럼 이름'- '컬럼 이름'
 
 <br>
 
 ex. uix-accounts-login_email
+
+### Foreign key
+
+1. snake case를 사용한다. (underscore(_))
+
+2. 'fk'-'부모 테이블 이름'-'자식 테이블 이름'
+
+
+### View
+
+1. 접두어 'v' 사용
