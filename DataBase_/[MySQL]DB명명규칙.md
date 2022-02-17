@@ -37,15 +37,16 @@
 
 5. date, datetime 유형의 컬럼이면 `_date` 접미어를 사용한다.
 
+<br><br>
 
 ### Index
 
-1. snake case를 사용한다. (underscore(_))
-
-2. 접두어
+1. 접두어
     1. unique index : uix
     2. spatial index : six
     3. index : nix
+
+2. snake case를 사용한다. (underscore(_))
 
 3. '접두어' - '테이블 이름' - '컬럼 이름'- '컬럼 이름'
 
@@ -53,12 +54,15 @@
 
 ex. uix-accounts-login_email
 
+<br><br>
+
 ### Foreign key
 
 1. snake case를 사용한다. (underscore(_))
 
 2. 'fk'-'부모 테이블 이름'-'자식 테이블 이름'
 
+<br><br>
 
 ### View
 
@@ -66,10 +70,33 @@ ex. uix-accounts-login_email
 
 ex. v_privileges
 
+<br><br>
+
 ### Function
 
 1. 접두어 'usf'
 
 2. snake case를 사용한다. (underscore(_))
-
+<br>
 ex. usf_random_key
+
+<br><br>
+
+### TRIGGER
+
+1. 접두어
+    tra : AFTER 트리거
+    trb : BEFORE 트리거
+
+2. snake case를 사용한다. (underscore(_))
+
+3. '접두어'_'테이블 이름'\_'트리거 이벤트'
+
+ex. 
+    tga_movies_ins : AFTER INSERT 트리거
+    tga_movies_upd : AFTER UPDATE 트리거
+    tgb_movies_del : BEFORE DELETE 트리거
+
+<br><br>
+
+끝🐧
