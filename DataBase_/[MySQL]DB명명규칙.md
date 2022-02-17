@@ -19,7 +19,7 @@
 
 1. 복수형을 사용한다.
 
-2. 이름을 구성하는 각각의 단어를 underscore로 연결하는 snake case를 사용한다.
+2. snake case를 사용한다. (underscore(_))
 
 3. 교차 테이블 (many-to-many)의 이름에 사용할 수 있는 직관적인 단어가 있다면 해당 단어를 사용한다.
 
@@ -62,4 +62,14 @@ ex. uix-accounts-login_email
 
 ### View
 
-1. 접두어 'v' 사용
+1. 접두어 'v'
+
+ex. v_privileges
+
+### Function
+
+1. 접두어 'usf'
+
+2. snake case를 사용한다. (underscore(_))
+
+ex. usf_random_key
