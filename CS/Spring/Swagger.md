@@ -28,3 +28,7 @@ Maven pom.xml에 Dependency 추가
 	<version>3.0.0</version>
 </dependency>
 ```
+
+
+`/swagger-ui/index.html`
+에서 생성한 컨트롤러 별로 input, output을 확인할 수 있으며 심지어 그 안에서 API 테스트도 할 수 있다는 것을 확인할 수 있다.
