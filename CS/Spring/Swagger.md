@@ -31,6 +31,30 @@ Swagger-Inspector를 통해 API를 시각화하고 빠른 테스팅을 진행할
 5. Standardize
 Swagger-hub를 통해 개인, 팀원들이 API 정보를 공유하는 Hub
 
+## 애노테이션 
+
+- @Api
+해당클래스가 Swagger 리소스라는 것을 명시한다
+`value` : 태그를 작성한다.
+`tags` : 사용하여 여러 개의 태그를 정의할 수도 있다.
+
+- @ApiOperation
+한 개의 operation(즉 API URL과 Method)을 선언한다
+`value` : API에 대한 간략한 설명(제목같은 느낌으로)을 작성한다
+`notes` : 더 자세한 설명을 작성해준다.
+
+- @ApiParam
+operation의 가능한 reponse를 명시한다.
+`code` : 응답모드를 작성한다.
+`message` : 응답에 대한 설명을 작성.
+`responseHeaders` : 헤더를 추가할 수 있다.
+
+- @ApiParam
+파라미터에 대한 정보를 명시한다.
+`value` : 파라미터 정보를 작성한다.
+`required` : 필수 파라미터이면 true, 아니면 false를 작성한다.
+`example` : 테스트를 할 때 보여줄 예시를 작성한다.
+
 
 ## 실습
 
@@ -55,6 +79,9 @@ Maven pom.xml에 Dependency 추가
 	<version>3.0.0</version>
 </dependency>
 ```
+
+Springboot Config 파일
+`@EnableSwagger2` 애노테이션 붙이기
 
 **Swagger확인**
 
