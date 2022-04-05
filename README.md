@@ -8,6 +8,7 @@
 
 - Blog 운영
   - 내용 정리 
+  - https://jinieun.github.io/
   - https://velog.io/@jini_eun
   - https://jules-jc.tistory.com/
 
