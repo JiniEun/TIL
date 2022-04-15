@@ -1,4 +1,4 @@
-# [Mac] NGINX란? NGINX 설치
+# [NGINX] NGINX란? NGINX 설치
 
 ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7ae9848f-bbda-4700-837e-902362a7bbed/Untitled.png)
 
