@@ -68,10 +68,8 @@
 
 ### CS 지식 정리
 
-면접 대비 CS지식 정리
-
 - OS, DB, Network, Computer structure
-- 유형별 정리, 블로그 업로드
+- 유형별 정리
 
 <br>
 
